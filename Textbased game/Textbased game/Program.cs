@@ -43,6 +43,9 @@ namespace Textbased_game
 
         public static void RunCommand(string[] command)
         {
+            Console.WriteLine("Your command line is: ");
+
+            Console.WriteLine($"{command[0]}{command[1]}");
 
 
 
@@ -56,16 +59,22 @@ namespace Textbased_game
 
         public static string[] ProperCommand(string command)      //This runs a check on the input to ensure that it's a "proper" command
         {
-            string[] cleanCommand = { "", "" };
+            string[] cleanCommand = new string[2];
 
-            bool commandFound = false;
+            string[] separated;
+
 
             for (int i = 0; i < DataStorage.legitimateCommands.Length; i++)
             {
                 if (command.StartsWith(DataStorage.legitimateCommands[i]))
                 {
-                    commandFound = true;
 
+                    separated = command.Split(new string[] { DataStorage.legitimateCommands[i] }, StringSplitOptions.None);
+
+
+
+                    cleanCommand[0] = DataStorage.legitimateCommands[i];
+                    cleanCommand[1] = separated[1];
                     //Now split the line
 
                     break;

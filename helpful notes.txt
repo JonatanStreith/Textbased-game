@@ -1,0 +1,8 @@
+            string input = "Pick up the apple";
+
+            string[] output;
+
+            output = input.Split(new[] {"Pick up"}, StringSplitOptions.None);
+
+            Console.WriteLine($"The extracted line is \"{output[1]}\"");
+            Console.ReadLine();
