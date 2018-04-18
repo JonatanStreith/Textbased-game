@@ -1,0 +1,7 @@
+C:\Users\Lexicon\source\repos\Textbased-game\Textbased game\Textbased game\bin\Debug\Textbased game.exe.config
+C:\Users\Lexicon\source\repos\Textbased-game\Textbased game\Textbased game\bin\Debug\Textbased game.exe
+C:\Users\Lexicon\source\repos\Textbased-game\Textbased game\Textbased game\bin\Debug\Textbased game.pdb
+C:\Users\Lexicon\source\repos\Textbased-game\Textbased game\Textbased game\obj\Debug\Textbased game.csprojResolveAssemblyReference.cache
+C:\Users\Lexicon\source\repos\Textbased-game\Textbased game\Textbased game\obj\Debug\Textbased game.csproj.CoreCompileInputs.cache
+C:\Users\Lexicon\source\repos\Textbased-game\Textbased game\Textbased game\obj\Debug\Textbased game.exe
+C:\Users\Lexicon\source\repos\Textbased-game\Textbased game\Textbased game\obj\Debug\Textbased game.pdb

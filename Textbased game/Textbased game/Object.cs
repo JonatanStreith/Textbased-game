@@ -8,9 +8,11 @@ namespace Textbased_game
 {
     class Object
     {
-        public Object()
-        {
+        private string name;
 
+        public Object(string inputName)
+        {
+            name = inputName;
         }
     }
 }

@@ -8,10 +8,11 @@ namespace Textbased_game
 {
     class Item
     {
+        private string name;
 
-        public Item() //Constructor
+        public Item(string inputName) //Constructor
         {
-                
+            name = inputName;
         }
 
     }
