@@ -46,6 +46,8 @@ namespace Textbased_game
 
             DataStorage.playerLocation = DataStorage.locationList.Find(x => x.GetName().Contains("Sugarcube Corner"));
 
+            DataStorage.playerCoords[0] = DataStorage.playerLocation.GetX();
+            DataStorage.playerCoords[1] = DataStorage.playerLocation.GetY();
 
 
             player.SetLocation("Sugarcube Corner");
@@ -88,7 +90,7 @@ namespace Textbased_game
                     break;
 
                 case "go":
-                    //stuff
+                    Commands.TryGo(command[1]);
                     break;
 
                 case "pick up":
@@ -164,6 +166,13 @@ namespace Textbased_game
             Location Library = new Location("Golden Oaks Library", 0, 1);
             Location Boutique = new Location("Carousel Boutique", 1, 0);
             Location Acres = new Location("Sweet Apple Acres", 1, 1);
+
+            DataStorage.worldMap[0, 0] = Sugarcube;
+            DataStorage.worldMap[0, 1] = Library;
+            DataStorage.worldMap[1, 0] = Boutique;
+            DataStorage.worldMap[1, 1] = Acres;
+
+
 
             DataStorage.locationList.Add(Sugarcube);
             DataStorage.locationList.Add(Library);

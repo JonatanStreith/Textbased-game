@@ -13,7 +13,7 @@ namespace Textbased_game
         public static void Quit()
         {
             Console.WriteLine("Are you sure you want to quit? Y/N");
-            if (Console.ReadKey(true).KeyChar.ToString() == "y" )
+            if (Console.ReadKey(true).KeyChar.ToString() == "y")
             {
                 Console.WriteLine("Okay, bye!");
                 Console.ReadLine();
@@ -45,25 +45,58 @@ namespace Textbased_game
 
         }
 
-        public static void Go(string argument)          
+        public static void TryGo(string argument)
         {
-
             string exits = DataStorage.placesHasExits[DataStorage.playerLocation.GetName()];
 
-            foreach (string letter in collection)
+            bool isLegitExit = false;
+
+            for (int i = 0; i < exits.Length; i++)
             {
-
+                if (argument[1] == exits[i])
+                { isLegitExit = true; }
             }
-
-            if (true)
+                   
+            if (isLegitExit)
             {
-
+                Console.WriteLine(argument);
+                Go(argument);
             }
-            else {
+            else
+            {
                 Console.WriteLine("You can't go that way.");
             }
+        }
+
+        public static void Go(string argument)
+        {
+            int[] currentCoord = DataStorage.playerCoords; //Get current coordinate
+
+            int[] newCoord = currentCoord;
+
+            if (argument == " north")            //Calculate new coordinate
+            { newCoord[0] -= 1; }
+            else if (argument == " south")
+            { newCoord[0] += 1; }
+            else if (argument == " west")
+            { newCoord[1] -= 1; }
+            else if (argument == " east")
+            { newCoord[1] += 1; }
+            else
+            { Console.WriteLine("You can't go that way."); }
+
+            Location newLocation = DataStorage.worldMap[newCoord[0], newCoord[1]];            //Determine new location
+
+            DataStorage.playerLocation = newLocation;
+
+            //Change location
+
+            Console.WriteLine($"You go{argument} to {DataStorage.playerLocation.GetName()}");
+
+            Commands.LookAround(DataStorage.playerLocation);
 
         }
+
 
 
     }

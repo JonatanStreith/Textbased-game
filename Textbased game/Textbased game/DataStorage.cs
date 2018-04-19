@@ -13,8 +13,12 @@ namespace Textbased_game
         public static List<Object> objectList = new List<Object>();
         public static List<Item> itemList = new List<Item>();
 
+        public static Location[,] worldMap = new Location[2, 2];
+
 
         public static Location playerLocation;
+        public static int[] playerCoords = new int[2];
+
 
         public static string[] legitimateCommands = { "look at", "go", "pick up", "talk to", "quit", "look" };
 
@@ -24,7 +28,7 @@ namespace Textbased_game
 
 
 
-        public static Dictionary<string, string> placesHasExits = new Dictionary<string, string> { { "Sugarcube Corner", "SE" }, { "Carousel Boutique", "NE" }, { "Sweet Apple Acres", "NW" }, { "Golden Oaks Library", "SW" } };
+        public static Dictionary<string, string> placesHasExits = new Dictionary<string, string> { { "Sugarcube Corner", "se" }, { "Carousel Boutique", "ne" }, { "Sweet Apple Acres", "nw" }, { "Golden Oaks Library", "sw" } };
 
 
 
