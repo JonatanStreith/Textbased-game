@@ -14,7 +14,18 @@ namespace Textbased_game
         public static List<Item> itemList = new List<Item>();
 
 
-        public static string[] legitimateCommands = { "go", "pick up", "talk to", "quit", "look" };
+        public static Location playerLocation;
+
+        public static string[] legitimateCommands = { "look at", "go", "pick up", "talk to", "quit", "look" };
+
+
+        public static Dictionary<string, string> placeDescriptions = new Dictionary<string, string> { {"Sugarcube Corner", "Sugarcube Corner is Ponyville's premier confectionery store." }, { "Carousel Boutique", "The Carousel Boutique is a place." }, { "Sweet Apple Acres", "This describes SAA." }, { "Golden Oaks Library", "This describes the library" }  };
+
+
+
+
+        public static Dictionary<string, string> placesHasExits = new Dictionary<string, string> { { "Sugarcube Corner", "SE" }, { "Carousel Boutique", "NE" }, { "Sweet Apple Acres", "NW" }, { "Golden Oaks Library", "SW" } };
+
 
 
 

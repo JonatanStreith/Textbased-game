@@ -17,6 +17,8 @@ namespace Textbased_game
         static void Main(string[] args)
         {
 
+            //create locations, creatures, objects and items
+            CreateWorld();
 
 
 
@@ -24,22 +26,29 @@ namespace Textbased_game
             string[] commandPhrase = new string[2];         //A "Command Phrase" contains two elements: a command, and a subject. Example: "Pick up", "Apple".
 
 
+            string playerName = "Player";
+            string playerRace = "human";
 
 
-
-            //create locations, creatures, objects and items
-            CreateWorld();
 
 
 
             Console.WriteLine("Game begins!");
             //create character
 
-            Creature player = new Creature("Player", "human");
+
+
+            Creature player = new Creature(playerName, playerRace);
             DataStorage.creatureList.Add(player);
 
 
             Console.WriteLine($"You are {player.GetName()}, a {player.GetRace()}");
+
+            DataStorage.playerLocation = DataStorage.locationList.Find(x => x.GetName().Contains("Sugarcube Corner"));
+
+
+
+            player.SetLocation("Sugarcube Corner");
 
             AddToLocation("Sugarcube Corner", player.GetName());
 
@@ -51,7 +60,7 @@ namespace Textbased_game
             while (true)                //Continously running play loop that parses instructions
 
             {
-
+                Console.WriteLine();
                 Console.Write("Please input command: ");
                 input = Console.ReadLine().ToLower();
                 commandPhrase = ProperCommand(input);
@@ -70,14 +79,12 @@ namespace Textbased_game
 
         public static void RunCommand(string[] command)
         {
-            Console.WriteLine("Your command line is: ");
 
-            Console.WriteLine($"{command[0]}{command[1]}");
 
-            switch (command[0])
+            switch (command[0])     //This can be used to parse similar expressions, i.e. "examine" points to "look at".
             {
                 case "quit":
-                    //stuff
+                    Commands.Quit();
                     break;
 
                 case "go":
@@ -89,7 +96,10 @@ namespace Textbased_game
                     break;
 
                 case "look":
-                    //stuff
+                    Commands.LookAround(DataStorage.playerLocation);
+                    break;
+                case "look at":
+                    Commands.LookAt(command[1]);
                     break;
 
                 case "":
@@ -178,12 +188,12 @@ namespace Textbased_game
             DataStorage.creatureList.Add(Spike);
 
             AddToLocation("Sugarcube Corner", "Pinkie Pie");
-            AddToLocation("Sweet Apple Acres", "Applejack");
+            AddToLocation("Sugarcube Corner", "Applejack");
             AddToLocation("Sugarcube Corner", "Rainbow Dash");
-            AddToLocation("Carousel Boutique", "Rarity");
-            AddToLocation("Carousel Boutique", "Fluttershy");
-            AddToLocation("Golden Oaks Library", "Twilight Sparkle");
-            AddToLocation("Golden Oaks Library", "Spike");
+            AddToLocation("Sugarcube Corner", "Rarity");
+            AddToLocation("Sugarcube Corner", "Fluttershy");
+            AddToLocation("Sugarcube Corner", "Twilight Sparkle");
+            AddToLocation("Sugarcube Corner", "Spike");
 
 
 
@@ -196,6 +206,13 @@ namespace Textbased_game
             DataStorage.locationList.Find(x => x.GetName().Contains(location)).AddCreature(DataStorage.creatureList.Find(x => x.GetName().Contains(creature)));
             DataStorage.creatureList.Find(x => x.GetName().Contains(creature)).SetLocation(location);
         }
+
+
+
+
+
+
+
 
     }
 }

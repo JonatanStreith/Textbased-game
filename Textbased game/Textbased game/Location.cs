@@ -14,7 +14,9 @@ namespace Textbased_game
         private int coordY;
         private string description;
 
-        private List<Creature> creaturesAtLocation = new List<Creature>();
+        private string[] legalExits;
+
+        public List<Creature> creaturesAtLocation = new List<Creature>();
         private List<Object> objectsAtLocation = new List<Object>();
         private List<Item> itemsAtLocation = new List<Item>();
 
