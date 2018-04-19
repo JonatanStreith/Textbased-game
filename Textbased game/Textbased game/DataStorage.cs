@@ -14,7 +14,7 @@ namespace Textbased_game
         public static List<Item> itemList = new List<Item>();
 
 
-        public static string[] legitimateCommands = { "go", "pick up", "talk to" };
+        public static string[] legitimateCommands = { "go", "pick up", "talk to", "quit", "look" };
 
 
 

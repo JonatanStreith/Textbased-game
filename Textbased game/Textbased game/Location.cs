@@ -26,7 +26,7 @@ namespace Textbased_game
             coordX = x;
             coordY = y;
 
-            description = $"This is {name}";
+            description = $"This is {name}.";
         }
 
         public string GetName()

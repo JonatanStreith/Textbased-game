@@ -10,7 +10,7 @@ namespace Textbased_game
     {
         private string name;
         private string race;
-
+        private string location;
 
         private List<String> inventory = new List<string>();
 
@@ -27,6 +27,16 @@ namespace Textbased_game
 
         public string GetRace()
         { return race; }
+
+        public string GetLocation()
+        {
+            return location;
+        }
+
+        public void SetLocation(string loc)
+        {
+            location = loc;
+        }
 
     }
 }

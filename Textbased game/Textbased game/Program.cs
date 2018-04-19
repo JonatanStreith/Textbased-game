@@ -8,6 +8,12 @@ namespace Textbased_game
 {
     class Program
     {
+        //public static List<Location> locationList = new List<Location>();
+        //public static List<Creature> creatureList = new List<Creature>();
+        //public static List<Object> objectList = new List<Object>();
+        //public static List<Item> itemList = new List<Item>();
+
+
         static void Main(string[] args)
         {
 
@@ -18,12 +24,29 @@ namespace Textbased_game
             string[] commandPhrase = new string[2];         //A "Command Phrase" contains two elements: a command, and a subject. Example: "Pick up", "Apple".
 
 
+
+
+
+            //create locations, creatures, objects and items
+            CreateWorld();
+
+
+
             Console.WriteLine("Game begins!");
             //create character
 
             Creature player = new Creature("Player", "human");
+            DataStorage.creatureList.Add(player);
 
-            //create locations, creatures, objects and items
+
+            Console.WriteLine($"You are {player.GetName()}, a {player.GetRace()}");
+
+            AddToLocation("Sugarcube Corner", player.GetName());
+
+
+
+
+
 
             while (true)                //Continously running play loop that parses instructions
 
@@ -51,7 +74,32 @@ namespace Textbased_game
 
             Console.WriteLine($"{command[0]}{command[1]}");
 
+            switch (command[0])
+            {
+                case "quit":
+                    //stuff
+                    break;
 
+                case "go":
+                    //stuff
+                    break;
+
+                case "pick up":
+                    //stuff
+                    break;
+
+                case "look":
+                    //stuff
+                    break;
+
+                case "":
+                    //stuff
+                    break;
+
+
+                default:
+                    break;
+            }
 
 
         }
@@ -63,7 +111,7 @@ namespace Textbased_game
 
         public static string[] ProperCommand(string command)      //This runs a check on the input to ensure that it's a "proper" command
         {
-            string[] cleanCommand = new string[2];
+            string[] cleanCommand = { "Illegal command", "" };
 
             string[] separated;
 
@@ -88,6 +136,15 @@ namespace Textbased_game
 
             return cleanCommand;
         }
+
+
+
+
+
+
+
+
+
 
 
         public static void CreateWorld()
@@ -120,11 +177,24 @@ namespace Textbased_game
             DataStorage.creatureList.Add(TwilightSparkle);
             DataStorage.creatureList.Add(Spike);
 
+            AddToLocation("Sugarcube Corner", "Pinkie Pie");
+            AddToLocation("Sweet Apple Acres", "Applejack");
+            AddToLocation("Sugarcube Corner", "Rainbow Dash");
+            AddToLocation("Carousel Boutique", "Rarity");
+            AddToLocation("Carousel Boutique", "Fluttershy");
+            AddToLocation("Golden Oaks Library", "Twilight Sparkle");
+            AddToLocation("Golden Oaks Library", "Spike");
 
-            Sugarcube.AddCreature(PinkiePie);
 
-            Location loc = DataStorage.locationList.Find(x => x.GetName().Contains("Sugarcube Corner"));
 
+        }
+
+        public static void AddToLocation(string location, string creature)
+        {
+
+            //Adds "creature" to "location"
+            DataStorage.locationList.Find(x => x.GetName().Contains(location)).AddCreature(DataStorage.creatureList.Find(x => x.GetName().Contains(creature)));
+            DataStorage.creatureList.Find(x => x.GetName().Contains(creature)).SetLocation(location);
         }
 
     }
