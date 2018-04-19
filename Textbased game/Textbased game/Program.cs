@@ -11,15 +11,19 @@ namespace Textbased_game
         static void Main(string[] args)
         {
 
+
+
+
             string input;
             string[] commandPhrase = new string[2];         //A "Command Phrase" contains two elements: a command, and a subject. Example: "Pick up", "Apple".
+
+
             Console.WriteLine("Game begins!");
             //create character
 
-            Creature player = new Creature("Player", "human", 0, 0);
+            Creature player = new Creature("Player", "human");
 
             //create locations, creatures, objects and items
-            DataStorage.CreateAllLocations();
 
             while (true)                //Continously running play loop that parses instructions
 
@@ -85,6 +89,43 @@ namespace Textbased_game
             return cleanCommand;
         }
 
+
+        public static void CreateWorld()
+        {
+
+            Location Sugarcube = new Location("Sugarcube Corner", 0, 0);
+            Location Library = new Location("Golden Oaks Library", 0, 1);
+            Location Boutique = new Location("Carousel Boutique", 1, 0);
+            Location Acres = new Location("Sweet Apple Acres", 1, 1);
+
+            DataStorage.locationList.Add(Sugarcube);
+            DataStorage.locationList.Add(Library);
+            DataStorage.locationList.Add(Boutique);
+            DataStorage.locationList.Add(Acres);
+
+            Creature PinkiePie = new Creature("Pinkie Pie", "earth pony");
+            Creature Applejack = new Creature("Applejack", "earth pony");
+            Creature RainbowDash = new Creature("Rainbow Dash", "pegasus");
+            Creature Fluttershy = new Creature("Fluttershy", "pegasus");
+            Creature Rarity = new Creature("Rarity", "unicorn");
+            Creature TwilightSparkle = new Creature("Twilight Sparkle", "unicorn");
+            Creature Spike = new Creature("Spike", "dragon");
+
+
+            DataStorage.creatureList.Add(PinkiePie);
+            DataStorage.creatureList.Add(Applejack);
+            DataStorage.creatureList.Add(RainbowDash);
+            DataStorage.creatureList.Add(Fluttershy);
+            DataStorage.creatureList.Add(Rarity);
+            DataStorage.creatureList.Add(TwilightSparkle);
+            DataStorage.creatureList.Add(Spike);
+
+
+            Sugarcube.AddCreature(PinkiePie);
+
+            Location loc = DataStorage.locationList.Find(x => x.GetName().Contains("Sugarcube Corner"));
+
+        }
 
     }
 }

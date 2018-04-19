@@ -10,18 +10,14 @@ namespace Textbased_game
     {
         private string name;
         private string race;
-        private int locX;
-        private int locY;
 
 
         private List<String> inventory = new List<string>();
 
-        public Creature(string inputName, string inputRace, int x, int y)
+        public Creature(string inputName, string inputRace)
         {
             name = inputName;
             race = inputRace;
-            locX = x;
-            locY = y;
         }
 
 
@@ -32,10 +28,5 @@ namespace Textbased_game
         public string GetRace()
         { return race; }
 
-        public int GetX()
-        { return locX; }
-
-        public int GetY()
-        { return locY; }
     }
 }
