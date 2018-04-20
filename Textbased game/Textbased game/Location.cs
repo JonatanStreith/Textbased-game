@@ -16,6 +16,11 @@ namespace Textbased_game
 
         private string[] legalExits;
 
+
+        //IMPORTANT! Locations should store a list/array/Enumerator of legitimate exits: direction, and which location it leads to. FIGURE OUT!
+
+
+
         public List<Creature> creaturesAtLocation = new List<Creature>();
         private List<Object> objectsAtLocation = new List<Object>();
         private List<Item> itemsAtLocation = new List<Item>();
