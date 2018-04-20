@@ -28,7 +28,7 @@ namespace Textbased_game
             coordX = x;
             coordY = y;
 
-            description = $"This is {name}.";
+            description = DataStorage.placeDescriptions[name];
         }
 
         public string GetName()

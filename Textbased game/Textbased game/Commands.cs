@@ -30,8 +30,9 @@ namespace Textbased_game
         public static void LookAround(Location location)
         {
             Console.Write($"You are currently standing in {DataStorage.playerLocation.GetName()}. ");
+            Console.WriteLine(DataStorage.playerLocation.GetDescription());
 
-            Console.WriteLine(DataStorage.placeDescriptions[DataStorage.playerLocation.GetName()]);
+
 
             foreach (Creature item in DataStorage.playerLocation.creaturesAtLocation)
             {
@@ -59,7 +60,6 @@ namespace Textbased_game
                    
             if (isLegitExit)
             {
-                Console.WriteLine(argument);
                 Go(argument);
             }
             else
@@ -94,6 +94,26 @@ namespace Textbased_game
             Console.WriteLine($"You go{argument} to {DataStorage.playerLocation.GetName()}");
 
             Commands.LookAround(DataStorage.playerLocation);
+
+        }
+
+
+
+        public static void TalkTo(string argument)
+        {
+            string talkingTo = "nobody";
+
+            foreach (Creature item in DataStorage.playerLocation.creaturesAtLocation)
+            {
+                if ((argument == item.GetName()) || (argument == item.GetShortName()))
+                { talkingTo = item.GetName(); }
+
+            }
+
+            //check if the argument refers to a present individual
+
+                //if found, find dialog and write it
+
 
         }
 

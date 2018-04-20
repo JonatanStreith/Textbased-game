@@ -26,7 +26,7 @@ namespace Textbased_game
             string[] commandPhrase = new string[2];         //A "Command Phrase" contains two elements: a command, and a subject. Example: "Pick up", "Apple".
 
 
-            string playerName = "Player";
+            string playerName = "Trixie";
             string playerRace = "human";
 
 
@@ -54,6 +54,8 @@ namespace Textbased_game
 
             AddToLocation("Sugarcube Corner", player.GetName());
 
+            Console.Write($"You are currently standing in {DataStorage.playerLocation.GetName()}. ");
+            Console.WriteLine(DataStorage.playerLocation.GetDescription());
 
 
 
@@ -97,6 +99,10 @@ namespace Textbased_game
                     //stuff
                     break;
 
+                case "talk to":
+                    Commands.TalkTo(command[1]);
+                    break;
+
                 case "look":
                     Commands.LookAround(DataStorage.playerLocation);
                     break;
@@ -105,7 +111,7 @@ namespace Textbased_game
                     break;
 
                 case "":
-                    //stuff
+                    Console.WriteLine("What do you mean?");
                     break;
 
 
@@ -132,14 +138,14 @@ namespace Textbased_game
             {
                 if (command.StartsWith(DataStorage.legitimateCommands[i]))
                 {
+                    //Now split the line
 
                     separated = command.Split(new string[] { DataStorage.legitimateCommands[i] }, StringSplitOptions.None);
 
 
 
                     cleanCommand[0] = DataStorage.legitimateCommands[i];
-                    cleanCommand[1] = separated[1];
-                    //Now split the line
+                    cleanCommand[1] = separated[1].Replace(" ", "");        //makes sure to remove that space
 
                     break;
                 }
@@ -197,12 +203,12 @@ namespace Textbased_game
             DataStorage.creatureList.Add(Spike);
 
             AddToLocation("Sugarcube Corner", "Pinkie Pie");
-            AddToLocation("Sugarcube Corner", "Applejack");
+            AddToLocation("Sweet Apple Acres", "Applejack");
             AddToLocation("Sugarcube Corner", "Rainbow Dash");
-            AddToLocation("Sugarcube Corner", "Rarity");
-            AddToLocation("Sugarcube Corner", "Fluttershy");
-            AddToLocation("Sugarcube Corner", "Twilight Sparkle");
-            AddToLocation("Sugarcube Corner", "Spike");
+            AddToLocation("Carousel Boutique", "Rarity");
+            AddToLocation("Carousel Boutique", "Fluttershy");
+            AddToLocation("Golden Oaks Library", "Twilight Sparkle");
+            AddToLocation("Golden Oaks Library", "Spike");
 
 
 
