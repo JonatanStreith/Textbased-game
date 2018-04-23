@@ -27,28 +27,33 @@ namespace Textbased_game
 
 
 
-        public static void LookAround(Location location)
+        public static void LookAround(World world)
         {
-            Console.Write($"You are currently standing in {DataStorage.playerLocation.GetName()}. ");
-            Console.WriteLine(DataStorage.playerLocation.GetDescription());
+            Console.Write($"You are currently standing in {world.GetLocation(world.GetPlayer().GetLocationName()).GetName()}. ");
+            Console.WriteLine(world.GetLocation(world.GetPlayer().GetLocationName()).GetDescription());
 
 
 
-            foreach (Creature item in DataStorage.playerLocation.creaturesAtLocation)
+            foreach (Creature item in world.GetLocation(world.GetPlayer().GetLocationName()).creaturesAtLocation)
             {
                 Console.WriteLine($"{item.GetName()} is here. ");
             }
         }
 
 
-        public static void LookAt(string argument)          //Make sure you can't look at things that aren't present!
+        public static void LookAt(string argument, World world)          //Make sure you can't look at things that aren't present!
         {
 
         }
 
-        public static void TryGo(string argument)
+
+
+
+
+
+        public static void TryGo(string argument, World world)
         {
-            string exits = DataStorage.placesHasExits[DataStorage.playerLocation.GetName()];
+            string exits = DataStorage.placesHasExits[world.GetPlayer().GetLocationName()];
 
             bool isLegitExit = false;
 
@@ -60,7 +65,7 @@ namespace Textbased_game
                    
             if (isLegitExit)
             {
-                Go(argument);
+                Go(argument, world);
             }
             else
             {
@@ -68,7 +73,7 @@ namespace Textbased_game
             }
         }
 
-        public static void Go(string argument)
+        public static void Go(string argument, World world)
         {
             int[] currentCoord = DataStorage.playerCoords; //Get current coordinate
 
@@ -87,23 +92,23 @@ namespace Textbased_game
 
             Location newLocation = DataStorage.worldMap[newCoord[0], newCoord[1]];            //Determine new location
 
-            DataStorage.playerLocation = newLocation;
+            world.GetPlayer().SetLocation(newLocation.GetName());
 
             //Change location
 
-            Console.WriteLine($"You go{argument} to {DataStorage.playerLocation.GetName()}");
+            Console.WriteLine($"You go{argument} to {world.GetPlayer().GetLocationName()}");
 
-            Commands.LookAround(DataStorage.playerLocation);
+            Commands.LookAround(world);
 
         }
 
 
 
-        public static void TalkTo(string argument)
+        public static void TalkTo(string argument, World world)
         {
             string talkingTo = "nobody";
 
-            foreach (Creature item in DataStorage.playerLocation.creaturesAtLocation)
+            foreach (Creature item in world.GetLocation(world.GetPlayer().GetLocationName()).creaturesAtLocation)
             {
                 if ((argument == item.GetName()) || (argument == item.GetShortName()))
                 { talkingTo = item.GetName(); }

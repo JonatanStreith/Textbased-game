@@ -15,5 +15,10 @@ namespace Textbased_game
             name = inputName;
         }
 
+
+        public string GetName()
+        { return name; }
+
+
     }
 }

@@ -18,16 +18,17 @@ namespace Textbased_game
         {
 
             //create locations, creatures, objects and items
-            CreateWorld();
+
+
+
+
+            World Equestria = new World();
+
 
 
 
             string input;
             string[] commandPhrase = new string[2];         //A "Command Phrase" contains two elements: a command, and a subject. Example: "Pick up", "Apple".
-
-
-            string playerName = "Trixie";
-            string playerRace = "human";
 
 
 
@@ -38,24 +39,37 @@ namespace Textbased_game
 
 
 
-            Creature player = new Creature(playerName, playerRace);
-            DataStorage.creatureList.Add(player);
 
 
-            Console.WriteLine($"You are {player.GetName()}, a {player.GetRace()}");
+            Console.WriteLine($"You are {Equestria.GetPlayer().GetName()}, a {Equestria.GetPlayer().GetRace()}");
 
-            DataStorage.playerLocation = DataStorage.locationList.Find(x => x.GetName().Contains("Sugarcube Corner"));
+            //DataStorage.playerLocation = Equestria.locationList.Find(x => x.GetName().Contains("Sugarcube Corner"));
 
-            DataStorage.playerCoords[0] = DataStorage.playerLocation.GetX();
-            DataStorage.playerCoords[1] = DataStorage.playerLocation.GetY();
+            //DataStorage.playerCoords[0] = DataStorage.playerLocation.GetX();
+            //DataStorage.playerCoords[1] = DataStorage.playerLocation.GetY();
 
 
-            player.SetLocation("Sugarcube Corner");
 
-            AddToLocation("Sugarcube Corner", player.GetName());
+            Console.Write($"You are currently standing in {Equestria.GetPlayer().GetLocationName()}. ");
 
-            Console.Write($"You are currently standing in {DataStorage.playerLocation.GetName()}. ");
-            Console.WriteLine(DataStorage.playerLocation.GetDescription());
+
+            //Console.WriteLine(Equestria.GetPlayer().GetLocation().GetDescription());
+
+
+
+
+
+
+
+
+
+            foreach (string item in Equestria.properNoun)
+            {
+                Console.WriteLine(item);
+            }
+
+
+
 
 
 
@@ -69,7 +83,10 @@ namespace Textbased_game
                 input = Console.ReadLine().ToLower();
                 commandPhrase = ProperCommand(input);
 
-                RunCommand(commandPhrase);
+
+
+
+                RunCommand(commandPhrase, Equestria);
 
 
             }
@@ -81,7 +98,7 @@ namespace Textbased_game
         }
 
 
-        public static void RunCommand(string[] command)
+        public static void RunCommand(string[] command, World world)
         {
 
 
@@ -92,7 +109,7 @@ namespace Textbased_game
                     break;
 
                 case "go":
-                    Commands.TryGo(command[1]);
+                    Commands.TryGo(command[1], world);
                     break;
 
                 case "pick up":
@@ -100,22 +117,28 @@ namespace Textbased_game
                     break;
 
                 case "talk to":
-                    Commands.TalkTo(command[1]);
+                    Commands.TalkTo(command[1], world);
                     break;
 
                 case "look":
-                    Commands.LookAround(DataStorage.playerLocation);
+                    Commands.LookAround(world);
                     break;
+
+                case "look around":
+                    Commands.LookAround(world);
+                    break;
+
                 case "look at":
-                    Commands.LookAt(command[1]);
+                    Commands.LookAt(command[1], world);
                     break;
 
                 case "":
-                    Console.WriteLine("What do you mean?");
+
                     break;
 
 
                 default:
+                    Console.WriteLine("What do you mean?");
                     break;
             }
 
@@ -165,62 +188,7 @@ namespace Textbased_game
 
 
 
-        public static void CreateWorld()
-        {
 
-            Location Sugarcube = new Location("Sugarcube Corner", 0, 0);
-            Location Library = new Location("Golden Oaks Library", 0, 1);
-            Location Boutique = new Location("Carousel Boutique", 1, 0);
-            Location Acres = new Location("Sweet Apple Acres", 1, 1);
-
-            DataStorage.worldMap[0, 0] = Sugarcube;
-            DataStorage.worldMap[0, 1] = Library;
-            DataStorage.worldMap[1, 0] = Boutique;
-            DataStorage.worldMap[1, 1] = Acres;
-
-
-
-            DataStorage.locationList.Add(Sugarcube);
-            DataStorage.locationList.Add(Library);
-            DataStorage.locationList.Add(Boutique);
-            DataStorage.locationList.Add(Acres);
-
-            Creature PinkiePie = new Creature("Pinkie Pie", "earth pony");
-            Creature Applejack = new Creature("Applejack", "earth pony");
-            Creature RainbowDash = new Creature("Rainbow Dash", "pegasus");
-            Creature Fluttershy = new Creature("Fluttershy", "pegasus");
-            Creature Rarity = new Creature("Rarity", "unicorn");
-            Creature TwilightSparkle = new Creature("Twilight Sparkle", "unicorn");
-            Creature Spike = new Creature("Spike", "dragon");
-
-
-            DataStorage.creatureList.Add(PinkiePie);
-            DataStorage.creatureList.Add(Applejack);
-            DataStorage.creatureList.Add(RainbowDash);
-            DataStorage.creatureList.Add(Fluttershy);
-            DataStorage.creatureList.Add(Rarity);
-            DataStorage.creatureList.Add(TwilightSparkle);
-            DataStorage.creatureList.Add(Spike);
-
-            AddToLocation("Sugarcube Corner", "Pinkie Pie");
-            AddToLocation("Sweet Apple Acres", "Applejack");
-            AddToLocation("Sugarcube Corner", "Rainbow Dash");
-            AddToLocation("Carousel Boutique", "Rarity");
-            AddToLocation("Carousel Boutique", "Fluttershy");
-            AddToLocation("Golden Oaks Library", "Twilight Sparkle");
-            AddToLocation("Golden Oaks Library", "Spike");
-
-
-
-        }
-
-        public static void AddToLocation(string location, string creature)
-        {
-
-            //Adds "creature" to "location"
-            DataStorage.locationList.Find(x => x.GetName().Contains(location)).AddCreature(DataStorage.creatureList.Find(x => x.GetName().Contains(creature)));
-            DataStorage.creatureList.Find(x => x.GetName().Contains(creature)).SetLocation(location);
-        }
 
 
 

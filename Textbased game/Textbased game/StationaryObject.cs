@@ -6,13 +6,19 @@ using System.Threading.Tasks;
 
 namespace Textbased_game
 {
-    class Object
+    class StationaryObject
     {
         private string name;
 
-        public Object(string inputName)
+        public StationaryObject(string inputName)
         {
             name = inputName;
         }
+
+        public string GetName()
+        { return name; }
+
+
+
     }
 }
