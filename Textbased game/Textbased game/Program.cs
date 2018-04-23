@@ -211,8 +211,25 @@ namespace Textbased_game
 
 
 
+        public static string ReturnShortForm(string noun)
+        {
+            string returnNoun = noun;
 
 
+            for (int i = 0; i < DataStorage.variantNames.GetLength(0); i++)
+            {
+                for (int j = 0; j < DataStorage.variantNames.GetLength(1); j++)
+                {
+                    if (noun == DataStorage.variantNames[i,j])
+                    { returnNoun = DataStorage.variantNames[0, j]; }
+                }
+            }
+
+
+
+            return returnNoun;
+
+        }
 
 
 

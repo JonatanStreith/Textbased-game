@@ -40,6 +40,29 @@ namespace Textbased_game
 
 
 
+        public static string[,] variantNames = {
+
+              { "Twilight Sparkle", "Twilight", "Princess Twilight Sparkle", "bookhorse" } 
+           ,  { "Rarity", "Rarara", "fashionhorse", "Rarity" }
+
+           ,  { "Pinkie Pie", "Pinkie", "Pinkamena", "partyhorse" }
+           ,  { "Applejack", "Jackie", "applehorse", "Applejack" }
+           ,  { "Rainbow Dash", "Rainbow", "Dash", "Dashie" }
+           ,  { "Fluttershy", "Flutters", "shyhorse", "Fluttershy" }
+
+           ,  { "Spike", "Spike the Dragon", "dragon assistant", "Spike" }
+           ,  { "Trixie Lulamoon", "The Great and Powerful Trixie", "Trix", "yourself" }
+           ,  { "Starlight Glimmer", "Starlight", "Glim-Glam", "Starlight Glimmer" }
+
+           ,  { "Sugarcube Corner", "bakery", "Sugarcubecorner", "Sugar Cube Corner" }
+           ,  { "Golden Oaks Library", "Ponyville Library", "Library", "Tree library" } 
+           ,  { "Carousel Boutique", "fashion store", "Boutique", "Carousel" } 
+           ,  { "Sweet Apple Acres", "Acres", "apple farm", "Applejack's farm" } 
+
+        };
+
+
+
 
 
 
