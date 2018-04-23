@@ -37,7 +37,7 @@ namespace Textbased_game
           , { "Applejack", "A down-to-earth apple farmer and general rustic country bumpkin. Boring, but fairly nice." }
           , { "Pinkie Pie", "Ponyville's premier party pony. A total weirdo. Frankly, she unnerves you." }
           , { "Rainbow Dash", "One of the most arrogant and loudmouthed ponies you've ever known. Nice to have on your side, though." }
-          , { "Fluttershy", "A meek and shy pegasus who spends most of her time keeping animals. Also has some thin with Discord? She puzzles you." }
+          , { "Fluttershy", "A meek and shy pegasus who spends most of her time keeping animals. Also has some thing with Discord? She puzzles you." }
           , { "Spike", "Twilight Sparkle's runty dragon assistant. He's kind of annoying." }
           , { "The Great and Powerful Trixie", "You are the Great and Powerful Trixie! Mere words are not enough to describe your glory." }
 
