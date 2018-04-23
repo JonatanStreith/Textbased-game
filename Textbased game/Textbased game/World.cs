@@ -15,7 +15,7 @@ namespace Textbased_game
         public List<Item> itemList = new List<Item>();
 
 
-        public List<String> properNoun = new List<String>();
+        public List<String> legitimateNouns = new List<String>();
 
 
 
@@ -92,16 +92,16 @@ namespace Textbased_game
         {
 
             foreach (Creature i in creatureList)
-            { properNoun.Add(i.GetName()); }
+            { legitimateNouns.Add(i.GetName().ToLower()); }
 
             foreach (StationaryObject i in stationaryObjectList)
-            { properNoun.Add(i.GetName()); }
+            { legitimateNouns.Add(i.GetName().ToLower()); }
 
             foreach (Item i in itemList)
-            { properNoun.Add(i.GetName()); }
+            { legitimateNouns.Add(i.GetName().ToLower()); }
 
             foreach (Location i in locationList)
-            { properNoun.Add(i.GetName()); }
+            { legitimateNouns.Add(i.GetName().ToLower()); }
 
 
         }

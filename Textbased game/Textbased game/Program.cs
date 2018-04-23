@@ -63,10 +63,6 @@ namespace Textbased_game
 
 
 
-            foreach (string item in Equestria.properNoun)
-            {
-                Console.WriteLine(item);
-            }
 
 
 
@@ -81,10 +77,13 @@ namespace Textbased_game
                 Console.WriteLine();
                 Console.Write("Please input command: ");
                 input = Console.ReadLine().ToLower();
-                commandPhrase = ProperCommand(input);
+                commandPhrase = Parser(input, Equestria);
 
 
-
+                Console.WriteLine(commandPhrase[0]);
+                Console.WriteLine(commandPhrase[1]);
+                Console.WriteLine(commandPhrase[2]);
+                Console.WriteLine(commandPhrase[3]);
 
                 RunCommand(commandPhrase, Equestria);
 
@@ -150,29 +149,66 @@ namespace Textbased_game
 
 
 
-        public static string[] ProperCommand(string command)      //This runs a check on the input to ensure that it's a "proper" command
+        public static string[] Parser(string command, World world)      //This runs a check on the input to ensure that it's a "proper" command
         {
-            string[] cleanCommand = { "Illegal command", "" };
+            string[] cleanCommand = { "", "", "", "" };
 
-            string[] separated;
+            string[] remainder;
 
 
-            for (int i = 0; i < DataStorage.legitimateCommands.Length; i++)
+            foreach (string item in DataStorage.legitimateCommands)
             {
-                if (command.StartsWith(DataStorage.legitimateCommands[i]))
+                if (command.StartsWith(item))
                 {
-                    //Now split the line
+                    //Now separate the command
 
-                    separated = command.Split(new string[] { DataStorage.legitimateCommands[i] }, StringSplitOptions.None);
+                    remainder = command.Split(new string[] { item }, StringSplitOptions.None);
 
+                    cleanCommand[0] = item;
 
-
-                    cleanCommand[0] = DataStorage.legitimateCommands[i];
-                    cleanCommand[1] = separated[1].Replace(" ", "");        //makes sure to remove that space
+                    if (remainder[1] != "")
+                    { command = remainder[1].Remove(0, 1); }
 
                     break;
                 }
             }
+
+            foreach (string item in world.legitimateNouns)
+            {
+                if (command.StartsWith(item))
+                {
+                    //Now separate the noun
+
+                    remainder = command.Split(new string[] { item }, StringSplitOptions.None);
+
+                    cleanCommand[1] = item;
+
+                    if (remainder[1] != "")
+                    { command = remainder[1].Remove(0, 1); }
+
+                    break;
+                }
+            }
+
+            foreach (string item in DataStorage.legitimateConjunctions)
+            {
+                if (command.StartsWith(item))
+                {
+                    //Now separate the conjunction
+
+                    remainder = command.Split(new string[] { item }, StringSplitOptions.None);
+
+                    cleanCommand[2] = item;
+
+                    if (remainder[1] != "")
+                    { command = remainder[1].Remove(0, 1); }
+
+                    break;
+                }
+            }
+
+            cleanCommand[3] = command;      //Add the remainder
+
 
 
             return cleanCommand;
