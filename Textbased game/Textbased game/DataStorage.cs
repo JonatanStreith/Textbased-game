@@ -17,7 +17,7 @@ namespace Textbased_game
         //public static int[] playerCoords = new int[2];
 
 
-        public static string[] legitimateCommands = { "look at", "look around", "go to", "pick up", "talk to", "quit", "look", "place", "brandish", "ask" };
+        public static string[] legitimateCommands = { "look at", "look around", "go to", "pick up", "talk to", "quit", "look", "place", "brandish", "ask", "cast" };
         public static string[] legitimateConjunctions = { "about", "behind", "at", "under", "in front of", "on", "in" };
 
 

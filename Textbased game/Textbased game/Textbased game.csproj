@@ -51,6 +51,7 @@
     <Compile Include="Item.cs" />
     <Compile Include="Location.cs" />
     <Compile Include="Notes.cs" />
+    <Compile Include="Spell.cs" />
     <Compile Include="StationaryObject.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
