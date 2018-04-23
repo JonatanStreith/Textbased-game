@@ -10,11 +10,12 @@ namespace Textbased_game
     {
 
         private string name;
-        private int coordX;
-        private int coordY;
+        private string fullName;
+        //private int coordX;
+        //private int coordY;
         private string description;
 
-        private string[] legalExits;
+        private string[] legitimateExits;
 
 
         //IMPORTANT! Locations should store a list/array/Enumerator of legitimate exits: direction, and which location it leads to. FIGURE OUT!
@@ -25,28 +26,28 @@ namespace Textbased_game
         private List<Object> objectsAtLocation = new List<Object>();
         private List<Item> itemsAtLocation = new List<Item>();
 
-        public Location(string inputName, int x, int y)
+        public Location(string inputName, string[] exits)
         {
 
-            name = inputName;
+            name = inputName.ToLower();
+            fullName = inputName;
 
-            coordX = x;
-            coordY = y;
+            legitimateExits = exits;
 
-            description = DataStorage.placeDescriptions[name];
+            description = DataStorage.placeDescriptions[fullName];
         }
 
         public string GetName()
         { return name; }
+
+        public string GetFullName()
+        { return fullName; }
+
         public string GetDescription()
         { return description; }
-    public int GetX()
-    { return coordX; }
-    public int GetY()
-    { return coordY; }
 
 
-    public void AddCreature(Creature name)
+        public void AddCreature(Creature name)
         { creaturesAtLocation.Add(name); }
 
         public void RemoveCreature(Creature name)
@@ -63,6 +64,9 @@ namespace Textbased_game
 
         public void RemoveItem(Item name)
         { itemsAtLocation.Remove(name); }
+
+        public string[] GetExits()
+        { return legitimateExits; }
 
 
     }

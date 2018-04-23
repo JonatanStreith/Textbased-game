@@ -41,25 +41,14 @@ namespace Textbased_game
 
 
 
-            Console.WriteLine($"You are {Equestria.GetPlayer().GetName()}, a {Equestria.GetPlayer().GetRace()}");
-
-            //DataStorage.playerLocation = Equestria.locationList.Find(x => x.GetName().Contains("Sugarcube Corner"));
-
-            //DataStorage.playerCoords[0] = DataStorage.playerLocation.GetX();
-            //DataStorage.playerCoords[1] = DataStorage.playerLocation.GetY();
-
-
-
-            Console.Write($"You are currently standing in {Equestria.GetPlayer().GetLocationName()}. ");
-
-
-            //Console.WriteLine(Equestria.GetPlayer().GetLocation().GetDescription());
+            Console.WriteLine($"You are {Equestria.GetPlayer().GetFullName()}, a {Equestria.GetPlayer().GetRace()}.");
 
 
 
 
 
 
+            Commands.LookAround(Equestria);
 
 
 
@@ -80,10 +69,10 @@ namespace Textbased_game
                 commandPhrase = Parser(input, Equestria);
 
 
-                Console.WriteLine(commandPhrase[0]);
-                Console.WriteLine(commandPhrase[1]);
-                Console.WriteLine(commandPhrase[2]);
-                Console.WriteLine(commandPhrase[3]);
+                //Console.WriteLine(commandPhrase[0]);
+                //Console.WriteLine(commandPhrase[1]);
+                //Console.WriteLine(commandPhrase[2]);
+                //Console.WriteLine(commandPhrase[3]);
 
                 RunCommand(commandPhrase, Equestria);
 
@@ -107,8 +96,8 @@ namespace Textbased_game
                     Commands.Quit();
                     break;
 
-                case "go":
-                    Commands.TryGo(command[1], world);
+                case "go to":
+                    Commands.GoTo(command[1], world);
                     break;
 
                 case "pick up":

@@ -9,6 +9,8 @@ namespace Textbased_game
     class Creature
     {
         private string name;
+        private string fullName;
+
         private string shortName;
         private string race;
         private string locationName;
@@ -17,15 +19,18 @@ namespace Textbased_game
 
         public Creature(string inputName, string inputRace)
         {
-            name = inputName;
+            name = inputName.ToLower();
+            fullName = inputName;
             race = inputRace;
-            shortName = CreatureData.shortNames[name];
+            shortName = CreatureData.shortNames[fullName];
 
         }
 
 
         public string GetName()
         { return name; }
+        public string GetFullName()
+        { return fullName; }
 
         public string GetShortName()
         { return shortName; }

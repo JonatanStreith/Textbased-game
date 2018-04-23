@@ -29,15 +29,36 @@ namespace Textbased_game
 
         public static void LookAround(World world)
         {
-            Console.Write($"You are currently standing in {world.GetLocation(world.GetPlayer().GetLocationName()).GetName()}. ");
+            Console.Write($"You are currently standing in {world.GetLocation(world.GetPlayer().GetLocationName()).GetFullName()}. ");
+
             Console.WriteLine(world.GetLocation(world.GetPlayer().GetLocationName()).GetDescription());
 
+            List<Creature> npcsList = world.GetLocation(world.GetPlayer().GetLocationName()).creaturesAtLocation;
 
 
-            foreach (Creature item in world.GetLocation(world.GetPlayer().GetLocationName()).creaturesAtLocation)
+
+            if (npcsList.Count() == 1) { Console.WriteLine("There's nopony else here."); }
+
+            else if (npcsList.Count() == 2) { Console.WriteLine($"{npcsList[0].GetFullName()} is here."); }
+
+            else if (npcsList.Count() >= 3)
             {
-                Console.WriteLine($"{item.GetName()} is here. ");
+                for (int i = 0; i < npcsList.Count - 3; i++)
+                {
+                    Console.Write($"{npcsList[i].GetFullName()}, ");
+                }
+
+                Console.Write($"{npcsList[npcsList.Count - 3].GetFullName()} and ");
+                Console.WriteLine($"{npcsList[npcsList.Count - 2].GetFullName()} are here.");
+
             }
+
+            else { Console.WriteLine("Something weird is going on."); }
+
+
+
+
+
         }
 
 
@@ -47,77 +68,63 @@ namespace Textbased_game
         }
 
 
-
-
-
-
-        public static void TryGo(string argument, World world)
+        public static void GoTo(string newArea, World world)
         {
-            string exits = DataStorage.placesHasExits[world.GetPlayer().GetLocationName()];
-
-            bool isLegitExit = false;
-
-            for (int i = 0; i < exits.Length; i++)
+            bool canGo = false;
+            foreach (string place in world.GetLocation(world.GetPlayer().GetLocationName()).GetExits())     //Check if any of the legitimate exits is the place we want to go to
             {
-                if (argument[1] == exits[i])
-                { isLegitExit = true; }
+                if (newArea == place.ToLower())
+                { canGo = true; }
             }
-                   
-            if (isLegitExit)
+
+            if (canGo)               //Is newArea on the list of legitimate exits?
             {
-                Go(argument, world);
+                world.RemoveCreatureFromLocation(world.GetPlayer().GetLocationName(), "Trixie");            //Remove player from current location
+                world.AddCreatureToLocation(newArea, "Trixie");                                             //Add player to new location
+                world.GetPlayer().SetLocation(newArea);                                                     //Change player's location variable
+                Console.WriteLine($"You go to {world.GetLocation(newArea).GetFullName()}.");
+                Console.ReadLine();
+                Console.Clear();
+                LookAround(world);
             }
-            else
-            {
-                Console.WriteLine("You can't go that way.");
-            }
-        }
-
-        public static void Go(string argument, World world)
-        {
-            int[] currentCoord = DataStorage.playerCoords; //Get current coordinate
-
-            int[] newCoord = currentCoord;
-
-            if (argument == " north")            //Calculate new coordinate
-            { newCoord[0] -= 1; }
-            else if (argument == " south")
-            { newCoord[0] += 1; }
-            else if (argument == " west")
-            { newCoord[1] -= 1; }
-            else if (argument == " east")
-            { newCoord[1] += 1; }
-            else
-            { Console.WriteLine("You can't go that way."); }
-
-            Location newLocation = DataStorage.worldMap[newCoord[0], newCoord[1]];            //Determine new location
-
-            world.GetPlayer().SetLocation(newLocation.GetName());
-
-            //Change location
-
-            Console.WriteLine($"You go{argument} to {world.GetPlayer().GetLocationName()}");
-
-            Commands.LookAround(world);
-
+            else { Console.WriteLine("You can't get there from here."); }
         }
 
 
 
-        public static void TalkTo(string argument, World world)
+
+
+
+
+        public static void TalkTo(string creatureName, World world)
         {
-            string talkingTo = "nobody";
+            string talkingTo = "Nonexistent";
+
+
+
+            foreach (Creature item in world.creatureList)
+            {
+                if (creatureName == item.GetName())
+                { talkingTo = "Away"; }
+            }
 
             foreach (Creature item in world.GetLocation(world.GetPlayer().GetLocationName()).creaturesAtLocation)
             {
-                if ((argument == item.GetName()) || (argument == item.GetShortName()))
-                { talkingTo = item.GetName(); }
-
+                if (creatureName == item.GetName())
+                { talkingTo = item.GetFullName(); }
             }
 
-            //check if the argument refers to a present individual
+            if (talkingTo == "Nonexistent")
+            { Console.WriteLine("You don't know of anypony by that name."); }
+            else if (talkingTo == "Away")
+            { Console.WriteLine($"{world.GetCreature(creatureName).GetFullName()} isn't here right now."); }
+            else
+            {
+                string[] dialog = DialogData.casualDialog[talkingTo];
+                Console.WriteLine(dialog[world.diceRoll.Next(dialog.Length)]);
+            }
 
-                //if found, find dialog and write it
+
 
 
         }

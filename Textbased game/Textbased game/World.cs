@@ -17,19 +17,15 @@ namespace Textbased_game
 
         public List<String> legitimateNouns = new List<String>();
 
-
+        public Random diceRoll = new Random();
 
         public World()
         {
-            Location Sugarcube = new Location("Sugarcube Corner", 0, 0);
-            Location Library = new Location("Golden Oaks Library", 0, 1);
-            Location Boutique = new Location("Carousel Boutique", 1, 0);
-            Location Acres = new Location("Sweet Apple Acres", 1, 1);
+            Location Sugarcube = new Location("Sugarcube Corner", DataStorage.legitimateExits["Sugarcube Corner"]);
+            Location Library = new Location("Golden Oaks Library", DataStorage.legitimateExits["Golden Oaks Library"]);
+            Location Boutique = new Location("Carousel Boutique", DataStorage.legitimateExits["Carousel Boutique"]);
+            Location Acres = new Location("Sweet Apple Acres", DataStorage.legitimateExits["Sweet Apple Acres"]);
 
-            DataStorage.worldMap[0, 0] = Sugarcube;
-            DataStorage.worldMap[0, 1] = Library;
-            DataStorage.worldMap[1, 0] = Boutique;
-            DataStorage.worldMap[1, 1] = Acres;
 
 
 
@@ -39,7 +35,6 @@ namespace Textbased_game
             locationList.Add(Acres);
 
 
-            Creature Trixie = new Creature("Trixie", "unicorn");
 
             Creature PinkiePie = new Creature("Pinkie Pie", "earth pony");
             Creature Applejack = new Creature("Applejack", "earth pony");
@@ -49,7 +44,10 @@ namespace Textbased_game
             Creature TwilightSparkle = new Creature("Twilight Sparkle", "unicorn");
             Creature Spike = new Creature("Spike", "dragon");
 
-            creatureList.Add(Trixie);
+
+
+            Creature Trixie = new Creature("Trixie", "unicorn");
+
             creatureList.Add(PinkiePie);
             creatureList.Add(Applejack);
             creatureList.Add(RainbowDash);
@@ -57,8 +55,8 @@ namespace Textbased_game
             creatureList.Add(Rarity);
             creatureList.Add(TwilightSparkle);
             creatureList.Add(Spike);
+            creatureList.Add(Trixie);
 
-            AddCreatureToLocation("Sugarcube Corner", "Trixie");
 
             AddCreatureToLocation("Sugarcube Corner", "Pinkie Pie");
             AddCreatureToLocation("Sweet Apple Acres", "Applejack");
@@ -71,6 +69,11 @@ namespace Textbased_game
 
 
 
+
+
+
+            AddCreatureToLocation("Sugarcube Corner", "Trixie");
+
             //
 
 
@@ -82,47 +85,52 @@ namespace Textbased_game
 
         public void AddCreatureToLocation(string location, string creature)
         {
-
             //Adds "creature" to "location"
-            locationList.Find(x => x.GetName().Contains(location)).AddCreature(creatureList.Find(x => x.GetName().Contains(creature)));
-            creatureList.Find(x => x.GetName().Contains(creature)).SetLocation(location);
+            GetLocation(location).AddCreature(GetCreature(creature));
+            GetCreature(creature).SetLocation(location);
         }
+
+        public void RemoveCreatureFromLocation(string location, string creature)
+        {
+            GetLocation(location).RemoveCreature(GetCreature(creature));
+        }
+
 
         public void CreateProperNounList()
         {
 
             foreach (Creature i in creatureList)
-            { legitimateNouns.Add(i.GetName().ToLower()); }
+            { legitimateNouns.Add(i.GetName()); }
 
             foreach (StationaryObject i in stationaryObjectList)
-            { legitimateNouns.Add(i.GetName().ToLower()); }
+            { legitimateNouns.Add(i.GetName()); }
 
             foreach (Item i in itemList)
-            { legitimateNouns.Add(i.GetName().ToLower()); }
+            { legitimateNouns.Add(i.GetName()); }
 
             foreach (Location i in locationList)
-            { legitimateNouns.Add(i.GetName().ToLower()); }
+            { legitimateNouns.Add(i.GetName()); }
 
 
         }
 
 
         public Creature GetPlayer()
-        { return creatureList.Find(x => x.GetName().Contains("Trixie")); }
+        { return creatureList.Find(x => x.GetName().Contains("trixie")); }
 
 
         public Location GetLocation(String input)
-        { return locationList.Find(x => x.GetName().Contains(input)); }
+        { return locationList.Find(x => x.GetName().Contains(input.ToLower())); }
 
 
         public Creature GetCreature(String input)
-        { return creatureList.Find(x => x.GetName().Contains(input)); }
+        { return creatureList.Find(x => x.GetName().Contains(input.ToLower())); }
 
         public Item GetItem(String input)
-        { return itemList.Find(x => x.GetName().Contains(input)); }
+        { return itemList.Find(x => x.GetName().Contains(input.ToLower())); }
 
         public StationaryObject GetStationaryObject(String input)
-        { return stationaryObjectList.Find(x => x.GetName().Contains(input)); }
+        { return stationaryObjectList.Find(x => x.GetName().ToLower().Contains(input)); }
 
 
     }

@@ -22,30 +22,10 @@ namespace Textbased_game
 
 
 
-
-        //public static string[] ProperCommand(string command)      //Old parser
-        //{
-        //    string[] cleanCommand = { "Illegal command", "" };
-        //    string[] separated;
+        //Set something up so "shorthand" nouns (like "library" or "Twilight's library" for "Golden Oaks Library", and "Pinkie" for Pinkie Pie") get translated to their full forms. Figure something out!
 
 
-        //    for (int i = 0; i < DataStorage.legitimateCommands.Length; i++)
-        //    {
-        //        if (command.StartsWith(DataStorage.legitimateCommands[i]))
-        //        {
-
-        //            separated = command.Split(new string[] { DataStorage.legitimateCommands[i] }, StringSplitOptions.None);
-
-        //            cleanCommand[0] = DataStorage.legitimateCommands[i];
-        //            cleanCommand[1] = separated[1].Replace(" ", "");        //makes sure to remove that space
-
-        //            break;
-        //        }
-        //    }
-
-
-        //    return cleanCommand;
-        //}
+        //Keep a dictionary of bools to track which ponies you're talked to, so they say something special the first time.
 
 
         //On moving around: Since locations are "proper nouns", the parser can take a location. If I write "Go to Sweet Apple Acres", it can see that SAA is a proper noun, check if SAA is adjacent, and go there if possible.
