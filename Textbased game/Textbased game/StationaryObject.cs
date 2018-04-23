@@ -6,22 +6,20 @@ using System.Threading.Tasks;
 
 namespace Textbased_game
 {
-    class StationaryObject
+    class StationaryObject : GenericObject
     {
-        private string name;
-        private string fullName;
 
-        public StationaryObject(string inputName)
+
+        public StationaryObject(string inputName, string inputShortName)
         {
             name = inputName.ToLower();
             fullName = inputName;
+            shortName = inputShortName;
+
+            description = DataStorage.objectDescriptions[fullName];
+
         }
 
-        public string GetName()
-        { return name; }
-
-        public string GetFullName()
-        { return fullName; }
 
 
 

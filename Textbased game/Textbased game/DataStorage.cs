@@ -23,17 +23,59 @@ namespace Textbased_game
 
 
 
-        public static Dictionary<string, string> placeDescriptions = new Dictionary<string, string> { { "Sugarcube Corner", "Sugarcube Corner is Ponyville's premier confectionery store." }, { "Carousel Boutique", "The Carousel Boutique is a place." }, { "Sweet Apple Acres", "This describes SAA." }, { "Golden Oaks Library", "This describes the library" } };
-        public static Dictionary<string, string> placesHasExits = new Dictionary<string, string> { { "Sugarcube Corner", "se" }, { "Carousel Boutique", "ne" }, { "Sweet Apple Acres", "nw" }, { "Golden Oaks Library", "sw" } };
+        public static Dictionary<string, string> placeDescriptions = new Dictionary<string, string> {
+            { "Sugarcube Corner", "Sugarcube Corner is Ponyville's premier confectionery store." }
+          , { "Carousel Boutique", "The Carousel Boutique is a place." }
+          , { "Sweet Apple Acres", "This describes SAA." }
+          , { "Castle of Friendship", "This describes the castle." }
+        };
+
+
+        public static Dictionary<string, string> creatureDescriptions = new Dictionary<string, string> {
+            { "Twilight Sparkle", "You're mostly over your issues with Twilight Sparkle, the princess of friendship and books and obnoxious... mostly." }
+          , { "Rarity", "Ponyville's resident fashion pony. Really melodramatic and self-obsessed, in your opinion." }
+          , { "Applejack", "A down-to-earth apple farmer and general rustic country bumpkin. Boring, but fairly nice." }
+          , { "Pinkie Pie", "Ponyville's premier party pony. A total weirdo. Frankly, she unnerves you." }
+          , { "Rainbow Dash", "One of the most arrogant and loudmouthed ponies you've ever known. Nice to have on your side, though." }
+          , { "Fluttershy", "A meek and shy pegasus who spends most of her time keeping animals. Also has some thin with Discord? She puzzles you." }
+          , { "Spike", "Twilight Sparkle's runty dragon assistant. He's kind of annoying." }
+          , { "The Great and Powerful Trixie", "You are the Great and Powerful Trixie! Mere words are not enough to describe your glory." }
+
+
+        };
+
+
+        public static Dictionary<string, string> objectDescriptions = new Dictionary<string, string> {
+            { "Sugarcube Corner", "Sugarcube Corner is Ponyville's premier confectionery store." }
+          , { "Carousel Boutique", "The Carousel Boutique is a place." }
+          , { "Sweet Apple Acres", "This describes SAA." }
+          , { "Castle of Friendship", "This describes the castle." }
+        };
+
+
+        public static Dictionary<string, string> itemDescriptions = new Dictionary<string, string> {
+            { "Sugarcube Corner", "Sugarcube Corner is Ponyville's premier confectionery store." }
+          , { "Carousel Boutique", "The Carousel Boutique is a place." }
+          , { "Sweet Apple Acres", "This describes SAA." }
+          , { "Castle of Friendship", "This describes the castle." }
+        };
+
+
+
+
+
+
+
+
 
 
 
         public static Dictionary<string, string[]> legitimateExits = new Dictionary<string, string[]> {
 
-             { "Sugarcube Corner", new String[] { "Golden Oaks Library", "Carousel Boutique", "Sweet Apple Acres" } }
-           , { "Golden Oaks Library", new String[] { "Sugarcube Corner", "Carousel Boutique", "Sweet Apple Acres" } }
-           , { "Carousel Boutique", new String[] { "Golden Oaks Library", "Sugarcube Corner", "Sweet Apple Acres" } }
-           , { "Sweet Apple Acres", new String[] { "Golden Oaks Library", "Carousel Boutique", "Sugarcube Corner" } }
+             { "Sugarcube Corner", new String[] { "Castle of Friendship", "Carousel Boutique", "Sweet Apple Acres" } }
+           , { "Castle of Friendship", new String[] { "Sugarcube Corner", "Carousel Boutique", "Sweet Apple Acres" } }
+           , { "Carousel Boutique", new String[] { "Castle of Friendship", "Sugarcube Corner", "Sweet Apple Acres" } }
+           , { "Sweet Apple Acres", new String[] { "Castle of Friendship", "Carousel Boutique", "Sugarcube Corner" } }
 
         };
 

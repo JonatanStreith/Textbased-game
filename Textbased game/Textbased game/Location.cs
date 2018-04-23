@@ -6,14 +6,9 @@ using System.Threading.Tasks;
 
 namespace Textbased_game
 {
-    class Location
+    class Location : GenericObject
     {
 
-        private string name;
-        private string fullName;
-        //private int coordX;
-        //private int coordY;
-        private string description;
 
         private string[] legitimateExits;
 
@@ -22,29 +17,30 @@ namespace Textbased_game
 
 
 
-        public List<Creature> creaturesAtLocation = new List<Creature>();
-        private List<Object> objectsAtLocation = new List<Object>();
+        private List<Creature> creaturesAtLocation = new List<Creature>();
+        private List<StationaryObject> objectsAtLocation = new List<StationaryObject>();
         private List<Item> itemsAtLocation = new List<Item>();
 
-        public Location(string inputName, string[] exits)
+        public Location(string inputName, string inputShortName, string[] exits)
         {
 
             name = inputName.ToLower();
             fullName = inputName;
+            shortName = inputShortName;
 
             legitimateExits = exits;
 
             description = DataStorage.placeDescriptions[fullName];
         }
 
-        public string GetName()
-        { return name; }
 
-        public string GetFullName()
-        { return fullName; }
+        public List<Creature> GetCreaturesAtLocation()
+        { return creaturesAtLocation; }
+        public List<StationaryObject> GetObjectsAtLocation()
+        { return objectsAtLocation; }
+        public List<Item> GetItemsAtLocation()
+        { return itemsAtLocation; }
 
-        public string GetDescription()
-        { return description; }
 
 
         public void AddCreature(Creature name)
@@ -53,10 +49,10 @@ namespace Textbased_game
         public void RemoveCreature(Creature name)
         { creaturesAtLocation.Remove(name); }
 
-        public void AddObject(Object name)
+        public void AddObject(StationaryObject name)
         { objectsAtLocation.Add(name); }
 
-        public void RemoveObject(Object name)
+        public void RemoveObject(StationaryObject name)
         { objectsAtLocation.Remove(name); }
 
         public void AddItem(Item name)

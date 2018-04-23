@@ -21,32 +21,32 @@ namespace Textbased_game
 
         public World()
         {
-            Location Sugarcube = new Location("Sugarcube Corner", DataStorage.legitimateExits["Sugarcube Corner"]);
-            Location Library = new Location("Golden Oaks Library", DataStorage.legitimateExits["Golden Oaks Library"]);
-            Location Boutique = new Location("Carousel Boutique", DataStorage.legitimateExits["Carousel Boutique"]);
-            Location Acres = new Location("Sweet Apple Acres", DataStorage.legitimateExits["Sweet Apple Acres"]);
+            Location Sugarcube = new Location("Sugarcube Corner", "bakery", DataStorage.legitimateExits["Sugarcube Corner"]);
+            Location FriendshipCastle = new Location("Castle of Friendship", "castle", DataStorage.legitimateExits["Castle of Friendship"]);
+            Location Boutique = new Location("Carousel Boutique", "boutique", DataStorage.legitimateExits["Carousel Boutique"]);
+            Location Acres = new Location("Sweet Apple Acres", "Acres", DataStorage.legitimateExits["Sweet Apple Acres"]);
 
 
 
 
             locationList.Add(Sugarcube);
-            locationList.Add(Library);
+            locationList.Add(FriendshipCastle);
             locationList.Add(Boutique);
             locationList.Add(Acres);
 
 
 
-            Creature PinkiePie = new Creature("Pinkie Pie", "earth pony");
-            Creature Applejack = new Creature("Applejack", "earth pony");
-            Creature RainbowDash = new Creature("Rainbow Dash", "pegasus");
-            Creature Fluttershy = new Creature("Fluttershy", "pegasus");
-            Creature Rarity = new Creature("Rarity", "unicorn");
-            Creature TwilightSparkle = new Creature("Twilight Sparkle", "unicorn");
-            Creature Spike = new Creature("Spike", "dragon");
+            Creature PinkiePie = new Creature("Pinkie Pie", "Pinkie", "earth pony");
+            Creature Applejack = new Creature("Applejack", "AJ", "earth pony");
+            Creature RainbowDash = new Creature("Rainbow Dash", "RD", "pegasus");
+            Creature Fluttershy = new Creature("Fluttershy", "Fluttershy", "pegasus");
+            Creature Rarity = new Creature("Rarity", "Rarity", "unicorn");
+            Creature TwilightSparkle = new Creature("Twilight Sparkle", "Twilight", "alicorn");
+            Creature Spike = new Creature("Spike", "Spike", "dragon");
 
 
 
-            Creature Trixie = new Creature("Trixie", "unicorn");
+            Creature Trixie = new Creature("The Great and Powerful Trixie", "Trixie", "unicorn");
 
             creatureList.Add(PinkiePie);
             creatureList.Add(Applejack);
@@ -63,8 +63,8 @@ namespace Textbased_game
             AddCreatureToLocation("Sugarcube Corner", "Rainbow Dash");
             AddCreatureToLocation("Carousel Boutique", "Rarity");
             AddCreatureToLocation("Carousel Boutique", "Fluttershy");
-            AddCreatureToLocation("Golden Oaks Library", "Twilight Sparkle");
-            AddCreatureToLocation("Golden Oaks Library", "Spike");
+            AddCreatureToLocation("Castle of Friendship", "Twilight Sparkle");
+            AddCreatureToLocation("Castle of Friendship", "Spike");
 
 
 
@@ -100,16 +100,28 @@ namespace Textbased_game
         {
 
             foreach (Creature i in creatureList)
-            { legitimateNouns.Add(i.GetName()); }
+            {
+                legitimateNouns.Add(i.GetName());
+                legitimateNouns.Add(i.GetShortName());
+            }
 
             foreach (StationaryObject i in stationaryObjectList)
-            { legitimateNouns.Add(i.GetName()); }
+            {
+                legitimateNouns.Add(i.GetName());
+                legitimateNouns.Add(i.GetShortName());
+            }
 
             foreach (Item i in itemList)
-            { legitimateNouns.Add(i.GetName()); }
+            {
+                legitimateNouns.Add(i.GetName());
+                legitimateNouns.Add(i.GetShortName());
+            }
 
             foreach (Location i in locationList)
-            { legitimateNouns.Add(i.GetName()); }
+            {
+                legitimateNouns.Add(i.GetName());
+                legitimateNouns.Add(i.GetShortName());
+            }
 
 
         }

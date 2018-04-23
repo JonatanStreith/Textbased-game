@@ -33,7 +33,7 @@ namespace Textbased_game
 
             Console.WriteLine(world.GetLocation(world.GetPlayer().GetLocationName()).GetDescription());
 
-            List<Creature> npcsList = world.GetLocation(world.GetPlayer().GetLocationName()).creaturesAtLocation;
+            List<Creature> npcsList = world.GetLocation(world.GetPlayer().GetLocationName()).GetCreaturesAtLocation();
 
 
 
@@ -64,6 +64,41 @@ namespace Textbased_game
 
         public static void LookAt(string argument, World world)          //Make sure you can't look at things that aren't present!
         {
+
+            if (argument == world.GetPlayer().GetLocationName().ToLower())      //Looking at the place
+            {
+                Console.WriteLine(world.GetLocation(world.GetPlayer().GetLocationName()).GetDescription());
+            }
+            else
+            {
+
+
+            foreach (Creature item in world.GetLocation(world.GetPlayer().GetLocationName()).GetCreaturesAtLocation())
+            {
+                if (argument == item.GetName())
+                {
+                        Console.WriteLine(item.GetDescription());
+                }
+            }
+
+                foreach (Item item in world.GetLocation(world.GetPlayer().GetLocationName()).GetItemsAtLocation())
+                {
+                    if (argument == item.GetName())
+                    {
+                        Console.WriteLine(item.GetDescription());
+                    }
+                }
+
+                foreach (StationaryObject item in world.GetLocation(world.GetPlayer().GetLocationName()).GetObjectsAtLocation())
+                {
+                    if (argument == item.GetName())
+                    {
+                        Console.WriteLine(item.GetDescription());
+                    }
+                }
+
+
+            }
 
         }
 
@@ -108,7 +143,7 @@ namespace Textbased_game
                 { talkingTo = "Away"; }
             }
 
-            foreach (Creature item in world.GetLocation(world.GetPlayer().GetLocationName()).creaturesAtLocation)
+            foreach (Creature item in world.GetLocation(world.GetPlayer().GetLocationName()).GetCreaturesAtLocation())
             {
                 if (creatureName == item.GetName())
                 { talkingTo = item.GetFullName(); }

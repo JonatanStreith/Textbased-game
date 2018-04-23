@@ -6,22 +6,21 @@ using System.Threading.Tasks;
 
 namespace Textbased_game
 {
-    class Item
+    class Item : GenericObject
     {
-        private string name;
-        private string fullName;
 
-        public Item(string inputName) //Constructor
+
+        public Item(string inputName, string inputShortName) //Constructor
         {
             name = inputName.ToLower();
             fullName = inputName;
+            shortName = inputShortName;
+
+            description = DataStorage.itemDescriptions[fullName];
+
         }
 
 
-        public string GetName()
-        { return name; }
-        public string GetFullName()
-        { return fullName; }
 
 
     }
