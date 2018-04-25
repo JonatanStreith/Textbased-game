@@ -41,7 +41,7 @@ namespace Textbased_game
 
 
 
-            Console.WriteLine($"You are {Equestria.GetPlayer().GetFullName()}, a {Equestria.GetPlayer().GetRace()}.");
+            Console.WriteLine($"You are {Equestria.GetPlayer().GetName()}, a {Equestria.GetPlayer().GetRace()}.");
 
 
 
@@ -147,11 +147,11 @@ namespace Textbased_game
 
             foreach (string item in DataStorage.legitimateCommands)
             {
-                if (command.StartsWith(item))
+                if (command.StartsWith(item.ToLower()))
                 {
                     //Now separate the command
 
-                    remainder = command.Split(new string[] { item }, StringSplitOptions.None);
+                    remainder = command.Split(new string[] { item.ToLower() }, StringSplitOptions.None);
 
                     cleanCommand[0] = item;
 
@@ -164,13 +164,13 @@ namespace Textbased_game
 
             foreach (string item in world.legitimateNouns)
             {
-                if (command.StartsWith(item))
+                if (command.StartsWith(item.ToLower()))
                 {
                     //Now separate the noun
 
-                    remainder = command.Split(new string[] { item }, StringSplitOptions.None);
+                    remainder = command.Split(new string[] { item.ToLower() }, StringSplitOptions.None);
 
-                    cleanCommand[1] = item;
+                    cleanCommand[1] =  world.ReturnFullName(item);
 
                     if (remainder[1] != "")
                     { command = remainder[1].Remove(0, 1); }
@@ -181,11 +181,11 @@ namespace Textbased_game
 
             foreach (string item in DataStorage.legitimateConjunctions)
             {
-                if (command.StartsWith(item))
+                if (command.StartsWith(item.ToLower()))
                 {
                     //Now separate the conjunction
 
-                    remainder = command.Split(new string[] { item }, StringSplitOptions.None);
+                    remainder = command.Split(new string[] { item.ToLower() }, StringSplitOptions.None);
 
                     cleanCommand[2] = item;
 
@@ -230,7 +230,6 @@ namespace Textbased_game
             return returnNoun;
 
         }
-
 
 
 

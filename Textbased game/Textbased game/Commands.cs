@@ -29,7 +29,7 @@ namespace Textbased_game
 
         public static void LookAround(World world)
         {
-            Console.Write($"You are currently standing in {world.GetLocation(world.GetPlayer().GetLocationName()).GetFullName()}. ");
+            Console.Write($"You are currently standing in {world.GetLocation(world.GetPlayer().GetLocationName()).GetName()}. ");
 
             Console.WriteLine(world.GetLocation(world.GetPlayer().GetLocationName()).GetDescription());
 
@@ -39,33 +39,34 @@ namespace Textbased_game
 
             if (npcsList.Count() == 1) { Console.WriteLine("There's nopony else here."); }
 
-            else if (npcsList.Count() == 2) { Console.WriteLine($"{npcsList[0].GetFullName()} is here."); }
+            else if (npcsList.Count() == 2) { Console.WriteLine($"{npcsList[0].GetName()} is here."); }
 
             else if (npcsList.Count() >= 3)
             {
                 for (int i = 0; i < npcsList.Count - 3; i++)
                 {
-                    Console.Write($"{npcsList[i].GetFullName()}, ");
+                    Console.Write($"{npcsList[i].GetName()}, ");
                 }
 
-                Console.Write($"{npcsList[npcsList.Count - 3].GetFullName()} and ");
-                Console.WriteLine($"{npcsList[npcsList.Count - 2].GetFullName()} are here.");
+                Console.Write($"{npcsList[npcsList.Count - 3].GetName()} and ");
+                Console.WriteLine($"{npcsList[npcsList.Count - 2].GetName()} are here.");
 
             }
 
             else { Console.WriteLine("Something weird is going on."); }
 
-
-
-
-
         }
+
+
+
+
+
 
 
         public static void LookAt(string argument, World world)          //Make sure you can't look at things that aren't present!
         {
 
-            if (argument == world.GetPlayer().GetLocationName().ToLower())      //Looking at the place
+            if (world.GetPlayer().GetLocationName().Equals(argument, StringComparison.InvariantCultureIgnoreCase))      //Looking at the place
             {
                 Console.WriteLine(world.GetLocation(world.GetPlayer().GetLocationName()).GetDescription());
             }
@@ -73,17 +74,18 @@ namespace Textbased_game
             {
 
 
-            foreach (Creature item in world.GetLocation(world.GetPlayer().GetLocationName()).GetCreaturesAtLocation())
-            {
-                if (argument == item.GetName())
+                foreach (Creature item in world.GetLocation(world.GetPlayer().GetLocationName()).GetCreaturesAtLocation())
                 {
+
+                    if (item.GetName().Equals(argument, StringComparison.InvariantCultureIgnoreCase))
+                    {
                         Console.WriteLine(item.GetDescription());
+                    }
                 }
-            }
 
                 foreach (Item item in world.GetLocation(world.GetPlayer().GetLocationName()).GetItemsAtLocation())
                 {
-                    if (argument == item.GetName())
+                    if (item.GetName().Equals(argument, StringComparison.InvariantCultureIgnoreCase))
                     {
                         Console.WriteLine(item.GetDescription());
                     }
@@ -91,7 +93,7 @@ namespace Textbased_game
 
                 foreach (StationaryObject item in world.GetLocation(world.GetPlayer().GetLocationName()).GetObjectsAtLocation())
                 {
-                    if (argument == item.GetName())
+                    if (item.GetName().Equals(argument, StringComparison.InvariantCultureIgnoreCase))
                     {
                         Console.WriteLine(item.GetDescription());
                     }
@@ -117,7 +119,7 @@ namespace Textbased_game
                 world.RemoveCreatureFromLocation(world.GetPlayer().GetLocationName(), "Trixie");            //Remove player from current location
                 world.AddCreatureToLocation(newArea, "Trixie");                                             //Add player to new location
                 world.GetPlayer().SetLocation(newArea);                                                     //Change player's location variable
-                Console.WriteLine($"You go to {world.GetLocation(newArea).GetFullName()}.");
+                Console.WriteLine($"You go to {world.GetLocation(newArea).GetName()}.");
                 Console.ReadLine();
                 Console.Clear();
                 LookAround(world);
@@ -139,20 +141,20 @@ namespace Textbased_game
 
             foreach (Creature item in world.creatureList)
             {
-                if (creatureName == item.GetName())
+                if (item.GetName().Equals(creatureName, StringComparison.InvariantCultureIgnoreCase))                
                 { talkingTo = "Away"; }
             }
 
             foreach (Creature item in world.GetLocation(world.GetPlayer().GetLocationName()).GetCreaturesAtLocation())
             {
-                if (creatureName == item.GetName())
-                { talkingTo = item.GetFullName(); }
+                if (item.GetName().Equals(creatureName, StringComparison.InvariantCultureIgnoreCase))
+                { talkingTo = item.GetName(); }
             }
 
             if (talkingTo == "Nonexistent")
             { Console.WriteLine("You don't know of anypony by that name."); }
             else if (talkingTo == "Away")
-            { Console.WriteLine($"{world.GetCreature(creatureName).GetFullName()} isn't here right now."); }
+            { Console.WriteLine($"{world.GetCreature(creatureName).GetName()} isn't here right now."); }
             else
             {
                 string[] dialog = DialogData.casualDialog[talkingTo];

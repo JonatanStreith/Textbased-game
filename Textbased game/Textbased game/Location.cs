@@ -24,13 +24,12 @@ namespace Textbased_game
         public Location(string inputName, string inputShortName, string[] exits)
         {
 
-            name = inputName.ToLower();
-            fullName = inputName;
+            name = inputName;
             shortName = inputShortName;
 
             legitimateExits = exits;
 
-            description = DataStorage.placeDescriptions[fullName];
+            description = DataStorage.placeDescriptions[name];
         }
 
 

@@ -12,11 +12,10 @@ namespace Textbased_game
 
         public StationaryObject(string inputName, string inputShortName)
         {
-            name = inputName.ToLower();
-            fullName = inputName;
+            name = inputName;
             shortName = inputShortName;
 
-            description = DataStorage.objectDescriptions[fullName];
+            description = DataStorage.objectDescriptions[name];
 
         }
 

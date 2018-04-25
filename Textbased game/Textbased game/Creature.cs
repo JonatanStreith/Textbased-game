@@ -15,12 +15,11 @@ namespace Textbased_game
 
         public Creature(string inputName, string inputShortName, string inputRace)
         {
-            name = inputName.ToLower();
-            fullName = inputName;
+            name = inputName;
             race = inputRace;
             shortName = inputShortName;
 
-            description = DataStorage.creatureDescriptions[fullName];
+            description = DataStorage.creatureDescriptions[name];
 
         }
 

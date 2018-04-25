@@ -12,11 +12,10 @@ namespace Textbased_game
 
         public Item(string inputName, string inputShortName) //Constructor
         {
-            name = inputName.ToLower();
-            fullName = inputName;
+            name = inputName;
             shortName = inputShortName;
 
-            description = DataStorage.itemDescriptions[fullName];
+            description = DataStorage.itemDescriptions[name];
 
         }
 

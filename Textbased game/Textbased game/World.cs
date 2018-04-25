@@ -15,6 +15,9 @@ namespace Textbased_game
         public List<Item> itemList = new List<Item>();
 
 
+        public List<GenericObject> genericList = new List<GenericObject>();
+
+
         public List<String> legitimateNouns = new List<String>();
 
         public Random diceRoll = new Random();
@@ -77,7 +80,22 @@ namespace Textbased_game
             //
 
 
+
+            genericList.AddRange(creatureList);
+            genericList.AddRange(itemList);
+            genericList.AddRange(stationaryObjectList);
+            genericList.AddRange(locationList);
+
+
+
             CreateProperNounList();
+
+
+            //foreach (string item in legitimateNouns)
+            //{
+            //    Console.WriteLine(item);
+            //}
+
 
         }
 
@@ -99,50 +117,58 @@ namespace Textbased_game
         public void CreateProperNounList()
         {
 
-            foreach (Creature i in creatureList)
+            foreach (GenericObject i in genericList)
             {
                 legitimateNouns.Add(i.GetName());
                 legitimateNouns.Add(i.GetShortName());
             }
 
-            foreach (StationaryObject i in stationaryObjectList)
-            {
-                legitimateNouns.Add(i.GetName());
-                legitimateNouns.Add(i.GetShortName());
-            }
 
-            foreach (Item i in itemList)
-            {
-                legitimateNouns.Add(i.GetName());
-                legitimateNouns.Add(i.GetShortName());
-            }
-
-            foreach (Location i in locationList)
-            {
-                legitimateNouns.Add(i.GetName());
-                legitimateNouns.Add(i.GetShortName());
-            }
 
 
         }
 
 
         public Creature GetPlayer()
-        { return creatureList.Find(x => x.GetName().Contains("trixie")); }
+        { return creatureList.Find(x => x.GetName().ToLower().Contains("trixie")); }
 
 
         public Location GetLocation(String input)
-        { return locationList.Find(x => x.GetName().Contains(input.ToLower())); }
+        { return locationList.Find(x => x.GetName().ToLower().Contains(input.ToLower())); }
 
 
         public Creature GetCreature(String input)
-        { return creatureList.Find(x => x.GetName().Contains(input.ToLower())); }
+        { return creatureList.Find(x => x.GetName().ToLower().Contains(input.ToLower())); }
 
         public Item GetItem(String input)
-        { return itemList.Find(x => x.GetName().Contains(input.ToLower())); }
+        { return itemList.Find(x => x.GetName().ToLower().Contains(input.ToLower())); }
 
         public StationaryObject GetStationaryObject(String input)
-        { return stationaryObjectList.Find(x => x.GetName().ToLower().Contains(input)); }
+        { return stationaryObjectList.Find(x => x.GetName().ToLower().Contains(input.ToLower())); }
+
+
+
+
+
+
+
+        public string ReturnFullName(string name)
+        {
+            string fullName = name;
+
+            if (genericList.Exists(x => x.GetShortName().Equals(name, StringComparison.InvariantCultureIgnoreCase)))        //If there exists a generic object whose short name is (name)...
+            {
+                fullName = genericList.Find(x => x.GetShortName().ToLower().Contains(name.ToLower())).GetName();
+            }
+
+
+
+            return fullName;
+        }
+
+
+
+
 
 
     }

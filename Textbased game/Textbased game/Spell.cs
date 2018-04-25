@@ -12,8 +12,7 @@ namespace Textbased_game
 
         public Spell(string inputName, string inputShortName)
         {
-            name = inputName.ToLower();
-            fullName = inputName;
+            name = inputName;
             shortName = inputShortName;
 
         }
