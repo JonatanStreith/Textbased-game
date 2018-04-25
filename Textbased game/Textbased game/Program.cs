@@ -120,9 +120,19 @@ namespace Textbased_game
                     Commands.LookAt(command[1], world);
                     break;
 
+                case "exits":
+                    Commands.GetExits(world);
+                    break;
+
+                case "send":
+                    Commands.Send(command, world);
+                    break;
+
                 case "":
 
                     break;
+
+
 
 
                 default:

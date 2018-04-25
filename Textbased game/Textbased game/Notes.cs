@@ -9,20 +9,11 @@ namespace Textbased_game
     class Notes
     {
 
-        //This is mostly just to store helpful notes and useful syntax.
-
-        //Location loc = DataStorage.locationList.Find(x => x.GetName().Contains("Sugarcube Corner"));
-
-        //DataStorage.locationList.Find(x => x.GetName().Contains("Sugarcube Corner")).AddCreature(PinkiePie);
-
-        //              This helpful line adds "Pinkie Pie" to "Sugarcube Corner".
-        //              DataStorage.locationList.Find(x => x.GetName().Contains("Sugarcube Corner")).AddCreature(DataStorage.creatureList.Find(x => x.GetName().Contains("Pinkie Pie")));
 
 
 
+        //Tidy up the "GetExit" command!
 
-
-        //Set something up so "shorthand" nouns (like "library" or "Twilight's library" for "Golden Oaks Library", and "Pinkie" for Pinkie Pie") get translated to their full forms. Figure something out!
 
 
         //Keep a dictionary of bools to track which ponies you're talked to, so they say something special the first time.

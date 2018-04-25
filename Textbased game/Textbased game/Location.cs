@@ -10,7 +10,7 @@ namespace Textbased_game
     {
 
 
-        private string[] legitimateExits;
+        private List<string> legitimateExits;
 
 
         //IMPORTANT! Locations should store a list/array/Enumerator of legitimate exits: direction, and which location it leads to. FIGURE OUT!
@@ -21,7 +21,7 @@ namespace Textbased_game
         private List<StationaryObject> objectsAtLocation = new List<StationaryObject>();
         private List<Item> itemsAtLocation = new List<Item>();
 
-        public Location(string inputName, string inputShortName, string[] exits)
+        public Location(string inputName, string inputShortName, List<string> exits)
         {
 
             name = inputName;
@@ -60,7 +60,7 @@ namespace Textbased_game
         public void RemoveItem(Item name)
         { itemsAtLocation.Remove(name); }
 
-        public string[] GetExits()
+        public List<string> GetExits()
         { return legitimateExits; }
 
 

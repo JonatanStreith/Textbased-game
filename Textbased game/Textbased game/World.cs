@@ -160,7 +160,10 @@ namespace Textbased_game
             {
                 fullName = genericList.Find(x => x.GetShortName().ToLower().Contains(name.ToLower())).GetName();
             }
-
+            else
+            {
+                fullName = genericList.Find(x => x.GetName().ToLower().Contains(name.ToLower())).GetName();
+            }
 
 
             return fullName;

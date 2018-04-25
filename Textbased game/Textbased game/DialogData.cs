@@ -18,6 +18,7 @@ namespace Textbased_game
            , { "Rainbow Dash", new String[] { "\"Oh, hey.\"", "\"When did you get here?\"", "\"Hey, can you do fireworks on demand?\"", "\"Zzzzz... uh? Huh?\"" } }
            , { "Fluttershy", new String[] { "\"Umm...\"", "Fluttershy looks away bashfully.", "\"Um. Yes? D-do you want something?\"", "\"I... um... nevermind.\" *squeak*" } }
            , { "Spike", new String[] { "\"What do you want?\"", "\"Please tell me you're not going to break stuff again.\"", "\"Oh... I think I've got stuff to do. Elsewhere.\"", "\"Starlight's in the library, I think. Go bother her.\"" } }
+           , { "Trixie", new String[] { "Talking to yourself is usually pointless.", "Much as you're a wonderful conversationalist, there's not much point.", "You'd rather not. Other ponies think you're weird enough as it is." } }
            , { "Placeholder", new String[] { "\"\"", "\"\"", "\"\"", "\"\"" } }
 
 

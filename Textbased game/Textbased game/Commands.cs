@@ -157,13 +157,34 @@ namespace Textbased_game
             { Console.WriteLine($"{world.GetCreature(creatureName).GetName()} isn't here right now."); }
             else
             {
-                string[] dialog = DialogData.casualDialog[talkingTo];
+                string[] dialog = DialogData.casualDialog[talkingTo];                   //This runs if you successfully talk to someone.
                 Console.WriteLine(dialog[world.diceRoll.Next(dialog.Length)]);
+
+
+
+
             }
+        }
 
 
 
+        public static void GetExits(World world)
+        {
+            Location loc = world.GetLocation(world.GetPlayer().GetLocationName());
+            List<string> exits = loc.GetExits();
 
+
+            Console.Write("Exits are: ");
+            foreach (string exit in exits)
+            {
+                Console.Write($"{exit}, ");
+            }
+        }
+
+
+        public static void Send(string[] command, World world)
+        {
+            world.AddCreatureToLocation(command[3], command[1]);
         }
 
 

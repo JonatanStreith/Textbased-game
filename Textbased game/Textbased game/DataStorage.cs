@@ -17,7 +17,7 @@ namespace Textbased_game
         //public static int[] playerCoords = new int[2];
 
 
-        public static string[] legitimateCommands = { "look at", "look around", "go to", "pick up", "talk to", "quit", "look", "place", "brandish", "ask", "cast" };
+        public static string[] legitimateCommands = { "look at", "look around", "go to", "pick up", "talk to", "quit", "look", "place", "brandish", "ask", "cast", "exits", "send" };
         public static string[] legitimateConjunctions = { "about", "behind", "at", "under", "in front of", "on", "in" };
 
 
@@ -70,12 +70,12 @@ namespace Textbased_game
 
 
 
-        public static Dictionary<string, string[]> legitimateExits = new Dictionary<string, string[]> {
+        public static Dictionary<string, List<string>> legitimateExits = new Dictionary<string, List<string>> {
 
-             { "Sugarcube Corner", new String[] { "Castle of Friendship", "Carousel Boutique", "Sweet Apple Acres" } }
-           , { "Castle of Friendship", new String[] { "Sugarcube Corner", "Carousel Boutique", "Sweet Apple Acres" } }
-           , { "Carousel Boutique", new String[] { "Castle of Friendship", "Sugarcube Corner", "Sweet Apple Acres" } }
-           , { "Sweet Apple Acres", new String[] { "Castle of Friendship", "Carousel Boutique", "Sugarcube Corner" } }
+             { "Sugarcube Corner", new List<string> { "Castle of Friendship", "Carousel Boutique", "Sweet Apple Acres" } }
+           , { "Castle of Friendship", new List<string> { "Sugarcube Corner", "Carousel Boutique", "Sweet Apple Acres" } }
+           , { "Carousel Boutique", new List<string> { "Castle of Friendship", "Sugarcube Corner", "Sweet Apple Acres" } }
+           , { "Sweet Apple Acres", new List<string> { "Castle of Friendship", "Carousel Boutique", "Sugarcube Corner" } }
 
         };
 
