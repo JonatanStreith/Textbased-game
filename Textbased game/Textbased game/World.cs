@@ -25,8 +25,8 @@ namespace Textbased_game
         public World()
         {
             Location Sugarcube = new Location("Sugarcube Corner", "bakery", DataStorage.legitimateExits["Sugarcube Corner"]);
-            Location FriendshipCastle = new Location("Castle of Friendship", "castle", DataStorage.legitimateExits["Castle of Friendship"]);
-            Location Boutique = new Location("Carousel Boutique", "boutique", DataStorage.legitimateExits["Carousel Boutique"]);
+            Location FriendshipCastle = new Location("the Castle of Friendship", "castle", DataStorage.legitimateExits["the Castle of Friendship"]);
+            Location Boutique = new Location("the Carousel Boutique", "boutique", DataStorage.legitimateExits["the Carousel Boutique"]);
             Location Acres = new Location("Sweet Apple Acres", "Acres", DataStorage.legitimateExits["Sweet Apple Acres"]);
 
 
@@ -68,9 +68,6 @@ namespace Textbased_game
             AddCreatureToLocation("Carousel Boutique", "Fluttershy");
             AddCreatureToLocation("Castle of Friendship", "Twilight Sparkle");
             AddCreatureToLocation("Castle of Friendship", "Spike");
-
-
-
 
 
 
@@ -171,6 +168,45 @@ namespace Textbased_game
 
 
 
+
+        public String TurnCreatureListIntoString(List<Creature> list)     //Takes a list of objects, pieces together their names into one string
+        {                                                                               //Note: This omits Trixie, as she doesn't need to be mentioned
+            string fullString = "";
+            List<string> nameList = new List<string>();
+
+            foreach (Creature item in list)
+            { nameList.Add(item.GetName()); }    //Generates a list of names
+
+            for (int i = 0; i < nameList.Count - 3; i++)
+            { nameList[i] += ", "; }
+
+            nameList[nameList.Count - 3] += " and ";
+
+            for (int i = 0; i < nameList.Count - 1; i++)
+            { fullString += nameList[i]; }
+
+            return fullString;
+        }
+
+
+        public String TurnStringListIntoString(List<String> list)     //Takes a list of objects, pieces together their names into one string
+        {                                                                               //Note: This omits Trixie, as she doesn't need to be mentioned
+            string fullString = "";
+            List<string> nameList = new List<string>();
+
+            foreach (string item in list)
+            { nameList.Add(item); }    
+
+            for (int i = 0; i < nameList.Count - 2; i++)
+            { nameList[i] += ", "; }
+
+            nameList[nameList.Count - 2] += " and ";
+
+            for (int i = 0; i < nameList.Count; i++)
+            { fullString += nameList[i]; }
+
+            return fullString;
+        }
 
 
 

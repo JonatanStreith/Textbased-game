@@ -19,24 +19,6 @@ namespace Textbased_game
         }
 
 
-        public static String TurnListIntoString(List<GenericObject> list)     //Takes a list of objects, pieces together their names into one string
-        {
-            string fullString = list[0].GetName();
-            list.RemoveAt(0);
-
-            if (list.Count > 0)
-            {
-                while (list.Count > 1)
-                {
-                    fullString = fullString + $", {list[0].GetName()}";
-                    list.RemoveAt(0);
-                }
-                fullString = fullString + $" and {list[0].GetName()}";
-            }
-
-            return fullString;
-
-        }
 
 
 

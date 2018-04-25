@@ -31,38 +31,17 @@ namespace Textbased_game
         {
             Console.Write($"You are currently standing in {world.GetLocation(world.GetPlayer().GetLocationName()).GetName()}. ");
             Console.WriteLine(world.GetLocation(world.GetPlayer().GetLocationName()).GetDescription());
-
-
+            Console.WriteLine();
 
             List<Creature> npcsList = world.GetLocation(world.GetPlayer().GetLocationName()).GetCreaturesAtLocation();      //Create a list of npcs at the location. Make sure to exclude Trixie.
 
-            npcsList.Remove(world.GetCreature("Trixie"));
             int numCreatures = npcsList.Count;
-
-            if (npcsList.Count() == 0) { Console.WriteLine("There's nopony else here."); }
+                  
+            if (npcsList.Count() == 1) { Console.WriteLine("There's nopony else here."); }
 
             else
             {
-
-
-
-
-
-                string fullString = npcsList[0].GetName();
-                npcsList.RemoveAt(0);
-
-                if (npcsList.Count > 0)
-                {
-                    while (npcsList.Count > 1)
-                    {
-                        fullString = fullString + $", {npcsList[0].GetName()}";
-                        npcsList.RemoveAt(0);
-                    }
-                    fullString = fullString + $" and {npcsList[0].GetName()}";
-                }
-
-                Console.WriteLine($"{fullString} {HelpfulMethods.IsOrAre(numCreatures)} here.");
-
+                Console.WriteLine($"{world.TurnCreatureListIntoString(npcsList)} {HelpfulMethods.IsOrAre(numCreatures)} here.");
             }
             
         }
@@ -152,7 +131,6 @@ namespace Textbased_game
         public static void TalkTo(string creatureName, World world)
         {
 
-            Console.WriteLine(creatureName);
 
             string talkingTo = "Nonexistent";
 
@@ -170,8 +148,6 @@ namespace Textbased_game
             foreach (Creature item in world.GetLocation(world.GetPlayer().GetLocationName()).GetCreaturesAtLocation())
             {
 
-                Console.WriteLine($"Found: {item.GetName()}");
-                Console.WriteLine($"Wants to talk to: {creatureName}");
 
                 if (item.GetName().Equals(creatureName, StringComparison.InvariantCultureIgnoreCase))
                 { talkingTo = item.GetName(); }
@@ -201,11 +177,7 @@ namespace Textbased_game
             List<string> exits = loc.GetExits();
 
 
-            Console.Write("Exits are: ");
-            foreach (string exit in exits)
-            {
-                Console.Write($"{exit}, ");
-            }
+            Console.Write($"Exits are: {world.TurnStringListIntoString(exits)}.");
         }
 
 
@@ -213,7 +185,6 @@ namespace Textbased_game
         {
             world.AddCreatureToLocation(command[3], command[1]);            //This is unfinished!
         }
-
 
 
     }

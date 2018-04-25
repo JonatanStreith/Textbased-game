@@ -25,9 +25,9 @@ namespace Textbased_game
 
         public static Dictionary<string, string> placeDescriptions = new Dictionary<string, string> {
             { "Sugarcube Corner", "Sugarcube Corner is Ponyville's premier confectionery store." }
-          , { "Carousel Boutique", "The Carousel Boutique is a place." }
+          , { "the Carousel Boutique", "The Carousel Boutique is a bright and airy shop full of outfits of all kinds, all hoof-made by its proprietor, Rarity. Of course, already being dressed to perfection, you have no need of her services." }
           , { "Sweet Apple Acres", "This describes SAA." }
-          , { "Castle of Friendship", "This describes the castle." }
+          , { "the Castle of Friendship", "This describes the castle." }
         };
 
 
@@ -72,10 +72,10 @@ namespace Textbased_game
 
         public static Dictionary<string, List<string>> legitimateExits = new Dictionary<string, List<string>> {
 
-             { "Sugarcube Corner", new List<string> { "Castle of Friendship", "Carousel Boutique", "Sweet Apple Acres" } }
-           , { "Castle of Friendship", new List<string> { "Sugarcube Corner", "Carousel Boutique", "Sweet Apple Acres" } }
-           , { "Carousel Boutique", new List<string> { "Castle of Friendship", "Sugarcube Corner", "Sweet Apple Acres" } }
-           , { "Sweet Apple Acres", new List<string> { "Castle of Friendship", "Carousel Boutique", "Sugarcube Corner" } }
+             { "Sugarcube Corner", new List<string> { "the Castle of Friendship", "the Carousel Boutique", "Sweet Apple Acres" } }
+           , { "the Castle of Friendship", new List<string> { "Sugarcube Corner", "the Carousel Boutique", "Sweet Apple Acres" } }
+           , { "the Carousel Boutique", new List<string> { "the Castle of Friendship", "Sugarcube Corner", "Sweet Apple Acres" } }
+           , { "Sweet Apple Acres", new List<string> { "the Castle of Friendship", "the Carousel Boutique", "Sugarcube Corner" } }
 
         };
 
