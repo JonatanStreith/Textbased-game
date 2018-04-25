@@ -30,31 +30,41 @@ namespace Textbased_game
         public static void LookAround(World world)
         {
             Console.Write($"You are currently standing in {world.GetLocation(world.GetPlayer().GetLocationName()).GetName()}. ");
-
             Console.WriteLine(world.GetLocation(world.GetPlayer().GetLocationName()).GetDescription());
 
-            List<Creature> npcsList = world.GetLocation(world.GetPlayer().GetLocationName()).GetCreaturesAtLocation();
 
 
+            List<Creature> npcsList = world.GetLocation(world.GetPlayer().GetLocationName()).GetCreaturesAtLocation();      //Create a list of npcs at the location. Make sure to exclude Trixie.
 
-            if (npcsList.Count() == 1) { Console.WriteLine("There's nopony else here."); }
+            npcsList.Remove(world.GetCreature("Trixie"));
+            int numCreatures = npcsList.Count;
 
-            else if (npcsList.Count() == 2) { Console.WriteLine($"{npcsList[0].GetName()} is here."); }
+            if (npcsList.Count() == 0) { Console.WriteLine("There's nopony else here."); }
 
-            else if (npcsList.Count() >= 3)
+            else
             {
-                for (int i = 0; i < npcsList.Count - 3; i++)
+
+
+
+
+
+                string fullString = npcsList[0].GetName();
+                npcsList.RemoveAt(0);
+
+                if (npcsList.Count > 0)
                 {
-                    Console.Write($"{npcsList[i].GetName()}, ");
+                    while (npcsList.Count > 1)
+                    {
+                        fullString = fullString + $", {npcsList[0].GetName()}";
+                        npcsList.RemoveAt(0);
+                    }
+                    fullString = fullString + $" and {npcsList[0].GetName()}";
                 }
 
-                Console.Write($"{npcsList[npcsList.Count - 3].GetName()} and ");
-                Console.WriteLine($"{npcsList[npcsList.Count - 2].GetName()} are here.");
+                Console.WriteLine($"{fullString} {HelpfulMethods.IsOrAre(numCreatures)} here.");
 
             }
-
-            else { Console.WriteLine("Something weird is going on."); }
-
+            
         }
 
 
@@ -105,12 +115,18 @@ namespace Textbased_game
         }
 
 
+
+
+
+
+
         public static void GoTo(string newArea, World world)
         {
             bool canGo = false;
             foreach (string place in world.GetLocation(world.GetPlayer().GetLocationName()).GetExits())     //Check if any of the legitimate exits is the place we want to go to
             {
-                if (newArea == place.ToLower())
+
+                if (newArea == place)
                 { canGo = true; }
             }
 
@@ -135,21 +151,32 @@ namespace Textbased_game
 
         public static void TalkTo(string creatureName, World world)
         {
+
+            Console.WriteLine(creatureName);
+
             string talkingTo = "Nonexistent";
 
 
 
             foreach (Creature item in world.creatureList)
             {
-                if (item.GetName().Equals(creatureName, StringComparison.InvariantCultureIgnoreCase))                
+                if (item.GetName().Equals(creatureName, StringComparison.InvariantCultureIgnoreCase))
                 { talkingTo = "Away"; }
+
+
             }
+
 
             foreach (Creature item in world.GetLocation(world.GetPlayer().GetLocationName()).GetCreaturesAtLocation())
             {
+
+                Console.WriteLine($"Found: {item.GetName()}");
+                Console.WriteLine($"Wants to talk to: {creatureName}");
+
                 if (item.GetName().Equals(creatureName, StringComparison.InvariantCultureIgnoreCase))
                 { talkingTo = item.GetName(); }
             }
+
 
             if (talkingTo == "Nonexistent")
             { Console.WriteLine("You don't know of anypony by that name."); }
@@ -182,9 +209,9 @@ namespace Textbased_game
         }
 
 
-        public static void Send(string[] command, World world)
+        public static void Teleport(string[] command, World world)
         {
-            world.AddCreatureToLocation(command[3], command[1]);
+            world.AddCreatureToLocation(command[3], command[1]);            //This is unfinished!
         }
 
 

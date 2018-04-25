@@ -48,6 +48,7 @@
     <Compile Include="DataStorage.cs" />
     <Compile Include="DialogData.cs" />
     <Compile Include="GenericObject.cs" />
+    <Compile Include="HelpfulMethods.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="Location.cs" />
     <Compile Include="Notes.cs" />

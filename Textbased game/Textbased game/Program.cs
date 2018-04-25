@@ -54,12 +54,6 @@ namespace Textbased_game
 
 
 
-
-
-
-
-
-
             while (true)                //Continously running play loop that parses instructions
 
             {
@@ -124,8 +118,8 @@ namespace Textbased_game
                     Commands.GetExits(world);
                     break;
 
-                case "send":
-                    Commands.Send(command, world);
+                case "teleport":
+                    Commands.Teleport(command, world);
                     break;
 
                 case "":
@@ -180,7 +174,7 @@ namespace Textbased_game
 
                     remainder = command.Split(new string[] { item.ToLower() }, StringSplitOptions.None);
 
-                    cleanCommand[1] =  world.ReturnFullName(item);
+                    cleanCommand[1] = world.ReturnFullName(item);
 
                     if (remainder[1] != "")
                     { command = remainder[1].Remove(0, 1); }
@@ -230,7 +224,7 @@ namespace Textbased_game
             {
                 for (int j = 0; j < DataStorage.variantNames.GetLength(1); j++)
                 {
-                    if (noun == DataStorage.variantNames[i,j])
+                    if (noun == DataStorage.variantNames[i, j])
                     { returnNoun = DataStorage.variantNames[0, j]; }
                 }
             }
