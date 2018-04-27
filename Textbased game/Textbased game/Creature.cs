@@ -9,7 +9,6 @@ namespace Textbased_game
     class Creature : GenericObject
     {
         private string race;
-        private string locationName;
 
         private List<String> inventory = new List<string>();
 
@@ -18,6 +17,7 @@ namespace Textbased_game
             name = inputName;
             race = inputRace;
             shortName = inputShortName;
+            objectType = "item";
 
             description = DataStorage.creatureDescriptions[name];
 
@@ -28,11 +28,6 @@ namespace Textbased_game
         public string GetRace()
         { return race; }
 
-        public string GetLocationName()
-        { return locationName; }
-
-        public void SetLocation(string loc)
-        { locationName = loc; }
 
     }
 }

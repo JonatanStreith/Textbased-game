@@ -30,6 +30,28 @@ namespace Textbased_game
 
 
 
+        public static Dictionary<int, string> askCreature = new Dictionary<int, string>
+        {
+
+        };
+
+
+        public static Dictionary<int, string> askTopic = new Dictionary<int, string>
+        {
+
+        };
+
+
+
+
+        public static string[,] askArray = new string[,]
+        {
+
+        };
+
+
+
+
 
 
 

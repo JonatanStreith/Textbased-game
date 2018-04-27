@@ -28,7 +28,8 @@ namespace Textbased_game
 
 
             string input;
-            string[] commandPhrase = new string[2];         //A "Command Phrase" contains two elements: a command, and a subject. Example: "Pick up", "Apple".
+            string[] commandPhrase;         //A "Command Phrase" contains four elements: a command, a subject, a preposition, and a last argument. Example: "Throw", "rock", "at", "window".
+
 
 
 
@@ -37,15 +38,7 @@ namespace Textbased_game
             Console.WriteLine("Game begins!");
             //create character
 
-
-
-
-
             Console.WriteLine($"You are {Equestria.GetPlayer().GetName()}, a {Equestria.GetPlayer().GetRace()}.");
-
-
-
-
 
 
             Commands.LookAround(Equestria);

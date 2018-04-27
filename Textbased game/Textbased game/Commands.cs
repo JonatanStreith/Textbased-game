@@ -36,14 +36,14 @@ namespace Textbased_game
             List<Creature> npcsList = world.GetLocation(world.GetPlayer().GetLocationName()).GetCreaturesAtLocation();      //Create a list of npcs at the location. Make sure to exclude Trixie.
 
             int numCreatures = npcsList.Count;
-                  
+
             if (npcsList.Count() == 1) { Console.WriteLine("There's nopony else here."); }
 
             else
             {
-                Console.WriteLine($"{world.TurnCreatureListIntoString(npcsList)} {HelpfulMethods.IsOrAre(numCreatures)} here.");
+                Console.WriteLine($"{world.TurnCreatureListIntoString(npcsList)} {HelpfulMethods.IsOrAre(numCreatures - 1)} here.");
             }
-            
+
         }
 
 
@@ -128,45 +128,61 @@ namespace Textbased_game
 
 
 
-        public static void TalkTo(string creatureName, World world)
+        public static void TalkTo(string name, World world)
         {
+            if (!(world.DoesObjectExist(name)))                                                             //Subject doesn't exist.
+            { Console.WriteLine($"You don't know of anypony by that name."); }
 
+            else if (world.IsObjectPresent(name) == false)                                                   //Subject isn't present.
+            { Console.WriteLine($"{world.GetGenericObject(name).GetName()} isn't here right now."); }
 
-            string talkingTo = "Nonexistent";
+            else if (!(world.GetGenericObject(name) is Creature))                                                //Subject isn't a creature.
+            { Console.WriteLine($"You don't make a habit of talking to inanimate objects."); }
 
-
-
-            foreach (Creature item in world.creatureList)
+            else if ((world.GetGenericObject(name) is Creature))
             {
-                if (item.GetName().Equals(creatureName, StringComparison.InvariantCultureIgnoreCase))
-                { talkingTo = "Away"; }
-
-
-            }
-
-
-            foreach (Creature item in world.GetLocation(world.GetPlayer().GetLocationName()).GetCreaturesAtLocation())
-            {
-
-
-                if (item.GetName().Equals(creatureName, StringComparison.InvariantCultureIgnoreCase))
-                { talkingTo = item.GetName(); }
-            }
-
-
-            if (talkingTo == "Nonexistent")
-            { Console.WriteLine("You don't know of anypony by that name."); }
-            else if (talkingTo == "Away")
-            { Console.WriteLine($"{world.GetCreature(creatureName).GetName()} isn't here right now."); }
-            else
-            {
-                string[] dialog = DialogData.casualDialog[talkingTo];                   //This runs if you successfully talk to someone.
+                string[] dialog = DialogData.casualDialog[name];                   //This runs if you successfully talk to someone.
                 Console.WriteLine(dialog[world.diceRoll.Next(dialog.Length)]);
 
-
-
-
             }
+            else
+            { Console.WriteLine("Debug code. If this is shown, something didn't go right."); }
+
+            //string talkingTo = "Nonexistent";
+
+
+
+            //foreach (Creature item in world.creatureList)
+            //{
+            //    if (item.GetName().Equals(creatureName, StringComparison.InvariantCultureIgnoreCase))
+            //    { talkingTo = "Away"; }
+
+
+            //}
+
+
+            //foreach (Creature item in world.GetLocation(world.GetPlayer().GetLocationName()).GetCreaturesAtLocation())
+            //{
+
+
+            //    if (item.GetName().Equals(creatureName, StringComparison.InvariantCultureIgnoreCase))
+            //    { talkingTo = item.GetName(); }
+            //}
+
+
+            //if (talkingTo == "Nonexistent")
+            //{ Console.WriteLine("You don't know of anypony by that name."); }
+            //else if (talkingTo == "Away")
+            //{ Console.WriteLine($"{world.GetCreature(creatureName).GetName()} isn't here right now."); }
+            //else
+            //{
+            //    string[] dialog = DialogData.casualDialog[talkingTo];                   //This runs if you successfully talk to someone.
+            //    Console.WriteLine(dialog[world.diceRoll.Next(dialog.Length)]);
+            //}
+
+
+
+
         }
 
 
@@ -181,9 +197,17 @@ namespace Textbased_game
         }
 
 
-        public static void Teleport(string[] command, World world)
+        public static void Teleport(string[] command, World world)  //Make sure you can teleport items and objects - different code?
         {
-            world.AddCreatureToLocation(command[3], command[1]);            //This is unfinished!
+            world.AddCreatureToLocation(command[3], command[1]);
+            world.RemoveCreatureFromLocation(world.GetPlayer().GetLocationName(), world.GetCreature(command[1]).GetName());
+            Console.WriteLine($"{command[1]} vanishes in a burst of smoke!");
+        }
+
+        public static void Ask(string[] command, World world)
+        {
+
+
         }
 
 

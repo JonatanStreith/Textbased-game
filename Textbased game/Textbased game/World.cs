@@ -49,7 +49,7 @@ namespace Textbased_game
 
 
 
-            Creature Trixie = new Creature("The Great and Powerful Trixie", "Trixie", "unicorn");
+            Creature Trixie = new Creature("Trixie", "The Great and Powerful Trixie", "unicorn");
 
             creatureList.Add(PinkiePie);
             creatureList.Add(Applejack);
@@ -62,12 +62,12 @@ namespace Textbased_game
 
 
             AddCreatureToLocation("Sugarcube Corner", "Pinkie Pie");
-            AddCreatureToLocation("Sweet Apple Acres", "Applejack");
+            AddCreatureToLocation("Sugarcube Corner", "Applejack");
             AddCreatureToLocation("Sugarcube Corner", "Rainbow Dash");
-            AddCreatureToLocation("Carousel Boutique", "Rarity");
-            AddCreatureToLocation("Carousel Boutique", "Fluttershy");
-            AddCreatureToLocation("Castle of Friendship", "Twilight Sparkle");
-            AddCreatureToLocation("Castle of Friendship", "Spike");
+            AddCreatureToLocation("Sugarcube Corner", "Rarity");
+            AddCreatureToLocation("Sugarcube Corner", "Fluttershy");
+            AddCreatureToLocation("Sugarcube Corner", "Twilight Sparkle");
+            AddCreatureToLocation("Sugarcube Corner", "Spike");
 
 
 
@@ -143,11 +143,21 @@ namespace Textbased_game
         public StationaryObject GetStationaryObject(String input)
         { return stationaryObjectList.Find(x => x.GetName().ToLower().Contains(input.ToLower())); }
 
+        public GenericObject GetGenericObject(String input)
+        { return genericList.Find(x => x.GetName().ToLower().Contains(input.ToLower())); }
 
 
 
 
+        public bool IsObjectPresent(string generic)
+        {
+            return (GetPlayer().GetLocationName() == GetGenericObject(generic).GetLocationName());
+        }
 
+        public bool DoesObjectExist(string generic)
+        {
+            return genericList.Contains(GetGenericObject(generic));
+        }
 
         public string ReturnFullName(string name)
         {
@@ -177,10 +187,14 @@ namespace Textbased_game
             foreach (Creature item in list)
             { nameList.Add(item.GetName()); }    //Generates a list of names
 
-            for (int i = 0; i < nameList.Count - 3; i++)
-            { nameList[i] += ", "; }
 
-            nameList[nameList.Count - 3] += " and ";
+            if (nameList.Count >= 3)
+            {
+                for (int i = 0; i < nameList.Count - 3; i++)
+                { nameList[i] += ", "; }
+
+                nameList[nameList.Count - 3] += " and ";
+            }
 
             for (int i = 0; i < nameList.Count - 1; i++)
             { fullString += nameList[i]; }
@@ -189,18 +203,23 @@ namespace Textbased_game
         }
 
 
-        public String TurnStringListIntoString(List<String> list)     //Takes a list of objects, pieces together their names into one string
-        {                                                                               //Note: This omits Trixie, as she doesn't need to be mentioned
+        public String TurnStringListIntoString(List<String> list)     //Takes a list of strings, pieces them together into one string
+        {                                                                               
             string fullString = "";
             List<string> nameList = new List<string>();
 
             foreach (string item in list)
-            { nameList.Add(item); }    
+            { nameList.Add(item); }
 
-            for (int i = 0; i < nameList.Count - 2; i++)
-            { nameList[i] += ", "; }
 
-            nameList[nameList.Count - 2] += " and ";
+
+            if (nameList.Count >= 2)
+            {
+                for (int i = 0; i < nameList.Count - 2; i++)
+                { nameList[i] += ", "; }
+                
+                nameList[nameList.Count - 2] += " and ";
+            }
 
             for (int i = 0; i < nameList.Count; i++)
             { fullString += nameList[i]; }

@@ -26,10 +26,13 @@ namespace Textbased_game
 
             name = inputName;
             shortName = inputShortName;
+            objectType = "item";
+            description = DataStorage.placeDescriptions[name];
 
             legitimateExits = exits;
 
-            description = DataStorage.placeDescriptions[name];
+            locationName = name;
+
         }
 
 

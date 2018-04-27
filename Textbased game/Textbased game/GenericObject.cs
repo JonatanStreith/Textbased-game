@@ -11,19 +11,30 @@ namespace Textbased_game
         protected string name;
         protected string shortName;
 
+        protected string objectType;
+
         protected string description;
+
+        protected string locationName;
 
 
         public string GetName()
         { return name; }
 
-
-        public string GetShortName()
+                public string GetShortName()
         { return shortName; }
+
+        public string GetObjectType()
+        { return objectType; }
 
         public string GetDescription()
         { return description; }
 
+        public string GetLocationName()
+        { return locationName; }
+
+        public void SetLocation(string loc)
+        { locationName = loc; }
 
     }
 }
