@@ -190,15 +190,15 @@ namespace Textbased_game
         }
 
 
-        public static void TeleportOther(string[] command, World world)  //Make sure you can teleport items and objects - different code?
+        public static void TeleportOther(string[] command, World world)                             //TO DO Make sure you can teleport items and objects - different code?
         {
 
             if (!world.DoesObjectExist(command[1]))             //Subject doesn't exist
-            {                Console.WriteLine("You can't teleport something that doesn't exist.");            }
+            { Console.WriteLine("You can't teleport something that doesn't exist."); }
 
             else if (!world.IsObjectPresent(command[1]))        //Subject isn't in the area
             { Console.WriteLine("You can only teleport things within eyesight."); }
-            
+
             else if (world.GetGenericObject(command[1]).GetName().Equals("Trixie", StringComparison.InvariantCultureIgnoreCase))           //Are you instructing the game to teleport Trixie herself?
             {
                 world.RemoveCreatureFromLocation(world.GetPlayer().GetLocationName(), world.GetPlayer().GetName());
@@ -209,13 +209,16 @@ namespace Textbased_game
                 Console.Clear();
                 LookAround(world);
             }
-            else
+            else if (world.GetGenericObject(command[1]) is Creature)
             {
                 world.RemoveCreatureFromLocation(world.GetPlayer().GetLocationName(), world.GetCreature(command[1]).GetName());
                 world.AddCreatureToLocation(command[3], command[1]);
 
                 Console.WriteLine($"{command[1]} vanishes in a burst of smoke!");
             }
+            else
+            { Console.WriteLine("Your spell fizzles for some reason."); }
+
         }
 
 
@@ -240,8 +243,21 @@ namespace Textbased_game
 
         public static void Ask(string[] command, World world)
         {
+            if (!world.DoesObjectExist(command[1]))         //Nonexistent
+            { Console.WriteLine("Ask who?"); }
+            else if (!world.IsObjectPresent(command[1]))        //Not present
+            { Console.WriteLine("They might hear you better if they're actually present, you know."); }
 
+            else if (!(world.GetGenericObject(command[1]) is Creature))                                                //Subject isn't a creature.
+            { Console.WriteLine("There's not much point in asking inanimate objects."); }
 
+            else if (!(DialogData.askTopic.ContainsKey(command[3])))
+            {
+                Console.WriteLine($"{world.GetCreature(command[1]).GetName()} doesn't know anything about that.");
+            }
+
+            else
+            { Console.WriteLine(DialogData.askArray[DialogData.askCreature[command[1]], DialogData.askTopic[command[3]]]); }
         }
 
 

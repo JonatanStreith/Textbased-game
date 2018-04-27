@@ -30,15 +30,24 @@ namespace Textbased_game
 
 
 
-        public static Dictionary<int, string> askCreature = new Dictionary<int, string>
+        public static Dictionary<string, int> askCreature = new Dictionary<string, int>
         {
 
+              { "Twilight Sparkle", 0 }
+            , { "Rarity" , 1 }
+            , { "Applejack", 2 }
+            , { "Pinkie Pie", 3 }
+            , { "Rainbow Dash", 4 }
+            , { "Fluttershy", 5 }
+            , { "Spike", 6 }
         };
 
 
-        public static Dictionary<int, string> askTopic = new Dictionary<int, string>
+        public static Dictionary<string, int> askTopic = new Dictionary<string, int>
         {
-
+              {"magic", 0 }
+            , {"friendship", 1 }
+            , {"ponyville", 2 }
         };
 
 
@@ -46,7 +55,14 @@ namespace Textbased_game
 
         public static string[,] askArray = new string[,]
         {
-
+             {"Twilight talks about magic.",         "Twilight talks about friendship.",     "Twilight talks about Ponyville.", }
+           , {"Rarity talks about magic.",           "Rarity talks about friendship.",       "Rarity talks about Ponyville.", }
+           , {"Applejack talks about magic.",        "Applejack talks about friendship.",    "Applejack talks about Ponyville.", }
+           , {"Pinkie Pie talks about magic.",       "Pinkie Pie talks about friendship.",   "Pinkie Pie talks about Ponyville.", }
+           , {"Rainbow Dash talks about magic.",     "Rainbow Dash talks about friendship.", "Rainbow Dash talks about Ponyville.", }
+           , {"Fluttershy talks about magic.",       "Fluttershy talks about friendship.",   "Fluttershy talks about Ponyville.", }
+           , {"Spike talks about magic.",            "Spike talks about friendship.",        "Spike talks about Ponyville.", }
+           , {"Twilight talks about magic.",         "Twilight talks about friendship.",     "Twilight talks about Ponyville.", }
         };
 
 

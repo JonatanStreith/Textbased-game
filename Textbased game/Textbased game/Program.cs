@@ -52,7 +52,6 @@ namespace Textbased_game
             {
 
 
-                Console.WriteLine($"Trixie is at {Equestria.GetCreature("Trixie").GetLocationName()}.");
 
 
 
@@ -62,10 +61,10 @@ namespace Textbased_game
                 commandPhrase = Parser(input, Equestria);
 
 
-                //Console.WriteLine(commandPhrase[0]);
-                //Console.WriteLine(commandPhrase[1]);
-                //Console.WriteLine(commandPhrase[2]);
-                //Console.WriteLine(commandPhrase[3]);
+                Console.WriteLine(commandPhrase[0]);
+                Console.WriteLine(commandPhrase[1]);
+                Console.WriteLine(commandPhrase[2]);
+                Console.WriteLine(commandPhrase[3]);
 
 
                 RunCommand(commandPhrase, Equestria);
@@ -127,8 +126,13 @@ namespace Textbased_game
 
                 case "teleport to":
                     Commands.TeleportSelf(command, world);
-
                     break;
+
+                case "ask":
+                    Commands.Ask(command, world);
+                    break;
+
+
                 case "":
 
                     break;
@@ -169,6 +173,8 @@ namespace Textbased_game
                     if (remainder[1] != "")
                     { command = remainder[1].Remove(0, 1); }
 
+
+
                     break;
                 }
             }
@@ -185,6 +191,10 @@ namespace Textbased_game
 
                     if (remainder[1] != "")
                     { command = remainder[1].Remove(0, 1); }
+
+
+
+
 
                     break;
                 }
@@ -203,12 +213,13 @@ namespace Textbased_game
                     if (remainder[1] != "")
                     { command = remainder[1].Remove(0, 1); }
 
+
                     break;
                 }
             }
 
-            cleanCommand[3] = command;      //Add the remainder
 
+            cleanCommand[3] = command;      //Add the remainder
 
 
             return cleanCommand;

@@ -10,7 +10,7 @@ namespace Textbased_game
     {
 
 
-
+        //Teleport: You could teleport to other ponies! Maybe?
 
         //Tidy up the "GetExit" command!
 
