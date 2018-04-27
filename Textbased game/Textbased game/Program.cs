@@ -50,6 +50,12 @@ namespace Textbased_game
             while (true)                //Continously running play loop that parses instructions
 
             {
+
+
+                Console.WriteLine($"Trixie is at {Equestria.GetCreature("Trixie").GetLocationName()}.");
+
+
+
                 Console.WriteLine();
                 Console.Write("Please input command: ");
                 input = Console.ReadLine().ToLower();
@@ -60,6 +66,7 @@ namespace Textbased_game
                 //Console.WriteLine(commandPhrase[1]);
                 //Console.WriteLine(commandPhrase[2]);
                 //Console.WriteLine(commandPhrase[3]);
+
 
                 RunCommand(commandPhrase, Equestria);
 
@@ -84,6 +91,9 @@ namespace Textbased_game
                     break;
 
                 case "go to":
+                    Commands.GoTo(command[1], world);
+                    break;
+                case "go":
                     Commands.GoTo(command[1], world);
                     break;
 
@@ -112,9 +122,13 @@ namespace Textbased_game
                     break;
 
                 case "teleport":
-                    Commands.Teleport(command, world);
+                    Commands.TeleportOther(command, world);
                     break;
 
+                case "teleport to":
+                    Commands.TeleportSelf(command, world);
+
+                    break;
                 case "":
 
                     break;

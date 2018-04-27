@@ -30,8 +30,6 @@ namespace Textbased_game
             Location Acres = new Location("Sweet Apple Acres", "Acres", DataStorage.legitimateExits["Sweet Apple Acres"]);
 
 
-
-
             locationList.Add(Sugarcube);
             locationList.Add(FriendshipCastle);
             locationList.Add(Boutique);
@@ -106,24 +104,44 @@ namespace Textbased_game
         }
 
         public void RemoveCreatureFromLocation(string location, string creature)
+        { GetLocation(location).RemoveCreature(GetCreature(creature)); }
+
+
+
+        public void AddItemToLocation(string location, string item)
         {
-            GetLocation(location).RemoveCreature(GetCreature(creature));
+            //Adds "creature" to "location"
+            GetLocation(location).AddItem(GetItem(item));
+            GetCreature(item).SetLocation(location);
         }
+
+        public void RemoveItemFromLocation(string location, string item)
+        { GetLocation(location).RemoveItem(GetItem(item)); }
+
+
+        public void AddObjectToLocation(string location, string stationaryObject)
+        {
+            //Adds "creature" to "location"
+            GetLocation(location).AddObject(GetStationaryObject(stationaryObject));
+            GetCreature(stationaryObject).SetLocation(location);
+        }
+
+        public void RemoveObjectFromLocation(string location, string stationaryObject)
+        { GetLocation(location).RemoveObject(GetStationaryObject(stationaryObject)); }
+
 
 
         public void CreateProperNounList()
         {
-
             foreach (GenericObject i in genericList)
             {
                 legitimateNouns.Add(i.GetName());
                 legitimateNouns.Add(i.GetShortName());
             }
-
-
-
-
         }
+
+
+
 
 
         public Creature GetPlayer()
@@ -150,28 +168,19 @@ namespace Textbased_game
 
 
         public bool IsObjectPresent(string generic)
-        {
-            return (GetPlayer().GetLocationName() == GetGenericObject(generic).GetLocationName());
-        }
+        { return (GetPlayer().GetLocationName() == GetGenericObject(generic).GetLocationName()); }
 
         public bool DoesObjectExist(string generic)
-        {
-            return genericList.Contains(GetGenericObject(generic));
-        }
+        { return genericList.Contains(GetGenericObject(generic)); }
 
         public string ReturnFullName(string name)
         {
             string fullName = name;
 
             if (genericList.Exists(x => x.GetShortName().Equals(name, StringComparison.InvariantCultureIgnoreCase)))        //If there exists a generic object whose short name is (name)...
-            {
-                fullName = genericList.Find(x => x.GetShortName().ToLower().Contains(name.ToLower())).GetName();
-            }
+            { fullName = genericList.Find(x => x.GetShortName().ToLower().Contains(name.ToLower())).GetName(); }
             else
-            {
-                fullName = genericList.Find(x => x.GetName().ToLower().Contains(name.ToLower())).GetName();
-            }
-
+            { fullName = genericList.Find(x => x.GetName().ToLower().Contains(name.ToLower())).GetName(); }
 
             return fullName;
         }
@@ -190,13 +199,13 @@ namespace Textbased_game
 
             if (nameList.Count >= 3)
             {
-                for (int i = 0; i < nameList.Count - 3; i++)
+                for (int i = 0; i < nameList.Count - 3; i++)           
                 { nameList[i] += ", "; }
 
-                nameList[nameList.Count - 3] += " and ";
+                nameList[nameList.Count - 3] += " and ";                
             }
 
-            for (int i = 0; i < nameList.Count - 1; i++)
+            for (int i = 0; i < nameList.Count-1; i++)               
             { fullString += nameList[i]; }
 
             return fullString;
@@ -204,7 +213,7 @@ namespace Textbased_game
 
 
         public String TurnStringListIntoString(List<String> list)     //Takes a list of strings, pieces them together into one string
-        {                                                                               
+        {
             string fullString = "";
             List<string> nameList = new List<string>();
 
@@ -217,7 +226,7 @@ namespace Textbased_game
             {
                 for (int i = 0; i < nameList.Count - 2; i++)
                 { nameList[i] += ", "; }
-                
+
                 nameList[nameList.Count - 2] += " and ";
             }
 

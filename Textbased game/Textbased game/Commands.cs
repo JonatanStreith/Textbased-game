@@ -113,7 +113,7 @@ namespace Textbased_game
             {
                 world.RemoveCreatureFromLocation(world.GetPlayer().GetLocationName(), "Trixie");            //Remove player from current location
                 world.AddCreatureToLocation(newArea, "Trixie");                                             //Add player to new location
-                world.GetPlayer().SetLocation(newArea);                                                     //Change player's location variable
+                //world.GetPlayer().SetLocation(newArea);                                                     //Change player's location variable; already included in prev command
                 Console.WriteLine($"You go to {world.GetLocation(newArea).GetName()}.");
                 Console.ReadLine();
                 Console.Clear();
@@ -150,25 +150,18 @@ namespace Textbased_game
 
             //string talkingTo = "Nonexistent";
 
-
-
             //foreach (Creature item in world.creatureList)
             //{
             //    if (item.GetName().Equals(creatureName, StringComparison.InvariantCultureIgnoreCase))
             //    { talkingTo = "Away"; }
-
-
             //}
-
 
             //foreach (Creature item in world.GetLocation(world.GetPlayer().GetLocationName()).GetCreaturesAtLocation())
             //{
 
-
             //    if (item.GetName().Equals(creatureName, StringComparison.InvariantCultureIgnoreCase))
             //    { talkingTo = item.GetName(); }
             //}
-
 
             //if (talkingTo == "Nonexistent")
             //{ Console.WriteLine("You don't know of anypony by that name."); }
@@ -197,12 +190,53 @@ namespace Textbased_game
         }
 
 
-        public static void Teleport(string[] command, World world)  //Make sure you can teleport items and objects - different code?
+        public static void TeleportOther(string[] command, World world)  //Make sure you can teleport items and objects - different code?
         {
-            world.AddCreatureToLocation(command[3], command[1]);
-            world.RemoveCreatureFromLocation(world.GetPlayer().GetLocationName(), world.GetCreature(command[1]).GetName());
-            Console.WriteLine($"{command[1]} vanishes in a burst of smoke!");
+
+            if (!world.DoesObjectExist(command[1]))             //Subject doesn't exist
+            {                Console.WriteLine("You can't teleport something that doesn't exist.");            }
+
+            else if (!world.IsObjectPresent(command[1]))        //Subject isn't in the area
+            { Console.WriteLine("You can only teleport things within eyesight."); }
+            
+            else if (world.GetGenericObject(command[1]).GetName().Equals("Trixie", StringComparison.InvariantCultureIgnoreCase))           //Are you instructing the game to teleport Trixie herself?
+            {
+                world.RemoveCreatureFromLocation(world.GetPlayer().GetLocationName(), world.GetPlayer().GetName());
+                world.AddCreatureToLocation(command[3], world.GetPlayer().GetName());
+
+                Console.WriteLine($"You vanish in a burst of smoke, and reappear at {world.GetLocation(command[3]).GetName()}");
+                Console.ReadLine();
+                Console.Clear();
+                LookAround(world);
+            }
+            else
+            {
+                world.RemoveCreatureFromLocation(world.GetPlayer().GetLocationName(), world.GetCreature(command[1]).GetName());
+                world.AddCreatureToLocation(command[3], command[1]);
+
+                Console.WriteLine($"{command[1]} vanishes in a burst of smoke!");
+            }
         }
+
+
+        public static void TeleportSelf(string[] command, World world)  //Make sure you can teleport items and objects - different code?
+        {
+            world.RemoveCreatureFromLocation(world.GetPlayer().GetLocationName(), world.GetPlayer().GetName());
+            world.AddCreatureToLocation(command[1], world.GetPlayer().GetName());
+
+
+
+
+            Console.WriteLine($"You vanish in a burst of smoke, and reappear at {world.GetLocation(command[1]).GetName()}");
+            Console.ReadLine();
+            Console.Clear();
+            LookAround(world);
+
+
+        }
+
+
+
 
         public static void Ask(string[] command, World world)
         {
