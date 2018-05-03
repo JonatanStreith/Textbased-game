@@ -68,7 +68,6 @@ namespace Textbased_game
         };
 
 
-        //These are unfinished!
 
         public static Dictionary<string, string> objectDescriptions = new Dictionary<string, string> {
             { "cutie map", "The Cutie Map serves as a magic display for 'friendship emergencies', or something. Starlight won't let you go near it after... the incident." }
@@ -98,10 +97,47 @@ namespace Textbased_game
 
         public static Dictionary<string, List<string>> legitimateExits = new Dictionary<string, List<string>> {
 
-             { "Sugarcube Corner", new List<string> { "the Castle of Friendship", "the Carousel Boutique", "Sweet Apple Acres" } }
-           , { "the Castle of Friendship", new List<string> { "Sugarcube Corner", "the Carousel Boutique", "Sweet Apple Acres" } }
-           , { "the Carousel Boutique", new List<string> { "the Castle of Friendship", "Sugarcube Corner", "Sweet Apple Acres" } }
-           , { "Sweet Apple Acres", new List<string> { "the Castle of Friendship", "the Carousel Boutique", "Sugarcube Corner" } }
+
+            //Main cells (outside)
+             { "Sugarcube Corner", new List<string> { "the Castle of Friendship", "the Carousel Boutique", "Sweet Apple Acres", "Sugarcube Corner interior" } }
+           , { "the Carousel Boutique", new List<string> { "the Castle of Friendship", "Sugarcube Corner", "Sweet Apple Acres", "the Carousel Boutique interior" } }
+           , { "Sweet Apple Acres", new List<string> { "the Castle of Friendship", "the Carousel Boutique", "Sugarcube Corner", "Farmhouse interior" } }
+           , { "the Castle of Friendship", new List<string> { "Sugarcube Corner", "the Carousel Boutique", "Sweet Apple Acres", "Castle main hall" } }
+
+
+           , { "Sugarcube Corner interior", new List<string> { "Sugarcube Corner", "Sugarcube Corner kitchen", "Pinkie Pie's room", "the Party Cave" } }
+           , { "Sugarcube Corner kitchen", new List<string> { "Sugarcube Corner interior" } }
+           , { "Pinkie Pie's room", new List<string> { "Sugarcube Corner interior" } }
+           , { "the Party Cave", new List<string> { "the Party Cave" } }
+
+           , { "the Carousel Boutique interior", new List<string> { "the Carousel Boutique" } }
+
+           , { "Farmhouse interior", new List<string> { "Sweet Apple Acres" } }
+
+           , { "Castle main hall", new List<string> { "the Castle of Friendship", "Cutie Map room", "castle library", "castle kitchen", "Starlight's room" } }
+
+           , { "Cutie Map room", new List<string> { "Castle main hall" } }
+           , { "castle library", new List<string> { "Castle main hall" } }
+           , { "castle kitchen", new List<string> { "Castle main hall" } }
+           , { "Starlight's room", new List<string> { "Castle main hall" } }
+
+
+
+            //,            "Sugarcube Corner interior"
+          //,  "Sugarcube Corner kitchen"
+          //,  "Pinkie Pie's room"
+          //,  "the Party Cave"
+
+
+          //,  "the Carousel Boutique interior"
+          //,  "Farmhouse interior"
+          //,  "Castle main hall"
+
+          //,  "Cutie Map room"
+          //,  "castle library"
+          //,  "castle kitchen"
+          //,  "Starlight's room"
+
 
         };
 

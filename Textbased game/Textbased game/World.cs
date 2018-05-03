@@ -30,6 +30,31 @@ namespace Textbased_game
             Location Acres = new Location("Sweet Apple Acres", "Acres", DataStorage.legitimateExits["Sweet Apple Acres"]);
 
 
+
+            //Add these:
+            //,            "Sugarcube Corner interior"
+          //,  "Sugarcube Corner kitchen"
+          //,  "Pinkie Pie's room"
+          //,  "the Party Cave"
+
+
+          //,  "the Carousel Boutique interior"
+
+
+          //,  "Farmhouse interior"
+
+          //,  "Castle main hall"
+
+          //,  "Cutie Map room"
+          //,  "castle library"
+          //,  "castle kitchen"
+          //,  "Starlight's room"
+
+
+
+
+
+
             locationList.Add(Sugarcube);
             locationList.Add(FriendshipCastle);
             locationList.Add(Boutique);
@@ -45,7 +70,7 @@ namespace Textbased_game
             Creature TwilightSparkle = new Creature("Twilight Sparkle", "Twilight", "alicorn");
             Creature Spike = new Creature("Spike", "Spike", "dragon");
 
-
+            //Add Maud, Starlight
 
             Creature Trixie = new Creature("Trixie", "The Great and Powerful Trixie", "unicorn");
 
