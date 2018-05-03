@@ -19,6 +19,8 @@ namespace Textbased_game
            , { "Fluttershy", new String[] { "\"Umm...\"", "Fluttershy looks away bashfully.", "\"Um. Yes? D-do you want something?\"", "\"I... um... nevermind.\" *squeak*" } }
            , { "Spike", new String[] { "\"What do you want?\"", "\"Please tell me you're not going to break stuff again.\"", "\"Oh... I think I've got stuff to do. Elsewhere.\"", "\"Starlight's in the library, I think. Go bother her.\"" } }
            , { "Trixie", new String[] { "Talking to yourself is usually pointless.", "Much as you're a wonderful conversationalist, there's not much point.", "You'd rather not. Other ponies think you're weird enough as it is." } }
+           //, { "Starlight Glimmer", new String[] { "\"Oh, hi, Trixie!\"", "\"So what have you been up to lately? Anything exciting?\"", "\"Wanna hang out later? We could work on magic or something. You choose.\"", "\"You haven't been bothering Twilight, have you?\"" } }
+           //, { "Maud Pie", new String[] { "\"\"", "\"\"", "\"\"", "\"\"" } }
            , { "Placeholder", new String[] { "\"\"", "\"\"", "\"\"", "\"\"" } }
 
 
@@ -40,6 +42,8 @@ namespace Textbased_game
             , { "Rainbow Dash", 4 }
             , { "Fluttershy", 5 }
             , { "Spike", 6 }
+            //, { "Starlight Glimmer", 7 }
+            //, { "Maud Pie", 8 }
         };
 
 
@@ -63,6 +67,8 @@ namespace Textbased_game
            , {"Fluttershy talks about magic.",       "Fluttershy talks about friendship.",   "Fluttershy talks about Ponyville.", }
            , {"Spike talks about magic.",            "Spike talks about friendship.",        "Spike talks about Ponyville.", }
            , {"Twilight talks about magic.",         "Twilight talks about friendship.",     "Twilight talks about Ponyville.", }
+           //, {"Starlight talks about magic.",         "Starlight talks about friendship.",     "Starlight talks about Ponyville.", }
+           //, {"Maud talks about magic.",         "Maud talks about friendship.",     "Maud talks about Ponyville.", }
         };
 
 

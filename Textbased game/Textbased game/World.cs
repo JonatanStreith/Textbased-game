@@ -24,8 +24,8 @@ namespace Textbased_game
 
         public World()
         {
-            Location Sugarcube = new Location("Sugarcube Corner", "bakery", DataStorage.legitimateExits["Sugarcube Corner"]);
             Location FriendshipCastle = new Location("the Castle of Friendship", "castle", DataStorage.legitimateExits["the Castle of Friendship"]);
+            Location Sugarcube = new Location("Sugarcube Corner", "bakery", DataStorage.legitimateExits["Sugarcube Corner"]);
             Location Boutique = new Location("the Carousel Boutique", "boutique", DataStorage.legitimateExits["the Carousel Boutique"]);
             Location Acres = new Location("Sweet Apple Acres", "Acres", DataStorage.legitimateExits["Sweet Apple Acres"]);
 
