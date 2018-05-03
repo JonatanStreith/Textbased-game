@@ -52,6 +52,7 @@
     <Compile Include="HelpfulMethods.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="Location.cs" />
+    <Compile Include="LocationData.cs" />
     <Compile Include="Notes.cs" />
     <Compile Include="Spell.cs" />
     <Compile Include="StationaryObject.cs" />

@@ -24,31 +24,30 @@ namespace Textbased_game
 
         public World()
         {
-            Location FriendshipCastle = new Location("the Castle of Friendship", "castle", DataStorage.legitimateExits["the Castle of Friendship"]);
-            Location Sugarcube = new Location("Sugarcube Corner", "bakery", DataStorage.legitimateExits["Sugarcube Corner"]);
-            Location Boutique = new Location("the Carousel Boutique", "boutique", DataStorage.legitimateExits["the Carousel Boutique"]);
-            Location Acres = new Location("Sweet Apple Acres", "Acres", DataStorage.legitimateExits["Sweet Apple Acres"]);
+            Location FriendshipCastle = new Location("the Castle of Friendship", "castle");
+            Location Sugarcube = new Location("Sugarcube Corner", "bakery");
+            Location Boutique = new Location("the Carousel Boutique", "boutique");
+            Location Acres = new Location("Sweet Apple Acres", "Acres");
+
+            Location SCCInteror = new Location("Sugarcube Corner interior", "bakery interior");
+            Location SCCKitchen = new Location("Sugarcube Corner kitchen", "bakery kitchen");
+            Location SCCPinkieroom = new Location("Pinkie Pie's room", "Pinkie's room");
+            Location SCCPartycave = new Location("the Party Cave", "partycave");
+
+            Location BoutiqueInside = new Location("the Carousel Boutique interior", "boutique interior");
+
+            Location AcresInterior = new Location("Farmhouse interior", "Acres interior");
+
+            Location CastleMainHall = new Location("Castle main hall", "main hall");
+            Location CastleMapRoom = new Location("Cutie Map room", "Map room");
+            Location CastleLibrary = new Location("the castle library", "castle library");
+            Location CastleKitchen = new Location("castle kitchen", "castle kitchen");
+            Location CastleStarlightRoom = new Location("Starlight's room", "starlights room");
 
 
 
-            //Add these:
-            //,            "Sugarcube Corner interior"
-          //,  "Sugarcube Corner kitchen"
-          //,  "Pinkie Pie's room"
-          //,  "the Party Cave"
 
 
-          //,  "the Carousel Boutique interior"
-
-
-          //,  "Farmhouse interior"
-
-          //,  "Castle main hall"
-
-          //,  "Cutie Map room"
-          //,  "castle library"
-          //,  "castle kitchen"
-          //,  "Starlight's room"
 
 
 
@@ -59,6 +58,23 @@ namespace Textbased_game
             locationList.Add(FriendshipCastle);
             locationList.Add(Boutique);
             locationList.Add(Acres);
+
+            locationList.Add(SCCInteror);
+            locationList.Add(SCCKitchen);
+            locationList.Add(SCCPinkieroom);
+            locationList.Add(SCCPartycave);
+
+            locationList.Add(BoutiqueInside);
+
+            locationList.Add(AcresInterior);
+
+            locationList.Add(CastleMainHall);
+            locationList.Add(CastleMapRoom);
+            locationList.Add(CastleLibrary);
+            locationList.Add(CastleKitchen);
+            locationList.Add(CastleStarlightRoom);
+
+
 
 
 

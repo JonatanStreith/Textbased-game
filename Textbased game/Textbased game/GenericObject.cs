@@ -11,8 +11,6 @@ namespace Textbased_game
         protected string name;
         protected string shortName;
 
-        protected string objectType;
-
         protected string description;
 
         protected string locationName;
@@ -23,9 +21,6 @@ namespace Textbased_game
 
                 public string GetShortName()
         { return shortName; }
-
-        public string GetObjectType()
-        { return objectType; }
 
         public string GetDescription()
         { return description; }

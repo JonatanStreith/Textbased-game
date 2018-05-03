@@ -14,7 +14,6 @@ namespace Textbased_game
         {
             name = inputName;
             shortName = inputShortName;
-            objectType = "item";
 
             description = DataStorage.objectDescriptions[name];
 

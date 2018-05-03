@@ -21,15 +21,14 @@ namespace Textbased_game
         private List<StationaryObject> objectsAtLocation = new List<StationaryObject>();
         private List<Item> itemsAtLocation = new List<Item>();
 
-        public Location(string inputName, string inputShortName, List<string> exits)
+        public Location(string inputName, string inputShortName)
         {
 
             name = inputName;
             shortName = inputShortName;
-            objectType = "item";
-            description = DataStorage.placeDescriptions[name];
+            description = LocationData.placeDescriptions[name];
 
-            legitimateExits = exits;
+            legitimateExits = LocationData.legitimateExits[name];
 
             locationName = name;
 

@@ -61,10 +61,10 @@ namespace Textbased_game
                 commandPhrase = Parser(input, Equestria);
 
 
-                Console.WriteLine(commandPhrase[0]);
-                Console.WriteLine(commandPhrase[1]);
-                Console.WriteLine(commandPhrase[2]);
-                Console.WriteLine(commandPhrase[3]);
+                //Console.WriteLine(commandPhrase[0]);
+                //Console.WriteLine(commandPhrase[1]);
+                //Console.WriteLine(commandPhrase[2]);
+                //Console.WriteLine(commandPhrase[3]);
 
 
                 RunCommand(commandPhrase, Equestria);

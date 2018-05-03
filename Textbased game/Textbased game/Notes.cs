@@ -10,6 +10,9 @@ namespace Textbased_game
     {
 
 
+        //IMPORTANT! REVISE A LOT OF THINGS so objects use "ID" instead of names, in case we want to use similar names for things.
+
+
         //Teleport: You could teleport to other ponies! Maybe?
 
         //Tidy up the "GetExit" command!
