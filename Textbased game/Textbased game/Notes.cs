@@ -11,6 +11,9 @@ namespace Textbased_game
 
 
         //IMPORTANT! REVISE A LOT OF THINGS so objects use "ID" instead of names, in case we want to use similar names for things.
+        //No, that's bad.
+
+        //Revise "Legitimate Noun" list so it's only present things?
 
 
         //Teleport: You could teleport to other ponies! Maybe?

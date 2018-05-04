@@ -82,9 +82,33 @@ namespace Textbased_game
         public static void RunCommand(string[] command, World world)
         {
 
-
             switch (command[0])     //This can be used to parse similar expressions, i.e. "examine" points to "look at".
             {
+                case "pick up":
+                    //stuff
+                    break;
+
+                case "place":
+                    //stuff
+                    break;
+
+                case "brandish":
+                    //stuff
+                    break;
+
+                case "cast":
+                    //stuff
+                    break;
+
+                case "help":
+                    Commands.Help();
+                    break;
+
+                case "commands":
+                    Commands.ListCommands();
+                    break;
+
+
                 case "quit":
                     Commands.Quit();
                     break;
@@ -96,9 +120,6 @@ namespace Textbased_game
                     Commands.GoTo(command[1], world);
                     break;
 
-                case "pick up":
-                    //stuff
-                    break;
 
                 case "talk to":
                     Commands.TalkTo(command[1], world);
@@ -238,12 +259,12 @@ namespace Textbased_game
             string returnNoun = noun;
 
 
-            for (int i = 0; i < DataStorage.variantNames.GetLength(0); i++)
+            for (int i = 0; i < CreatureData.variantNames.GetLength(0); i++)
             {
-                for (int j = 0; j < DataStorage.variantNames.GetLength(1); j++)
+                for (int j = 0; j < CreatureData.variantNames.GetLength(1); j++)
                 {
-                    if (noun == DataStorage.variantNames[i, j])
-                    { returnNoun = DataStorage.variantNames[0, j]; }
+                    if (noun == CreatureData.variantNames[i, j])
+                    { returnNoun = CreatureData.variantNames[0, j]; }
                 }
             }
 

@@ -24,7 +24,21 @@ namespace Textbased_game
         }
 
 
+        public static void Help()
+        {
+            Console.WriteLine("You are the Great and Powerful Trixie, on a quest to... do something. You haven't decided yet.");
+            Console.WriteLine("To see available commands, type 'commands'. More help will be available when Trixie adds it.");
+        }
 
+        public static void ListCommands()
+        {
+            Console.WriteLine($"Commands are: ");
+
+            foreach (string item in DataStorage.legitimateCommands)
+            {
+                Console.WriteLine(item);
+            }
+        }
 
 
         public static void LookAround(World world)
@@ -41,7 +55,7 @@ namespace Textbased_game
 
             else
             {
-                Console.WriteLine($"{world.TurnCreatureListIntoString(npcsList)} {HelpfulMethods.IsOrAre(numCreatures - 1)} here.");
+                Console.WriteLine($"{HelpfulMethods.TurnCreatureListIntoString(npcsList)} {HelpfulMethods.IsOrAre(numCreatures - 1)} here.");
             }
 
         }
@@ -148,34 +162,6 @@ namespace Textbased_game
             else
             { Console.WriteLine("Debug code. If this is shown, something didn't go right."); }
 
-            //string talkingTo = "Nonexistent";
-
-            //foreach (Creature item in world.creatureList)
-            //{
-            //    if (item.GetName().Equals(creatureName, StringComparison.InvariantCultureIgnoreCase))
-            //    { talkingTo = "Away"; }
-            //}
-
-            //foreach (Creature item in world.GetLocation(world.GetPlayer().GetLocationName()).GetCreaturesAtLocation())
-            //{
-
-            //    if (item.GetName().Equals(creatureName, StringComparison.InvariantCultureIgnoreCase))
-            //    { talkingTo = item.GetName(); }
-            //}
-
-            //if (talkingTo == "Nonexistent")
-            //{ Console.WriteLine("You don't know of anypony by that name."); }
-            //else if (talkingTo == "Away")
-            //{ Console.WriteLine($"{world.GetCreature(creatureName).GetName()} isn't here right now."); }
-            //else
-            //{
-            //    string[] dialog = DialogData.casualDialog[talkingTo];                   //This runs if you successfully talk to someone.
-            //    Console.WriteLine(dialog[world.diceRoll.Next(dialog.Length)]);
-            //}
-
-
-
-
         }
 
 
@@ -186,7 +172,7 @@ namespace Textbased_game
             List<string> exits = loc.GetExits();
 
 
-            Console.Write($"Exits are: {world.TurnStringListIntoString(exits)}.");
+            Console.Write($"Exits are: {HelpfulMethods.TurnStringListIntoString(exits)}.");
         }
 
 

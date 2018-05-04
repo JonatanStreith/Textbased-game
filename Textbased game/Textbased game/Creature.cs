@@ -18,7 +18,7 @@ namespace Textbased_game
             race = inputRace;
             shortName = inputShortName;
 
-            description = DataStorage.creatureDescriptions[name];
+            description = CreatureData.creatureDescriptions[name];
 
         }
 

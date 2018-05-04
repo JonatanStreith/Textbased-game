@@ -28,7 +28,7 @@ namespace Textbased_game
           , { "Castle main hall", "This is the main hall, which leads to every other room in the castle. Try not to get lost again." }
           , { "Cutie Map room", "The room is dominated by the grand Cutie Map, and the six... seven thrones from which Twilight Sparkle and her friends do friendship stuff, or something." }
           , { "the castle library","The library holds copies of every book in Equestria that Twilight Sparkle could get her hooves on. If you need to look something up, you suppose you could come here." }
-          , { "castle kitchen","The castle kitchen is a great place to stock up on snacks. As long as Spike doesn't catch you." }
+          , { "the castle kitchen","The castle kitchen is a great place to stock up on snacks. As long as Spike doesn't catch you." }
           , {"Starlight's room","Starlight's room. You hang out here sometimes." }
 
 
