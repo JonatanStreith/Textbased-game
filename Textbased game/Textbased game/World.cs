@@ -75,10 +75,18 @@ namespace Textbased_game
 
             //Items
 
+            itemList.Add(new Item("bundle of fireworks", "fireworks"));
 
             //Static objects
 
+            stationaryObjectList.Add(new StationaryObject("Cutie Map", "map"));
 
+
+
+
+
+
+            //--------------------------------
 
             //Add everything to the correct locations
 
@@ -93,6 +101,11 @@ namespace Textbased_game
             AddCreatureToLocation("Spike", "the castle library");
             AddCreatureToLocation("Maud Pie", "Starlight's room");
             AddCreatureToLocation("Starlight Glimmer", "Cutie Map room");
+
+            AddItemToLocation("bundle of fireworks", "Sugarcube Corner");
+
+            AddObjectToLocation("Cutie Map", "Cutie Map room");
+
 
 
 
@@ -135,7 +148,7 @@ namespace Textbased_game
         {
             //Adds "creature" to "location"
             GetLocation(location).AddItem(GetItem(item));
-            GetCreature(item).SetLocation(location);
+            GetItem(item).SetLocation(location);
         }
 
         public void RemoveItemFromLocation(string item, string location)
@@ -146,7 +159,7 @@ namespace Textbased_game
         {
             //Adds "creature" to "location"
             GetLocation(location).AddObject(GetStationaryObject(stationaryObject));
-            GetCreature(stationaryObject).SetLocation(location);
+            GetStationaryObject(stationaryObject).SetLocation(location);
         }
 
         public void RemoveObjectFromLocation(string stationaryObject, string location)

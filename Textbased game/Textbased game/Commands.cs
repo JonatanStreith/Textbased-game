@@ -78,43 +78,14 @@ namespace Textbased_game
 
         public static void LookAt(string argument, World world)          //Make sure you can't look at things that aren't present!
         {
+            if (world.GetPlayer().GetLocationName().Equals(argument, StringComparison.InvariantCultureIgnoreCase))      //Looks at place
+            { Console.WriteLine(world.GetLocation(world.GetPlayer().GetLocationName()).GetDescription()); }
 
-            if (world.GetPlayer().GetLocationName().Equals(argument, StringComparison.InvariantCultureIgnoreCase))      //Looking at the place
-            {
-                Console.WriteLine(world.GetLocation(world.GetPlayer().GetLocationName()).GetDescription());
-            }
-            else
-            {
+            else if (world.IsObjectPresent(argument) == false)                                                   //Looks at something that isn't there
+            { Console.WriteLine($"You can't see {world.GetGenericObject(argument).GetName()} here."); }
 
-
-                foreach (Creature item in world.GetLocation(world.GetPlayer().GetLocationName()).GetCreaturesAtLocation())
-                {
-
-                    if (item.GetName().Equals(argument, StringComparison.InvariantCultureIgnoreCase))
-                    {
-                        Console.WriteLine(item.GetDescription());
-                    }
-                }
-
-                foreach (Item item in world.GetLocation(world.GetPlayer().GetLocationName()).GetItemsAtLocation())
-                {
-                    if (item.GetName().Equals(argument, StringComparison.InvariantCultureIgnoreCase))
-                    {
-                        Console.WriteLine(item.GetDescription());
-                    }
-                }
-
-                foreach (StationaryObject item in world.GetLocation(world.GetPlayer().GetLocationName()).GetObjectsAtLocation())
-                {
-                    if (item.GetName().Equals(argument, StringComparison.InvariantCultureIgnoreCase))
-                    {
-                        Console.WriteLine(item.GetDescription());
-                    }
-                }
-
-
-            }
-
+            else                                                 //Subject is present.
+            { Console.WriteLine(world.GetGenericObject(argument).GetDescription()); }
         }
 
 

@@ -157,14 +157,6 @@ namespace Textbased_game
                     Commands.Ask(command, world);
                     break;
 
-
-                case "":
-
-                    break;
-
-
-
-
                 default:
                     Console.WriteLine("What do you mean?");
                     break;
