@@ -14,8 +14,16 @@ namespace Textbased_game
         {
             name = inputName;
             shortName = inputShortName;
-
-            description = DataStorage.itemDescriptions[name];
+                        
+            if (ItemData.itemDescriptions.ContainsKey(name))
+            {
+                description = ItemData.itemDescriptions[name];
+            }
+            else
+            {
+                Console.WriteLine($"{name} lacks description");
+                description = "[description missing]";
+            }
 
         }
 

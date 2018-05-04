@@ -9,7 +9,7 @@ namespace Textbased_game
     class LocationData
     {
 
-        public static Dictionary<string, string> placeDescriptions = new Dictionary<string, string> {
+        public static Dictionary<string, string> locationDescriptions = new Dictionary<string, string> {
             { "Sugarcube Corner", "Sugarcube Corner is Ponyville's premier confectionery store. You don't know why it's built like a giant gingerbread house." }
           , { "Sugarcube Corner interior", "The shop is busy with ponies enjoying baked goods." }
           , { "Sugarcube Corner kitchen", "This is where the magic happens! And by magic, you mean baking and not actually magic. Why are you even here?" }

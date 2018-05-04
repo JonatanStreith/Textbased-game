@@ -26,9 +26,31 @@ namespace Textbased_game
 
             name = inputName;
             shortName = inputShortName;
-            description = LocationData.placeDescriptions[name];
 
-            legitimateExits = LocationData.legitimateExits[name];
+
+            if (LocationData.locationDescriptions.ContainsKey(name))
+            {
+                description = LocationData.locationDescriptions[name];
+            }
+            else
+            {
+                Console.WriteLine($"{name} lacks description");
+                description = "[description missing]";
+            }
+
+
+
+            if (LocationData.legitimateExits.ContainsKey(name))
+            {
+                legitimateExits = LocationData.legitimateExits[name];
+            }
+            else
+            {
+                Console.WriteLine($"{name} has no established exits");
+                legitimateExits = new List<string> { "Sugarcube Corner" };
+            }
+
+
 
             locationName = name;
 
