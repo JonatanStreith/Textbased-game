@@ -100,6 +100,10 @@ namespace Textbased_game
                     //stuff
                     break;
 
+                case "nouns":
+                    Commands.ListNouns(world);
+                    break;
+
                 case "help":
                     Commands.Help();
                     break;

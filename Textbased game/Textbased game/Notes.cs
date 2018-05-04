@@ -16,10 +16,15 @@ namespace Textbased_game
         //Revise "Legitimate Noun" list so it's only present things?
 
 
-        //Teleport: You could teleport to other ponies! Maybe?
 
-        //Tidy up the "GetExit" command!
+        //I probably don't need to create world objects (locations, creatures, etc) separately and then add  them;
+        //just create them as they're added!
 
+
+
+        //Save function!
+
+        //Store world data in separate file, so you can load and save?
 
 
         //Keep a dictionary of bools to track which ponies you're talked to, so they say something special the first time.

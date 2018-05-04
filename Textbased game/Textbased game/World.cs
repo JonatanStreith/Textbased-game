@@ -24,94 +24,81 @@ namespace Textbased_game
 
         public World()
         {
-            Location FriendshipCastle = new Location("the Castle of Friendship", "castle");
-            Location Sugarcube = new Location("Sugarcube Corner", "bakery");
-            Location Boutique = new Location("the Carousel Boutique", "boutique");
-            Location Acres = new Location("Sweet Apple Acres", "Acres");
-
-            Location SCCInteror = new Location("Sugarcube Corner interior", "bakery interior");
-            Location SCCKitchen = new Location("Sugarcube Corner kitchen", "bakery kitchen");
-            Location SCCPinkieroom = new Location("Pinkie Pie's room", "Pinkie's room");
-            Location SCCPartycave = new Location("the Party Cave", "partycave");
-
-            Location BoutiqueInside = new Location("the Carousel Boutique interior", "boutique interior");
-
-            Location AcresInterior = new Location("Farmhouse interior", "Acres interior");
-
-            Location CastleMainHall = new Location("Castle main hall", "main hall");
-            Location CastleMapRoom = new Location("Cutie Map room", "Map room");
-            Location CastleLibrary = new Location("the castle library", "castle library");
-            Location CastleKitchen = new Location("the castle kitchen", "castle kitchen");
-            Location CastleStarlightRoom = new Location("Starlight's room", "starlights room");
+            //Locations
+            Console.WriteLine("Creating locations...");
 
 
+            locationList.Add(new Location("Sugarcube Corner", "bakery"));
+            locationList.Add(new Location("the Castle of Friendship", "castle"));
+            locationList.Add(new Location("the Carousel Boutique", "boutique"));
+            locationList.Add(new Location("Sweet Apple Acres", "Acres"));
 
+            locationList.Add(new Location("Sugarcube Corner interior", "bakery interior"));
+            locationList.Add(new Location("Sugarcube Corner kitchen", "bakery kitchen"));
+            locationList.Add(new Location("Pinkie Pie's room", "Pinkie's room"));
+            locationList.Add(new Location("the Party Cave", "partycave"));
 
+            locationList.Add(new Location("the Carousel Boutique interior", "boutique interior"));
 
+            locationList.Add(new Location("Farmhouse interior", "Acres interior"));
 
+            locationList.Add(new Location("Castle main hall", "main hall"));
+            locationList.Add(new Location("Cutie Map room", "Map room"));
+            locationList.Add(new Location("the castle library", "castle library"));
+            locationList.Add(new Location("the castle kitchen", "castle kitchen"));
+            locationList.Add(new Location("Starlight's room", "starlights room"));
 
 
 
 
 
-            locationList.Add(Sugarcube);
-            locationList.Add(FriendshipCastle);
-            locationList.Add(Boutique);
-            locationList.Add(Acres);
 
-            locationList.Add(SCCInteror);
-            locationList.Add(SCCKitchen);
-            locationList.Add(SCCPinkieroom);
-            locationList.Add(SCCPartycave);
+            //Creatures
 
-            locationList.Add(BoutiqueInside);
+            Console.WriteLine("Creating creatures...");
 
-            locationList.Add(AcresInterior);
+            creatureList.Add(new Creature("Pinkie Pie", "Pinkie", "earth pony"));
+            creatureList.Add(new Creature("Applejack", "AJ", "earth pony"));
+            creatureList.Add(new Creature("Rainbow Dash", "RD", "pegasus"));
+            creatureList.Add(new Creature("Fluttershy", "Fluttershy", "pegasus"));
+            creatureList.Add(new Creature("Rarity", "Rarity", "unicorn"));
+            creatureList.Add(new Creature("Twilight Sparkle", "Twilight", "alicorn"));
+            creatureList.Add(new Creature("Spike", "Spike", "dragon"));
 
-            locationList.Add(CastleMainHall);
-            locationList.Add(CastleMapRoom);
-            locationList.Add(CastleLibrary);
-            locationList.Add(CastleKitchen);
-            locationList.Add(CastleStarlightRoom);
+            creatureList.Add(new Creature("Maud Pie", "Maud", "earth pony"));
+            creatureList.Add(new Creature("Starlight Glimmer", "Starlight", "unicorn"));
 
+            
 
+            creatureList.Add(new Creature("Trixie", "The Great and Powerful Trixie", "unicorn"));
 
 
-
-            Creature PinkiePie = new Creature("Pinkie Pie", "Pinkie", "earth pony");
-            Creature Applejack = new Creature("Applejack", "AJ", "earth pony");
-            Creature RainbowDash = new Creature("Rainbow Dash", "RD", "pegasus");
-            Creature Fluttershy = new Creature("Fluttershy", "Fluttershy", "pegasus");
-            Creature Rarity = new Creature("Rarity", "Rarity", "unicorn");
-            Creature TwilightSparkle = new Creature("Twilight Sparkle", "Twilight", "alicorn");
-            Creature Spike = new Creature("Spike", "Spike", "dragon");
-
-            //Add Maud, Starlight
-
-            Creature Trixie = new Creature("Trixie", "The Great and Powerful Trixie", "unicorn");
-
-            creatureList.Add(PinkiePie);
-            creatureList.Add(Applejack);
-            creatureList.Add(RainbowDash);
-            creatureList.Add(Fluttershy);
-            creatureList.Add(Rarity);
-            creatureList.Add(TwilightSparkle);
-            creatureList.Add(Spike);
-            creatureList.Add(Trixie);
+            //Items
 
 
-            AddCreatureToLocation("Sugarcube Corner", "Pinkie Pie");
-            AddCreatureToLocation("Sugarcube Corner", "Applejack");
-            AddCreatureToLocation("Sugarcube Corner", "Rainbow Dash");
-            AddCreatureToLocation("Sugarcube Corner", "Rarity");
-            AddCreatureToLocation("Sugarcube Corner", "Fluttershy");
-            AddCreatureToLocation("Sugarcube Corner", "Twilight Sparkle");
-            AddCreatureToLocation("Sugarcube Corner", "Spike");
+            //Static objects
 
 
 
+            //Add everything to the correct locations
 
-            AddCreatureToLocation("Sugarcube Corner", "Trixie");
+            Console.WriteLine("Adding creatures to locations...");
+
+            AddCreatureToLocation("Pinkie Pie", "Sugarcube Corner");
+            AddCreatureToLocation("Applejack", "Sweet Apple Acres");
+            AddCreatureToLocation("Rainbow Dash", "Sugarcube Corner");
+            AddCreatureToLocation("Rarity", "the Carousel Boutique");
+            AddCreatureToLocation("Fluttershy", "the Carousel Boutique");
+            AddCreatureToLocation("Twilight Sparkle", "the castle library");
+            AddCreatureToLocation("Spike", "the castle library");
+            AddCreatureToLocation("Maud Pie", "Starlight's room");
+            AddCreatureToLocation("Starlight Glimmer", "Cutie Map room");
+
+
+
+            //Note: Add Trixie last here!
+
+            AddCreatureToLocation("Trixie", "Sugarcube Corner");
 
             //
 
@@ -127,47 +114,42 @@ namespace Textbased_game
             CreateProperNounList();
 
 
-            //foreach (string item in legitimateNouns)
-            //{
-            //    Console.WriteLine(item);
-            //}
-
 
         }
 
 
 
-        public void AddCreatureToLocation(string location, string creature)
+        public void AddCreatureToLocation(string creature, string location)
         {
             //Adds "creature" to "location"
             GetLocation(location).AddCreature(GetCreature(creature));
             GetCreature(creature).SetLocation(location);
         }
 
-        public void RemoveCreatureFromLocation(string location, string creature)
+        public void RemoveCreatureFromLocation(string creature, string location)
         { GetLocation(location).RemoveCreature(GetCreature(creature)); }
 
 
 
-        public void AddItemToLocation(string location, string item)
+        public void AddItemToLocation(string item, string location)
         {
             //Adds "creature" to "location"
             GetLocation(location).AddItem(GetItem(item));
             GetCreature(item).SetLocation(location);
         }
 
-        public void RemoveItemFromLocation(string location, string item)
+        public void RemoveItemFromLocation(string item, string location)
         { GetLocation(location).RemoveItem(GetItem(item)); }
 
 
-        public void AddObjectToLocation(string location, string stationaryObject)
+        public void AddObjectToLocation(string stationaryObject, string location)
         {
             //Adds "creature" to "location"
             GetLocation(location).AddObject(GetStationaryObject(stationaryObject));
             GetCreature(stationaryObject).SetLocation(location);
         }
 
-        public void RemoveObjectFromLocation(string location, string stationaryObject)
+        public void RemoveObjectFromLocation(string stationaryObject, string location)
         { GetLocation(location).RemoveObject(GetStationaryObject(stationaryObject)); }
 
 
@@ -179,6 +161,9 @@ namespace Textbased_game
                 legitimateNouns.Add(i.GetName());
                 legitimateNouns.Add(i.GetShortName());
             }
+
+            legitimateNouns.Sort((a, b) => b.CompareTo(a));     //Sorts list in reverse alphabetical order; this avoids confusion
+
         }
 
 

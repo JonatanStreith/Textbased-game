@@ -32,12 +32,20 @@ namespace Textbased_game
 
         public static void ListCommands()
         {
-            Console.WriteLine($"Commands are: ");
 
-            foreach (string item in DataStorage.legitimateCommands)
-            {
-                Console.WriteLine(item);
-            }
+            //List<String> stringList = new List<string>(DataStorage.legitimateCommands);
+
+            //Console.WriteLine($"Commands are: {HelpfulMethods.TurnStringListIntoString(stringList)}");
+
+            Console.WriteLine($"Commands are: {HelpfulMethods.TurnStringListIntoString(new List<string>(DataStorage.legitimateCommands))}.");
+
+
+        }
+
+        public static void ListNouns(World world)
+        {
+            Console.WriteLine($"Nouns are: {HelpfulMethods.TurnStringListIntoString(world.legitimateNouns)}.");
+
         }
 
 
@@ -57,6 +65,8 @@ namespace Textbased_game
             {
                 Console.WriteLine($"{HelpfulMethods.TurnCreatureListIntoString(npcsList)} {HelpfulMethods.IsOrAre(numCreatures - 1)} here.");
             }
+
+            //To do: List items and objects
 
         }
 
@@ -125,8 +135,8 @@ namespace Textbased_game
 
             if (canGo)               //Is newArea on the list of legitimate exits?
             {
-                world.RemoveCreatureFromLocation(world.GetPlayer().GetLocationName(), "Trixie");            //Remove player from current location
-                world.AddCreatureToLocation(newArea, "Trixie");                                             //Add player to new location
+                world.RemoveCreatureFromLocation("Trixie", world.GetPlayer().GetLocationName());            //Remove player from current location
+                world.AddCreatureToLocation("Trixie", newArea);                                             //Add player to new location
                 //world.GetPlayer().SetLocation(newArea);                                                     //Change player's location variable; already included in prev command
                 Console.WriteLine($"You go to {world.GetLocation(newArea).GetName()}.");
                 Console.ReadLine();
@@ -187,8 +197,8 @@ namespace Textbased_game
 
             else if (world.GetGenericObject(command[1]).GetName().Equals("Trixie", StringComparison.InvariantCultureIgnoreCase))           //Are you instructing the game to teleport Trixie herself?
             {
-                world.RemoveCreatureFromLocation(world.GetPlayer().GetLocationName(), world.GetPlayer().GetName());
-                world.AddCreatureToLocation(command[3], world.GetPlayer().GetName());
+                world.RemoveCreatureFromLocation(world.GetPlayer().GetName(), world.GetPlayer().GetLocationName());
+                world.AddCreatureToLocation(world.GetPlayer().GetName(), command[3]);
 
                 Console.WriteLine($"You vanish in a burst of smoke, and reappear at {world.GetLocation(command[3]).GetName()}");
                 Console.ReadLine();
@@ -197,8 +207,8 @@ namespace Textbased_game
             }
             else if (world.GetGenericObject(command[1]) is Creature)
             {
-                world.RemoveCreatureFromLocation(world.GetPlayer().GetLocationName(), world.GetCreature(command[1]).GetName());
-                world.AddCreatureToLocation(command[3], command[1]);
+                world.RemoveCreatureFromLocation(world.GetCreature(command[1]).GetName(), world.GetPlayer().GetLocationName());
+                world.AddCreatureToLocation(command[1], command[3]);
 
                 Console.WriteLine($"{command[1]} vanishes in a burst of smoke!");
             }
@@ -210,8 +220,8 @@ namespace Textbased_game
 
         public static void TeleportSelf(string[] command, World world)  //Make sure you can teleport items and objects - different code?
         {
-            world.RemoveCreatureFromLocation(world.GetPlayer().GetLocationName(), world.GetPlayer().GetName());
-            world.AddCreatureToLocation(command[1], world.GetPlayer().GetName());
+            world.RemoveCreatureFromLocation(world.GetPlayer().GetName(), world.GetPlayer().GetLocationName());
+            world.AddCreatureToLocation(world.GetPlayer().GetName(), command[1]);
 
 
 
