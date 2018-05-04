@@ -36,9 +36,13 @@ namespace Textbased_game
 
 
             Console.WriteLine("Game begins!");
-            //create character
 
-            Console.WriteLine($"You are {Equestria.GetPlayer().GetName()}, a {Equestria.GetPlayer().GetRace()}.");
+            Console.WriteLine("------------------------------------------------------------------------------------------------------------------------");
+
+            RollIntro();
+
+
+
 
 
             Commands.LookAround(Equestria);
@@ -51,10 +55,7 @@ namespace Textbased_game
 
             {
 
-
-
-
-
+                
                 Console.WriteLine();
                 Console.Write("Please input command: ");
                 input = Console.ReadLine().ToLower();
@@ -85,11 +86,11 @@ namespace Textbased_game
             switch (command[0])     //This can be used to parse similar expressions, i.e. "examine" points to "look at".
             {
                 case "pick up":
-                    //stuff
+                    Commands.PickUp(command[1], world);
                     break;
 
-                case "place":
-                    //stuff
+                case "drop":
+                    Commands.Drop(command[1], world);
                     break;
 
                 case "brandish":
@@ -98,6 +99,10 @@ namespace Textbased_game
 
                 case "cast":
                     //stuff
+                    break;
+
+                case "inventory":
+                    Commands.ShowInventory(world);
                     break;
 
                 case "nouns":
@@ -109,7 +114,7 @@ namespace Textbased_game
                     break;
 
                 case "commands":
-                    Commands.ListCommands();
+                    Commands.ListCommands(world);
                     break;
 
 
@@ -177,7 +182,7 @@ namespace Textbased_game
             string[] remainder;
 
 
-            foreach (string item in DataStorage.legitimateCommands)
+            foreach (string item in world.legitimateCommands)
             {
                 if (command.StartsWith(item.ToLower()))
                 {
@@ -217,7 +222,7 @@ namespace Textbased_game
                 }
             }
 
-            foreach (string item in DataStorage.legitimateConjunctions)
+            foreach (string item in world.legitimateConjunctions)
             {
                 if (command.StartsWith(item.ToLower()))
                 {
@@ -250,7 +255,7 @@ namespace Textbased_game
 
 
 
-        public static string ReturnShortForm(string noun)
+        public static string ReturnShortForm(string noun)           //Is this even being used?
         {
             string returnNoun = noun;
 
@@ -273,7 +278,20 @@ namespace Textbased_game
 
 
 
+        public static void RollIntro()
+        {
+            Console.WriteLine("Once upon a time, in the magical land of Equestria...");
+            Console.WriteLine();
+            Console.WriteLine("A great and powerful magician went to Ponyville to awe and impress. That didn't end very well. Later, she returned for vengeance. That didn't quite work out either.");
+            Console.WriteLine();
+            Console.WriteLine("Then she returned again and made a great friend, and later helped save Equestria from the changeling menace, proving how all those neighsayers were foolish and wrong for doubting Trixie.");
+            Console.WriteLine();
+            Console.WriteLine("Now, Trixie has returned to Ponyville once again. What adventures await her this time?");
 
+            Console.ReadLine();
+            Console.Clear();
+
+        }
 
 
 

@@ -14,11 +14,18 @@ namespace Textbased_game
         public List<StationaryObject> stationaryObjectList = new List<StationaryObject>();
         public List<Item> itemList = new List<Item>();
 
-
         public List<GenericObject> genericList = new List<GenericObject>();
 
 
+        public List<Item> playerInventory = new List<Item>();
+
+
+
         public List<String> legitimateNouns = new List<String>();
+
+        public List<string> legitimateCommands = new List<String> { "nouns", "look at", "look around", "look", "go to", "go", "pick up", "talk to", "quit", "drop", "brandish", "ask", "cast", "exits", "teleport to", "teleport", "help", "commands", "inventory" };
+        public List<string> legitimateConjunctions = new List<String> { "to", "about", "behind", "at", "under", "in front of", "on", "in" };
+
 
         public Random diceRoll = new Random();
 
@@ -29,23 +36,23 @@ namespace Textbased_game
 
 
             locationList.Add(new Location("Sugarcube Corner", "bakery"));
-            locationList.Add(new Location("the Castle of Friendship", "castle"));
-            locationList.Add(new Location("the Carousel Boutique", "boutique"));
+            locationList.Add(new Location("Castle of Friendship", "castle"));
+            locationList.Add(new Location("Carousel Boutique", "boutique"));
             locationList.Add(new Location("Sweet Apple Acres", "Acres"));
 
             locationList.Add(new Location("Sugarcube Corner interior", "bakery interior"));
             locationList.Add(new Location("Sugarcube Corner kitchen", "bakery kitchen"));
             locationList.Add(new Location("Pinkie Pie's room", "Pinkie's room"));
-            locationList.Add(new Location("the Party Cave", "partycave"));
+            locationList.Add(new Location("Party Cave", "partycave"));
 
-            locationList.Add(new Location("the Carousel Boutique interior", "boutique interior"));
+            locationList.Add(new Location("Carousel Boutique interior", "boutique interior"));
 
             locationList.Add(new Location("Farmhouse interior", "Acres interior"));
 
             locationList.Add(new Location("Castle main hall", "main hall"));
             locationList.Add(new Location("Cutie Map room", "Map room"));
-            locationList.Add(new Location("the castle library", "castle library"));
-            locationList.Add(new Location("the castle kitchen", "castle kitchen"));
+            locationList.Add(new Location("Castle library", "castle library"));
+            locationList.Add(new Location("Castle kitchen", "castle kitchen"));
             locationList.Add(new Location("Starlight's room", "starlights room"));
 
 
@@ -68,22 +75,38 @@ namespace Textbased_game
             creatureList.Add(new Creature("Maud Pie", "Maud", "earth pony"));
             creatureList.Add(new Creature("Starlight Glimmer", "Starlight", "unicorn"));
 
-            
+
 
             creatureList.Add(new Creature("Trixie", "The Great and Powerful Trixie", "unicorn"));
 
 
             //Items
 
-            itemList.Add(new Item("bundle of fireworks", "fireworks"));
+            itemList.Add(new Item("a bundle of fireworks", "fireworks"));
+            itemList.Add(new Item("a juicy red apple", "apple"));
+            itemList.Add(new Item("a heavy plow", "plow"));
+            itemList.Add(new Item("a spool of thread", "thread"));
+            itemList.Add(new Item("an unfinished dress", "dress"));
+            itemList.Add(new Item("a bucket of ice cream", "ice cream"));
+
+
 
             //Static objects
 
             stationaryObjectList.Add(new StationaryObject("Cutie Map", "map"));
+            stationaryObjectList.Add(new StationaryObject("Friendship thrones", "thrones"));
+            stationaryObjectList.Add(new StationaryObject("Twilight's throne", "Throne of Magic"));
+            stationaryObjectList.Add(new StationaryObject("Rarity's throne", "Throne of Generosity"));
+            stationaryObjectList.Add(new StationaryObject("Applejack's throne", "Throne of Honesty"));
+            stationaryObjectList.Add(new StationaryObject("Pinkie Pie's throne", "Throne of Laughter"));
+            stationaryObjectList.Add(new StationaryObject("Fluttershy's throne", "Throne of Kindness"));
+            stationaryObjectList.Add(new StationaryObject("Rainbow Dash's throne", "Throne of Loyalty"));
+            stationaryObjectList.Add(new StationaryObject("Spike's throne", "tiny throne"));
 
+            stationaryObjectList.Add(new StationaryObject("Rarity's sewing machine", "sewing machine"));
 
-
-
+            stationaryObjectList.Add(new StationaryObject("apple tree", "tree"));
+            stationaryObjectList.Add(new StationaryObject("baking oven", "oven"));
 
 
             //--------------------------------
@@ -95,16 +118,44 @@ namespace Textbased_game
             AddCreatureToLocation("Pinkie Pie", "Sugarcube Corner");
             AddCreatureToLocation("Applejack", "Sweet Apple Acres");
             AddCreatureToLocation("Rainbow Dash", "Sugarcube Corner");
-            AddCreatureToLocation("Rarity", "the Carousel Boutique");
-            AddCreatureToLocation("Fluttershy", "the Carousel Boutique");
-            AddCreatureToLocation("Twilight Sparkle", "the castle library");
-            AddCreatureToLocation("Spike", "the castle library");
+            AddCreatureToLocation("Rarity", "Carousel Boutique");
+            AddCreatureToLocation("Fluttershy", "Carousel Boutique");
+            AddCreatureToLocation("Twilight Sparkle", "Castle library");
+            AddCreatureToLocation("Spike", "Castle library");
             AddCreatureToLocation("Maud Pie", "Starlight's room");
             AddCreatureToLocation("Starlight Glimmer", "Cutie Map room");
 
-            AddItemToLocation("bundle of fireworks", "Sugarcube Corner");
+            AddItemToLocation("a bundle of fireworks", "Sugarcube Corner");
+
+            AddItemToLocation("a juicy red apple", "Sweet Apple Acres");
+            AddItemToLocation("a heavy plow", "Sweet Apple Acres");
+            AddItemToLocation("a spool of thread", "Carousel Boutique");
+            AddItemToLocation("an unfinished dress", "Carousel Boutique");
+            AddItemToLocation("a bucket of ice cream", "Carousel Boutique");
+
+
+
+
+
+
+            AddObjectToLocation("Rarity's sewing machine", "Carousel Boutique");
+
+
 
             AddObjectToLocation("Cutie Map", "Cutie Map room");
+            AddObjectToLocation("Friendship thrones", "Cutie Map room");
+            AddObjectToLocation("Twilight's throne", "Cutie Map room");
+            AddObjectToLocation("Rarity's throne", "Cutie Map room");
+            AddObjectToLocation("Applejack's throne", "Cutie Map room");
+            AddObjectToLocation("Pinkie Pie's throne", "Cutie Map room");
+            AddObjectToLocation("Fluttershy's throne", "Cutie Map room");
+            AddObjectToLocation("Rainbow Dash's throne", "Cutie Map room");
+            AddObjectToLocation("Spike's throne", "Cutie Map room");
+
+
+
+
+
 
 
 
@@ -125,10 +176,33 @@ namespace Textbased_game
 
 
             CreateProperNounList();
+            SortCommandAndConjunctionLists();
+
+
+        }  //End of World constructor
 
 
 
-        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -166,6 +240,22 @@ namespace Textbased_game
         { GetLocation(location).RemoveObject(GetStationaryObject(stationaryObject)); }
 
 
+        public void AddToInventory(Item item)
+        {
+            playerInventory.Add(item);
+            item.SetLocation("inventory");
+
+        }
+
+        public void RemoveFromInventory(Item item)
+        { playerInventory.Remove(item); }
+
+        public bool IsInInventory(Item item)
+        { return playerInventory.Contains(item); }
+
+        public List<Item> GetInventory()
+        { return playerInventory; }
+
 
         public void CreateProperNounList()
         {
@@ -180,12 +270,26 @@ namespace Textbased_game
         }
 
 
+        public void SortCommandAndConjunctionLists()
+        {
+            legitimateCommands.Sort((a, b) => b.CompareTo(a));
+            legitimateConjunctions.Sort((a, b) => b.CompareTo(a));
+        }
+
+
 
 
 
         public Creature GetPlayer()
         { return creatureList.Find(x => x.GetName().ToLower().Contains("trixie")); }
 
+        public Location GetPlayerLocation()
+        {
+            return GetLocation(GetPlayer().GetLocationName());
+        }
+                
+                
+                
 
         public Location GetLocation(String input)
         { return locationList.Find(x => x.GetName().ToLower().Contains(input.ToLower())); }
@@ -207,7 +311,7 @@ namespace Textbased_game
 
 
         public bool IsObjectPresent(string generic)
-        { return (GetPlayer().GetLocationName() == GetGenericObject(generic).GetLocationName()); }
+        { return ((GetPlayer().GetLocationName() == GetGenericObject(generic).GetLocationName()) || (GetGenericObject(generic).GetLocationName() == "inventory")); }
 
         public bool DoesObjectExist(string generic)
         { return genericList.Contains(GetGenericObject(generic)); }

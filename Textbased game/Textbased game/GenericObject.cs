@@ -19,7 +19,7 @@ namespace Textbased_game
         public string GetName()
         { return name; }
 
-                public string GetShortName()
+        public string GetShortName()
         { return shortName; }
 
         public string GetDescription()
