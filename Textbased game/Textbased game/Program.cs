@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,10 +9,6 @@ namespace Textbased_game
 {
     class Program
     {
-        //public static List<Location> locationList = new List<Location>();
-        //public static List<Creature> creatureList = new List<Creature>();
-        //public static List<Object> objectList = new List<Object>();
-        //public static List<Item> itemList = new List<Item>();
 
 
         static void Main(string[] args)
@@ -19,10 +16,58 @@ namespace Textbased_game
 
             //create locations, creatures, objects and items
 
-            string defaultWorld = @"C:\Users\Lexicon\source\repos\Textbased-game\Textbased game\Textbased game\DefaultWorld\";  //Figure out how to do this as a relative path later!
+            string gamePath = @"..\..\..\..\Textbased game\Textbased game";
 
 
-            World Equestria = new World(defaultWorld);
+            string defaultWorld = $@"{gamePath}\DefaultWorld";
+            string reply;
+            bool choiceMade = false;
+            string filePath = defaultWorld;
+            Console.WriteLine("Welcome to the game! Do you want to start a (N)ew game, or (L)oad a previous save?");  //Maybe list saves?
+
+            do
+            {
+                reply = Console.ReadKey(true).KeyChar.ToString().ToLower();
+
+
+                if (reply == "n")
+                {
+                    filePath = defaultWorld;
+                    choiceMade = true;
+                    RollIntro();
+
+                }
+
+                else if (reply == "l")
+                {
+                    Console.WriteLine("Available saves:");
+                    foreach (string dir in Directory.EnumerateDirectories($@"{gamePath}\Saves"))
+                    { Console.WriteLine(dir); } //List save files - clean up later
+
+                    Console.Write("Which save file do you want to load? ");
+
+                    string choice = Console.ReadLine();
+
+                    if (Directory.Exists($@"{gamePath}\Saves\{choice}"))
+                    {
+                        filePath = $@"{gamePath}\Saves\{choice}";
+                        Console.WriteLine($"Restoring from {choice}...");
+                        choiceMade = true;
+
+                    }
+                    else
+                    {
+                        Console.WriteLine("That file doesn't exist.");
+                    }
+                    //Ask for one
+                }
+                else
+                { Console.WriteLine("Sorry, what? Do you want to start a (N)ew game, or (L)oad a previous save?"); }
+
+            } while (!choiceMade);
+
+
+            World Equestria = new World(filePath);
 
 
 
@@ -39,7 +84,6 @@ namespace Textbased_game
 
             Console.WriteLine("------------------------------------------------------------------------------------------------------------------------");
 
-            RollIntro();
 
 
 
@@ -54,17 +98,17 @@ namespace Textbased_game
 
             {
 
-                
+
                 Console.WriteLine();
                 Console.Write("Please input command: ");
                 input = Console.ReadLine().ToLower();
                 commandPhrase = Parser(input, Equestria);
 
 
-                //Console.WriteLine(commandPhrase[0]);
-                //Console.WriteLine(commandPhrase[1]);
-                //Console.WriteLine(commandPhrase[2]);
-                //Console.WriteLine(commandPhrase[3]);
+                Console.WriteLine(commandPhrase[0]);
+                Console.WriteLine(commandPhrase[1]);
+                Console.WriteLine(commandPhrase[2]);
+                Console.WriteLine(commandPhrase[3]);
 
 
                 RunCommand(commandPhrase, Equestria);
@@ -93,11 +137,11 @@ namespace Textbased_game
                     break;
 
                 case "save":
-                    //stuff
+                    Commands.SaveGame(world);
                     break;
 
                 case "load":
-                    //stuff
+                    Commands.LoadGame(world);
                     break;
 
                 case "pick up":
@@ -107,7 +151,7 @@ namespace Textbased_game
                 case "drop":
                     Commands.Drop(command[1], world);
                     break;
-                    
+
                 case "inventory":
                     Commands.ShowInventory(world);
                     break;
@@ -264,6 +308,7 @@ namespace Textbased_game
 
         public static void RollIntro()
         {
+            Console.Clear();
             Console.WriteLine("Once upon a time, in the magical land of Equestria...");
             Console.WriteLine();
             Console.WriteLine("A great and powerful magician went to Ponyville to awe and impress. That didn't end very well. Later, she returned for vengeance. That didn't quite work out either.");

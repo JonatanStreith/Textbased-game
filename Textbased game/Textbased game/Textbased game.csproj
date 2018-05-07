@@ -69,11 +69,15 @@
     <Content Include="DefaultWorld\Creatures.txt" />
     <Content Include="DefaultWorld\CreatureToLocation.txt" />
     <Content Include="DefaultWorld\GameFlags.txt" />
+    <Content Include="DefaultWorld\Inventory.txt" />
     <Content Include="DefaultWorld\ItemToLocation.txt" />
     <Content Include="DefaultWorld\ObjectToLocation.txt" />
     <Content Include="DefaultWorld\StationaryObjects.txt" />
     <Content Include="DefaultWorld\Items.txt" />
     <Content Include="DefaultWorld\Locations.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Saves\Save1\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,10 +11,45 @@ namespace Textbased_game
     {
 
 
+        public static void SaveGame(World world)
+        {
+            Console.Write("Name your save: ");
+            string choice = Console.ReadLine();
+
+            string savePath = $@"..\..\..\..\Textbased game\Textbased game\Saves\{choice}";
+
+            if (Directory.Exists(savePath))
+            { Console.WriteLine("A save file with that name already exists."); }
+            else
+            {
+            Directory.CreateDirectory(savePath);
+            world.SaveToFile(savePath);
+            Console.WriteLine($"Game saved as \"{choice}\"");
+
+            }
+
+
+
+
+
+        }
+
+
+        public static void LoadGame(World world)
+        {
+
+        }
+
+
+
+
+
+
+
         public static void Quit()
         {
             Console.WriteLine("Are you sure you want to quit? Y/N");
-            if (Console.ReadKey(true).KeyChar.ToString() == "y")
+            if (Console.ReadKey(true).KeyChar.ToString().ToLower() == "y")
             {
                 Console.WriteLine("Okay, bye!");
                 Console.ReadLine();
@@ -93,7 +129,7 @@ namespace Textbased_game
 
         public static void Drop(string name, World world)
         {
-            if(world.IsInInventory(world.GetItem(name)))
+            if (world.IsInInventory(world.GetItem(name)))
             {
                 //drop
                 world.RemoveFromInventory(world.GetItem(name));
@@ -142,14 +178,18 @@ namespace Textbased_game
 
         public static void LookAt(string argument, World world)          //Make sure you can't look at things that aren't present!
         {
-            if (world.GetPlayer().GetLocationName().Equals(argument, StringComparison.InvariantCultureIgnoreCase))      //Looks at place
+            if (argument == "")
+                Console.WriteLine("Look at what?");
+            else if (world.GetPlayer().GetLocationName().Equals(argument, StringComparison.InvariantCultureIgnoreCase))      //Looks at place
             { Console.WriteLine(world.GetLocation(world.GetPlayer().GetLocationName()).GetDescription()); }
 
             else if (!(world.IsObjectPresent(argument)))                                                   //Looks at something that isn't there)
             { Console.WriteLine($"You can't see {world.GetGenericObject(argument).GetName()} here."); }
 
-            else                                                 //Subject is present.
+            else if (world.IsObjectPresent(argument))       //Subject is present.
             { Console.WriteLine(world.GetGenericObject(argument).GetDescription()); }
+            else
+            { Console.WriteLine("Look at what?"); }
         }
 
 
@@ -189,7 +229,10 @@ namespace Textbased_game
 
         public static void TalkTo(string name, World world)
         {
-            if (!(world.DoesObjectExist(name)))                                                             //Subject doesn't exist.
+            if (name== "")
+            { Console.WriteLine("Talk to who?"); }
+
+            else if (!(world.DoesObjectExist(name)))                                                             //Subject doesn't exist.
             { Console.WriteLine($"You don't know of anypony by that name."); }
 
             else if (!(world.IsObjectPresent(name)))                                                   //Subject isn't present.
@@ -200,9 +243,13 @@ namespace Textbased_game
 
             else if ((world.GetGenericObject(name) is Creature))
             {
-                string[] dialog = DialogData.casualDialog[name];                   //This runs if you successfully talk to someone.
-                Console.WriteLine(dialog[world.diceRoll.Next(dialog.Length)]);
-
+                if (!DialogData.casualDialog.ContainsKey(name))             //If no dialog entry exists for this character.
+                { Console.WriteLine($"{name} doesn't have anything to say."); }
+                else
+                {
+                    string[] dialog = DialogData.casualDialog[name];                   //This runs if you successfully talk to someone.
+                    Console.WriteLine(dialog[world.diceRoll.Next(dialog.Length)]);
+                }
             }
             else
             { Console.WriteLine("Debug code. If this is shown, something didn't go right."); }

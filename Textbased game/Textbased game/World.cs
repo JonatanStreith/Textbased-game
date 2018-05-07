@@ -9,16 +9,11 @@ namespace Textbased_game
 {
     class World
     {
-        //public List<String> LoadedLocations = new List<string>();
-        //public List<String[]> LoadedCreatures = new List<string[]>();
-        //public List<String> LoadedItems = new List<string>();
-        //public List<String> LoadedStationaryObjects = new List<string>();
 
         public Dictionary<string, string> GameFlags = new Dictionary<string, string>();     //Use this to store event flags and the like!
 
 
 
-        public string filePath;
 
         public List<Location> locationList = new List<Location>();      //Main lists that store all game objects
         public List<Creature> creatureList = new List<Creature>();
@@ -40,16 +35,16 @@ namespace Textbased_game
 
         public Random diceRoll = new Random();
 
-        public World(string newFilePath)
+        public World(string loadFilePath)
         {
 
-            filePath = newFilePath;
 
-            BuildGenericObjectLists();                   //Create and add all objects to the main lists
 
-            AddGenericObjectsToLocations();              //Add all objects to their specified locations
-            
-            AddGameFlags();                              //Add all game flags, to track conditions and stuff
+            BuildGenericObjectLists(loadFilePath);                   //Create and add all objects to the main lists
+
+            AddGenericObjectsToLocations(loadFilePath);              //Add all objects to their specified locations
+
+            AddGameFlags(loadFilePath);                              //Add all game flags, to track conditions and stuff
 
             CreateProperNounList();                      //Create and sort lists for the parser
             SortCommandAndConjunctionLists();
@@ -209,11 +204,10 @@ namespace Textbased_game
 
 
 
-        public void BuildGenericObjectLists()
+        public void BuildGenericObjectLists(string loadFilePath)
         {
 
-            Console.WriteLine("Writing stuff...");
-            using (StreamReader sr = File.OpenText($@"{filePath}Locations.txt"))
+            using (StreamReader sr = File.OpenText($@"{loadFilePath}\Locations.txt"))
             {
                 String s = "";
 
@@ -226,7 +220,7 @@ namespace Textbased_game
                 }
             }
 
-            using (StreamReader sr = File.OpenText($@"{filePath}Creatures.txt"))
+            using (StreamReader sr = File.OpenText($@"{loadFilePath}\Creatures.txt"))
             {
                 String s = "";
                 string[] s_sep;
@@ -245,7 +239,7 @@ namespace Textbased_game
                 }
             }
 
-            using (StreamReader sr = File.OpenText($@"{filePath}Items.txt"))
+            using (StreamReader sr = File.OpenText($@"{loadFilePath}\Items.txt"))
             {
                 String s = "";
 
@@ -259,7 +253,7 @@ namespace Textbased_game
                 }
             }
 
-            using (StreamReader sr = File.OpenText($@"{filePath}StationaryObjects.txt"))
+            using (StreamReader sr = File.OpenText($@"{loadFilePath}\StationaryObjects.txt"))
             {
                 String s = "";
 
@@ -281,10 +275,10 @@ namespace Textbased_game
         }
 
 
-        public void AddGenericObjectsToLocations()
+        public void AddGenericObjectsToLocations(string loadFilePath)
         {
 
-            using (StreamReader sr = File.OpenText($@"{filePath}CreatureToLocation.txt"))
+            using (StreamReader sr = File.OpenText($@"{loadFilePath}\CreatureToLocation.txt"))
             {
                 String s = "";
                 string[] s_sep;
@@ -302,7 +296,9 @@ namespace Textbased_game
                 }
             }
 
-            using (StreamReader sr = File.OpenText($@"{filePath}ItemToLocation.txt"))
+
+
+            using (StreamReader sr = File.OpenText($@"{loadFilePath}\ItemToLocation.txt"))
             {
                 String s = "";
                 string[] s_sep;
@@ -322,7 +318,7 @@ namespace Textbased_game
 
 
 
-            using (StreamReader sr = File.OpenText($@"{filePath}ObjectToLocation.txt"))
+            using (StreamReader sr = File.OpenText($@"{loadFilePath}\ObjectToLocation.txt"))
             {
                 String s = "";
                 string[] s_sep;
@@ -339,13 +335,43 @@ namespace Textbased_game
                     }
                 }
             }
+
+
+
+            using (StreamReader sr = File.OpenText($@"{loadFilePath}\Inventory.txt"))
+            {
+                String s = "";
+
+
+                while ((s = sr.ReadLine()) != null)
+                {
+                    if (s != "")
+                    {
+
+                        AddToInventory(GetItem(s));
+                    }
+                }
+            }
+
+
+
+
+
         }
 
 
-        public void AddGameFlags()
+
+
+
+
+
+
+
+
+        public void AddGameFlags(string loadFilePath)
         {
 
-            using (StreamReader sr = File.OpenText($@"{filePath}GameFlags.txt"))
+            using (StreamReader sr = File.OpenText($@"{loadFilePath}\GameFlags.txt"))
             {
                 String s = "";
                 string[] s_sep;
@@ -369,6 +395,68 @@ namespace Textbased_game
 
 
 
+
+
+
+
+
+
+
+        public void SaveToFile(string saveFilePath)
+        {
+            using (StreamWriter sr = File.CreateText($@"{saveFilePath}\Locations.txt"))
+            {
+                foreach (Location item in locationList)
+                { sr.WriteLine(item.GetName()); }
+            }
+            using (StreamWriter sr = File.CreateText($@"{saveFilePath}\Creatures.txt"))
+            {
+                foreach (Creature item in creatureList)
+                { sr.WriteLine($"{item.GetName()}: {item.GetRace()}"); }
+            }
+            using (StreamWriter sr = File.CreateText($@"{saveFilePath}\Items.txt"))
+            {
+                foreach (Item item in itemList)
+                { sr.WriteLine(item.GetName()); }
+            }
+            using (StreamWriter sr = File.CreateText($@"{saveFilePath}\StationaryObjects.txt"))
+            {
+                foreach (StationaryObject item in stationaryObjectList)
+                { sr.WriteLine(item.GetName()); }
+            }
+
+
+            using (StreamWriter sr = File.CreateText($@"{saveFilePath}\CreatureToLocation.txt"))
+            {
+                foreach (Creature item in creatureList)
+                { sr.WriteLine($"{item.GetName()}: {item.GetLocationName()}"); }
+            }
+            using (StreamWriter sr = File.CreateText($@"{saveFilePath}\ItemToLocation.txt"))
+            {
+                foreach (Item item in itemList)
+                { sr.WriteLine($"{item.GetName()}: {item.GetLocationName()}"); }
+            }
+            using (StreamWriter sr = File.CreateText($@"{saveFilePath}\ObjectToLocation.txt"))
+            {
+                foreach (StationaryObject item in stationaryObjectList)
+                { sr.WriteLine($"{item.GetName()}: {item.GetLocationName()}"); }
+            }
+
+
+            using (StreamWriter sr = File.CreateText($@"{saveFilePath}\GameFlags.txt"))
+            {
+                foreach (KeyValuePair<string, string> kvp in GameFlags)
+                { sr.WriteLine($"{kvp.Key}: {kvp.Value}"); }
+            }
+
+            using (StreamWriter sr = File.CreateText($@"{saveFilePath}\Inventory.txt"))
+            {
+                foreach (Item item in playerInventory)
+                { sr.WriteLine(item.GetName()); }
+            }
+
+
+        }
 
     }
 }
