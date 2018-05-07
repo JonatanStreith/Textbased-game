@@ -19,10 +19,10 @@ namespace Textbased_game
 
             //create locations, creatures, objects and items
 
+            string defaultWorld = @"C:\Users\Lexicon\source\repos\Textbased-game\Textbased game\Textbased game\DefaultWorld\";  //Figure out how to do this as a relative path later!
 
 
-
-            World Equestria = new World();
+            World Equestria = new World(defaultWorld);
 
 
 
@@ -272,7 +272,7 @@ namespace Textbased_game
             Console.WriteLine();
             Console.WriteLine("Now, Trixie has returned to Ponyville once again. What adventures await her this time?");
 
-            Console.ReadLine();
+            Console.ReadKey();
             Console.Clear();
 
         }
