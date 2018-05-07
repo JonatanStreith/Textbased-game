@@ -10,15 +10,19 @@ namespace Textbased_game
     {
 
 
-        public StationaryObject(string inputName, string inputShortName)
+        public StationaryObject(string inputName)
         {
             name = inputName;
-            shortName = inputShortName;
+
+            if (StationaryObjectData.StationaryObjectShortNames.ContainsKey(name))
+            { shortName = StationaryObjectData.StationaryObjectShortNames[name]; }
+            else
+            { shortName = name; }
+
+
 
             if (StationaryObjectData.stationaryObjectDescriptions.ContainsKey(name))
-            {
-                description = StationaryObjectData.stationaryObjectDescriptions[name];
-            }
+            {                description = StationaryObjectData.stationaryObjectDescriptions[name];            }
             else
             {
                 Console.WriteLine($"{name} lacks description");

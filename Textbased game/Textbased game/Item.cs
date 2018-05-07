@@ -10,15 +10,22 @@ namespace Textbased_game
     {
 
 
-        public Item(string inputName, string inputShortName) //Constructor
+        public Item(string inputName) //Constructor
         {
             name = inputName;
-            shortName = inputShortName;
-                        
+
+            if (ItemData.ItemShortNames.ContainsKey(name))
+            { shortName = ItemData.ItemShortNames[name]; }
+            else
+            { shortName = name; }
+
+
+
+
+
+
             if (ItemData.itemDescriptions.ContainsKey(name))
-            {
-                description = ItemData.itemDescriptions[name];
-            }
+            {                description = ItemData.itemDescriptions[name];            }
             else
             {
                 Console.WriteLine($"{name} lacks description");

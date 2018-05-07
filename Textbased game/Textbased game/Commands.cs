@@ -42,6 +42,8 @@ namespace Textbased_game
 
         }
 
+
+
         public static void ListNouns(World world)
         {
             Console.WriteLine($"Nouns are: {HelpfulMethods.TurnStringListIntoString(world.legitimateNouns)}.");

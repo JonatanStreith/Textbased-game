@@ -32,5 +32,31 @@ namespace Textbased_game
 
 
 
+
+
+        public static Dictionary<string, string> StationaryObjectShortNames = new Dictionary<string, string> {
+
+              { "Cutie Map", "map" }
+            , { "Friendship thrones", "thrones" }
+            , { "Twilight's throne", "Throne of Magic" }
+            , { "Rarity's throne", "Throne of Generosity" }
+            , { "Applejack's throne", "Throne of Honesty" }
+            , { "Pinkie Pie's throne", "Throne of Laughter" }
+            , { "Fluttershy's throne", "Throne of Kindness" }
+            , { "Rainbow Dash's throne", "Throne of Loyalty" }
+            , { "Spike's throne", "tiny throne" }
+            , { "Rarity's sewing machine", "sewing machine" }
+            , { "apple tree", "tree" }
+            , { "baking oven", "oven" }
+
+
+
+
+        };
+
+
+
+
+
     }
 }

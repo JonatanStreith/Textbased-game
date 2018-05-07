@@ -50,7 +50,6 @@ namespace Textbased_game
 
 
 
-
             while (true)                //Continously running play loop that parses instructions
 
             {
@@ -251,29 +250,6 @@ namespace Textbased_game
 
 
 
-
-
-
-
-        public static string ReturnShortForm(string noun)           //Is this even being used?
-        {
-            string returnNoun = noun;
-
-
-            for (int i = 0; i < CreatureData.variantNames.GetLength(0); i++)
-            {
-                for (int j = 0; j < CreatureData.variantNames.GetLength(1); j++)
-                {
-                    if (noun == CreatureData.variantNames[i, j])
-                    { returnNoun = CreatureData.variantNames[0, j]; }
-                }
-            }
-
-
-
-            return returnNoun;
-
-        }
 
 
 

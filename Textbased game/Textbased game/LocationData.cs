@@ -29,11 +29,43 @@ namespace Textbased_game
           , { "Cutie Map room", "The room is dominated by the grand Cutie Map, and the six... seven thrones from which Twilight Sparkle and her friends do friendship stuff, or something." }
           , { "Castle library","The library holds copies of every book in Equestria that Twilight Sparkle could get her hooves on. If you need to look something up, you suppose you could come here." }
           , { "Castle kitchen","The castle kitchen is a great place to stock up on snacks. As long as Spike doesn't catch you." }
-          , {"Starlight's room","Starlight's room. You hang out here sometimes." }
+          , { "Starlight's room","Starlight's room. You hang out here sometimes." }
 
 
         };
 
+
+
+
+
+
+
+        public static Dictionary<string, string> LocationShortNames = new Dictionary<string, string> {
+
+              { "Sugarcube Corner", "bakery" }
+            , { "Sugarcube Corner interior", "bakery interior" }
+            , { "Sugarcube Corner kitchen", "bakery kitchen" }
+            , { "Pinkie Pie's room", "Pinkie room" }
+            , { "Party Cave", "partycave" }
+
+            , { "Carousel Boutique", "boutique" }
+            , { "Carousel Boutique interior", "boutique interior" }
+
+            , { "Sweet Apple Acres", "Acres" }
+            , { "Farmhouse interior", "Acres interior" }
+            
+            , { "Castle of Friendship", "castle" }
+
+
+            , { "Castle main hall", "main hall" }
+            , { "Cutie Map room", "Map room" }
+            , { "Castle library", "library" }
+            , { "Castle kitchen", "kitchen" }
+            , { "Starlight's room", "starlight room" }
+
+
+
+        };
 
 
 

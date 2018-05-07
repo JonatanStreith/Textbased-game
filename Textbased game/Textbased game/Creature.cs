@@ -12,17 +12,22 @@ namespace Textbased_game
 
         private List<String> inventory = new List<string>();
 
-        public Creature(string inputName, string inputShortName, string inputRace)
+        public Creature(string inputName, string inputRace)
         {
             name = inputName;
             race = inputRace;
-            shortName = inputShortName;
+
+            if (CreatureData.CreatureShortNames.ContainsKey(name))
+            { shortName = CreatureData.CreatureShortNames[name]; }
+            else
+            { shortName = name; }
+
+
+
 
 
             if (CreatureData.creatureDescriptions.ContainsKey(name))
-            {
-                description = CreatureData.creatureDescriptions[name];
-            }
+            { description = CreatureData.creatureDescriptions[name]; }
             else
             {
                 Console.WriteLine($"{name} lacks description");

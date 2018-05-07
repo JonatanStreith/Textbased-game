@@ -21,6 +21,16 @@ namespace Textbased_game
           , {"an unfinished dress", "This outfit is clearly far from complete, unless Rarity's fashion standards have changed very dramatically in the last week."}
           , {"a bucket of ice cream", "A bucket of chocolate-chip ice cream. You're certain you've earned yourself a treat today."}
 
+        };
+
+        public static Dictionary<string, string> ItemShortNames = new Dictionary<string, string> {
+
+              { "a bundle of fireworks", "fireworks" }
+            , { "a juicy red apple", "apple" }
+            , { "a heavy plow", "plow" }
+            , { "a spool of thread", "thread" }
+           ,  { "an unfinished dress", "dress" }
+           ,  { "a bucket of ice cream", "ice cream" }
 
 
 

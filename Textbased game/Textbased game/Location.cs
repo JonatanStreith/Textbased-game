@@ -21,17 +21,21 @@ namespace Textbased_game
         private List<StationaryObject> objectsAtLocation = new List<StationaryObject>();
         private List<Item> itemsAtLocation = new List<Item>();
 
-        public Location(string inputName, string inputShortName)
+        public Location(string inputName)
         {
 
             name = inputName;
-            shortName = inputShortName;
+
+            if (LocationData.LocationShortNames.ContainsKey(name))
+            { shortName = LocationData.LocationShortNames[name]; }
+            else
+            { shortName = name; }
+
+
 
 
             if (LocationData.locationDescriptions.ContainsKey(name))
-            {
-                description = LocationData.locationDescriptions[name];
-            }
+            { description = LocationData.locationDescriptions[name]; }
             else
             {
                 Console.WriteLine($"{name} lacks description");
@@ -41,9 +45,7 @@ namespace Textbased_game
 
 
             if (LocationData.legitimateExits.ContainsKey(name))
-            {
-                legitimateExits = LocationData.legitimateExits[name];
-            }
+            { legitimateExits = LocationData.legitimateExits[name]; }
             else
             {
                 Console.WriteLine($"{name} has no established exits");

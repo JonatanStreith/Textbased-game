@@ -22,6 +22,12 @@ namespace Textbased_game
 
 
 
+
+
+
+
+
+
         public static String TurnStringListIntoString(List<String> list)     //Takes a list of strings, pieces them together into one string
         {
             string fullString = "";
@@ -52,7 +58,6 @@ namespace Textbased_game
 
             foreach (Item item in list)
             { nameList.Add(item.GetName()); }    //Generates a list of names
-
 
             if (nameList.Count >= 2)
             {

@@ -35,25 +35,25 @@ namespace Textbased_game
             Console.WriteLine("Creating locations...");
 
 
-            locationList.Add(new Location("Sugarcube Corner", "bakery"));
-            locationList.Add(new Location("Castle of Friendship", "castle"));
-            locationList.Add(new Location("Carousel Boutique", "boutique"));
-            locationList.Add(new Location("Sweet Apple Acres", "Acres"));
+            locationList.Add(new Location("Sugarcube Corner"));
+            locationList.Add(new Location("Castle of Friendship"));
+            locationList.Add(new Location("Carousel Boutique"));
+            locationList.Add(new Location("Sweet Apple Acres"));
 
-            locationList.Add(new Location("Sugarcube Corner interior", "bakery interior"));
-            locationList.Add(new Location("Sugarcube Corner kitchen", "bakery kitchen"));
-            locationList.Add(new Location("Pinkie Pie's room", "Pinkie's room"));
-            locationList.Add(new Location("Party Cave", "partycave"));
+            locationList.Add(new Location("Sugarcube Corner interior"));
+            locationList.Add(new Location("Sugarcube Corner kitchen"));
+            locationList.Add(new Location("Pinkie Pie's room"));
+            locationList.Add(new Location("Party Cave"));
 
-            locationList.Add(new Location("Carousel Boutique interior", "boutique interior"));
+            locationList.Add(new Location("Carousel Boutique interior"));
 
-            locationList.Add(new Location("Farmhouse interior", "Acres interior"));
+            locationList.Add(new Location("Farmhouse interior"));
 
-            locationList.Add(new Location("Castle main hall", "main hall"));
-            locationList.Add(new Location("Cutie Map room", "Map room"));
-            locationList.Add(new Location("Castle library", "castle library"));
-            locationList.Add(new Location("Castle kitchen", "castle kitchen"));
-            locationList.Add(new Location("Starlight's room", "starlights room"));
+            locationList.Add(new Location("Castle main hall"));
+            locationList.Add(new Location("Cutie Map room"));
+            locationList.Add(new Location("Castle library"));
+            locationList.Add(new Location("Castle kitchen"));
+            locationList.Add(new Location("Starlight's room"));
 
 
 
@@ -64,49 +64,49 @@ namespace Textbased_game
 
             Console.WriteLine("Creating creatures...");
 
-            creatureList.Add(new Creature("Pinkie Pie", "Pinkie", "earth pony"));
-            creatureList.Add(new Creature("Applejack", "AJ", "earth pony"));
-            creatureList.Add(new Creature("Rainbow Dash", "RD", "pegasus"));
-            creatureList.Add(new Creature("Fluttershy", "Fluttershy", "pegasus"));
-            creatureList.Add(new Creature("Rarity", "Rarity", "unicorn"));
-            creatureList.Add(new Creature("Twilight Sparkle", "Twilight", "alicorn"));
-            creatureList.Add(new Creature("Spike", "Spike", "dragon"));
+            creatureList.Add(new Creature("Pinkie Pie", "earth pony"));
+            creatureList.Add(new Creature("Applejack", "earth pony"));
+            creatureList.Add(new Creature("Rainbow Dash", "pegasus"));
+            creatureList.Add(new Creature("Fluttershy", "pegasus"));
+            creatureList.Add(new Creature("Rarity", "unicorn"));
+            creatureList.Add(new Creature("Twilight Sparkle", "alicorn"));
+            creatureList.Add(new Creature("Spike", "dragon"));
 
-            creatureList.Add(new Creature("Maud Pie", "Maud", "earth pony"));
-            creatureList.Add(new Creature("Starlight Glimmer", "Starlight", "unicorn"));
+            creatureList.Add(new Creature("Maud Pie", "earth pony"));
+            creatureList.Add(new Creature("Starlight Glimmer", "unicorn"));
 
 
 
-            creatureList.Add(new Creature("Trixie", "The Great and Powerful Trixie", "unicorn"));
+            creatureList.Add(new Creature("Trixie", "unicorn"));
 
 
             //Items
 
-            itemList.Add(new Item("a bundle of fireworks", "fireworks"));
-            itemList.Add(new Item("a juicy red apple", "apple"));
-            itemList.Add(new Item("a heavy plow", "plow"));
-            itemList.Add(new Item("a spool of thread", "thread"));
-            itemList.Add(new Item("an unfinished dress", "dress"));
-            itemList.Add(new Item("a bucket of ice cream", "ice cream"));
+            itemList.Add(new Item("a bundle of fireworks"));
+            itemList.Add(new Item("a juicy red apple"));
+            itemList.Add(new Item("a heavy plow"));
+            itemList.Add(new Item("a spool of thread"));
+            itemList.Add(new Item("an unfinished dress"));
+            itemList.Add(new Item("a bucket of ice cream"));
 
 
 
             //Static objects
 
-            stationaryObjectList.Add(new StationaryObject("Cutie Map", "map"));
-            stationaryObjectList.Add(new StationaryObject("Friendship thrones", "thrones"));
-            stationaryObjectList.Add(new StationaryObject("Twilight's throne", "Throne of Magic"));
-            stationaryObjectList.Add(new StationaryObject("Rarity's throne", "Throne of Generosity"));
-            stationaryObjectList.Add(new StationaryObject("Applejack's throne", "Throne of Honesty"));
-            stationaryObjectList.Add(new StationaryObject("Pinkie Pie's throne", "Throne of Laughter"));
-            stationaryObjectList.Add(new StationaryObject("Fluttershy's throne", "Throne of Kindness"));
-            stationaryObjectList.Add(new StationaryObject("Rainbow Dash's throne", "Throne of Loyalty"));
-            stationaryObjectList.Add(new StationaryObject("Spike's throne", "tiny throne"));
+            stationaryObjectList.Add(new StationaryObject("Cutie Map"));
+            stationaryObjectList.Add(new StationaryObject("Friendship thrones"));
+            stationaryObjectList.Add(new StationaryObject("Twilight's throne"));
+            stationaryObjectList.Add(new StationaryObject("Rarity's throne"));
+            stationaryObjectList.Add(new StationaryObject("Applejack's throne"));
+            stationaryObjectList.Add(new StationaryObject("Pinkie Pie's throne"));
+            stationaryObjectList.Add(new StationaryObject("Fluttershy's throne"));
+            stationaryObjectList.Add(new StationaryObject("Rainbow Dash's throne"));
+            stationaryObjectList.Add(new StationaryObject("Spike's throne"));
 
-            stationaryObjectList.Add(new StationaryObject("Rarity's sewing machine", "sewing machine"));
+            stationaryObjectList.Add(new StationaryObject("Rarity's sewing machine"));
 
-            stationaryObjectList.Add(new StationaryObject("apple tree", "tree"));
-            stationaryObjectList.Add(new StationaryObject("baking oven", "oven"));
+            stationaryObjectList.Add(new StationaryObject("apple tree"));
+            stationaryObjectList.Add(new StationaryObject("baking oven"));
 
 
             //--------------------------------
