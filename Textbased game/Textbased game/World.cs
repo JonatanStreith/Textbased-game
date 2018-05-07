@@ -47,70 +47,11 @@ namespace Textbased_game
 
             BuildGenericObjectLists();                   //Create and add all objects to the main lists
 
+            AddGenericObjectsToLocations();              //Add all objects to their specified locations
+            
+            AddGameFlags();                              //Add all game flags, to track conditions and stuff
 
-
-
-
-
-
-
-
-
-            //--------------------------------
-
-            //Add everything to the correct locations
-
-            Console.WriteLine("Adding creatures to locations...");
-
-            AddCreatureToLocation("Pinkie Pie", "Sugarcube Corner");
-            AddCreatureToLocation("Applejack", "Sweet Apple Acres");
-            AddCreatureToLocation("Rainbow Dash", "Sugarcube Corner");
-            AddCreatureToLocation("Rarity", "Carousel Boutique");
-            AddCreatureToLocation("Fluttershy", "Carousel Boutique");
-            AddCreatureToLocation("Twilight Sparkle", "Castle library");
-            AddCreatureToLocation("Spike", "Castle library");
-            AddCreatureToLocation("Maud Pie", "Starlight's room");
-            AddCreatureToLocation("Starlight Glimmer", "Cutie Map room");
-
-            AddItemToLocation("a bundle of fireworks", "Sugarcube Corner");
-
-            AddItemToLocation("a juicy red apple", "Sweet Apple Acres");
-            AddItemToLocation("a heavy plow", "Sweet Apple Acres");
-            AddItemToLocation("a spool of thread", "Carousel Boutique");
-            AddItemToLocation("an unfinished dress", "Carousel Boutique");
-            AddItemToLocation("a bucket of ice cream", "Carousel Boutique");
-
-            AddObjectToLocation("Rarity's sewing machine", "Carousel Boutique");
-            AddObjectToLocation("Cutie Map", "Cutie Map room");
-            AddObjectToLocation("Friendship thrones", "Cutie Map room");
-            AddObjectToLocation("Twilight's throne", "Cutie Map room");
-            AddObjectToLocation("Rarity's throne", "Cutie Map room");
-            AddObjectToLocation("Applejack's throne", "Cutie Map room");
-            AddObjectToLocation("Pinkie Pie's throne", "Cutie Map room");
-            AddObjectToLocation("Fluttershy's throne", "Cutie Map room");
-            AddObjectToLocation("Rainbow Dash's throne", "Cutie Map room");
-            AddObjectToLocation("Spike's throne", "Cutie Map room");
-
-
-
-
-
-
-
-
-
-            //Note: Add Trixie last here!
-
-            AddCreatureToLocation("Trixie", "Sugarcube Corner");
-
-            //
-
-
-
-
-
-
-            CreateProperNounList();
+            CreateProperNounList();                      //Create and sort lists for the parser
             SortCommandAndConjunctionLists();
 
 
@@ -284,21 +225,20 @@ namespace Textbased_game
                     }
                 }
             }
-            
+
             using (StreamReader sr = File.OpenText($@"{filePath}Creatures.txt"))
             {
                 String s = "";
                 string[] s_sep;
 
-                string[] sep = new string[] { ", " };
-
-
+                string[] sep = new string[] { ": " };
 
                 while ((s = sr.ReadLine()) != null)
                 {
                     if (s != "")
                     {
                         s_sep = s.Split(sep, StringSplitOptions.None);
+
 
                         creatureList.Add(new Creature(s_sep[0], s_sep[1]));
                     }
@@ -313,6 +253,7 @@ namespace Textbased_game
                 {
                     if (s != "")
                     {
+
                         itemList.Add(new Item(s));
                     }
                 }
@@ -326,6 +267,7 @@ namespace Textbased_game
                 {
                     if (s != "")
                     {
+
                         stationaryObjectList.Add(new StationaryObject(s));
                     }
                 }
@@ -337,6 +279,95 @@ namespace Textbased_game
             genericList.AddRange(stationaryObjectList);
             genericList.AddRange(locationList);
         }
+
+
+        public void AddGenericObjectsToLocations()
+        {
+
+            using (StreamReader sr = File.OpenText($@"{filePath}CreatureToLocation.txt"))
+            {
+                String s = "";
+                string[] s_sep;
+
+                string[] sep = new string[] { ": " };
+
+                while ((s = sr.ReadLine()) != null)
+                {
+                    if (s != "")
+                    {
+                        s_sep = s.Split(sep, StringSplitOptions.None);
+
+                        AddCreatureToLocation(s_sep[0], s_sep[1]);
+                    }
+                }
+            }
+
+            using (StreamReader sr = File.OpenText($@"{filePath}ItemToLocation.txt"))
+            {
+                String s = "";
+                string[] s_sep;
+
+                string[] sep = new string[] { ": " };
+
+                while ((s = sr.ReadLine()) != null)
+                {
+                    if (s != "")
+                    {
+                        s_sep = s.Split(sep, StringSplitOptions.None);
+
+                        AddItemToLocation(s_sep[0], s_sep[1]);
+                    }
+                }
+            }
+
+
+
+            using (StreamReader sr = File.OpenText($@"{filePath}ObjectToLocation.txt"))
+            {
+                String s = "";
+                string[] s_sep;
+
+                string[] sep = new string[] { ": " };
+
+                while ((s = sr.ReadLine()) != null)
+                {
+                    if (s != "")
+                    {
+                        s_sep = s.Split(sep, StringSplitOptions.None);
+
+                        AddObjectToLocation(s_sep[0], s_sep[1]);
+                    }
+                }
+            }
+        }
+
+
+        public void AddGameFlags()
+        {
+
+            using (StreamReader sr = File.OpenText($@"{filePath}GameFlags.txt"))
+            {
+                String s = "";
+                string[] s_sep;
+
+                string[] sep = new string[] { ": " };
+
+                while ((s = sr.ReadLine()) != null)
+                {
+                    if (s != "")
+                    {
+                        s_sep = s.Split(sep, StringSplitOptions.None);
+
+                        GameFlags.Add(s_sep[0], s_sep[1]);
+                    }
+                }
+            }
+
+
+
+        }
+
+
 
 
     }
