@@ -15,7 +15,15 @@ namespace Textbased_game
             name = inputName;
             shortName = inputShortName;
 
-            description = DataStorage.objectDescriptions[name];
+            if (StationaryObjectData.stationaryObjectDescriptions.ContainsKey(name))
+            {
+                description = StationaryObjectData.stationaryObjectDescriptions[name];
+            }
+            else
+            {
+                Console.WriteLine($"{name} lacks description");
+                description = "[description missing]";
+            }
 
         }
 

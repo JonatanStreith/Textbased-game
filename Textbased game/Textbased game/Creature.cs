@@ -18,7 +18,16 @@ namespace Textbased_game
             race = inputRace;
             shortName = inputShortName;
 
-            description = CreatureData.creatureDescriptions[name];
+
+            if (CreatureData.creatureDescriptions.ContainsKey(name))
+            {
+                description = CreatureData.creatureDescriptions[name];
+            }
+            else
+            {
+                Console.WriteLine($"{name} lacks description");
+                description = "[description missing]";
+            }
 
         }
 

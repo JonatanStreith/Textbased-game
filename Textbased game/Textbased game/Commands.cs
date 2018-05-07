@@ -30,14 +30,14 @@ namespace Textbased_game
             Console.WriteLine("To see available commands, type 'commands'. More help will be available when Trixie adds it.");
         }
 
-        public static void ListCommands()
+        public static void ListCommands(World world)
         {
 
             //List<String> stringList = new List<string>(DataStorage.legitimateCommands);
 
             //Console.WriteLine($"Commands are: {HelpfulMethods.TurnStringListIntoString(stringList)}");
 
-            Console.WriteLine($"Commands are: {HelpfulMethods.TurnStringListIntoString(new List<string>(DataStorage.legitimateCommands))}.");
+            Console.WriteLine($"Commands are: {HelpfulMethods.TurnStringListIntoString(world.legitimateCommands)}.");
 
 
         }
@@ -49,22 +49,84 @@ namespace Textbased_game
         }
 
 
-        public static void LookAround(World world)
+        public static void PickUp(string name, World world)
         {
-            Console.Write($"You are currently standing in {world.GetLocation(world.GetPlayer().GetLocationName()).GetName()}. ");
-            Console.WriteLine(world.GetLocation(world.GetPlayer().GetLocationName()).GetDescription());
-            Console.WriteLine();
 
-            List<Creature> npcsList = world.GetLocation(world.GetPlayer().GetLocationName()).GetCreaturesAtLocation();      //Create a list of npcs at the location. Make sure to exclude Trixie.
+            if (!(world.DoesObjectExist(name)))                                                             //Subject doesn't exist.
+            { Console.WriteLine($"You don't know what that is."); }
 
-            int numCreatures = npcsList.Count;
+            else if (!(world.IsObjectPresent(name)))                                                   //Subject isn't present.
+            { Console.WriteLine($"You don't see {world.GetGenericObject(name).GetName()} here."); }
 
-            if (npcsList.Count() == 1) { Console.WriteLine("There's nopony else here."); }
+            else if (world.GetGenericObject(name) is Creature)                                              //Subject is a creature.
+            { Console.WriteLine($"You pick up {world.GetGenericObject(name).GetName()} and hold them for a moment before putting them down again."); }
 
+            else if (world.GetGenericObject(name) is StationaryObject)                                              //Subject is a stationary object.
+            { Console.WriteLine($"You'd rather not try lifting {world.GetGenericObject(name).GetName()}. It's heavy."); }
+
+            else if (world.GetGenericObject(name) is Location)                                              //Subject is a stationary object.
+            { Console.WriteLine($"You're really not strong enough to lift that."); }
+
+
+            else if ((world.GetGenericObject(name) is Item))
+            {
+                world.RemoveItemFromLocation(name, world.GetPlayerLocation().GetLocationName());              //Remove from loc
+
+                world.AddToInventory(world.GetItem(name));                              //Add to inventory
+                Console.WriteLine($"You pick up the {world.GetItem(name).GetShortName()}.");
+
+            }
+            else
+            { Console.WriteLine("Debug code. If this is shown, something didn't go right."); }
+
+
+
+
+
+
+
+
+
+        }
+
+        public static void Drop(string name, World world)
+        {
+            if(world.IsInInventory(world.GetItem(name)))
+            {
+                //drop
+                world.RemoveFromInventory(world.GetItem(name));
+                world.AddItemToLocation(name, world.GetPlayerLocation().GetLocationName());              //Remove from loc
+
+                Console.WriteLine($"You drop the {world.GetItem(name).GetShortName()}.");
+            }
             else
             {
-                Console.WriteLine($"{HelpfulMethods.TurnCreatureListIntoString(npcsList)} {HelpfulMethods.IsOrAre(numCreatures - 1)} here.");
+                Console.WriteLine("You're not carrying that.");
             }
+        }
+
+
+        public static void ShowInventory(World world)
+        {
+            List<Item> items = world.GetInventory();
+
+            if (items.Count() == 0)
+            { Console.WriteLine("You're not carrying anything."); }
+            else
+            { Console.WriteLine($"You are carrying: {HelpfulMethods.TurnItemListIntoString(items)}."); }
+        }
+
+        public static void LookAround(World world)
+        {
+            Console.WriteLine(world.GetLocation(world.GetPlayer().GetLocationName()).GetName());
+            Console.WriteLine();
+            Console.WriteLine(world.GetLocation(world.GetPlayer().GetLocationName()).GetDescription());
+
+
+            Console.WriteLine();
+            ListCreatures(world);
+            Console.WriteLine();
+            ListItems(world);
 
             //To do: List items and objects
 
@@ -81,7 +143,7 @@ namespace Textbased_game
             if (world.GetPlayer().GetLocationName().Equals(argument, StringComparison.InvariantCultureIgnoreCase))      //Looks at place
             { Console.WriteLine(world.GetLocation(world.GetPlayer().GetLocationName()).GetDescription()); }
 
-            else if (world.IsObjectPresent(argument) == false)                                                   //Looks at something that isn't there
+            else if (!(world.IsObjectPresent(argument)))                                                   //Looks at something that isn't there)
             { Console.WriteLine($"You can't see {world.GetGenericObject(argument).GetName()} here."); }
 
             else                                                 //Subject is present.
@@ -128,7 +190,7 @@ namespace Textbased_game
             if (!(world.DoesObjectExist(name)))                                                             //Subject doesn't exist.
             { Console.WriteLine($"You don't know of anypony by that name."); }
 
-            else if (world.IsObjectPresent(name) == false)                                                   //Subject isn't present.
+            else if (!(world.IsObjectPresent(name)))                                                   //Subject isn't present.
             { Console.WriteLine($"{world.GetGenericObject(name).GetName()} isn't here right now."); }
 
             else if (!(world.GetGenericObject(name) is Creature))                                                //Subject isn't a creature.
@@ -225,6 +287,31 @@ namespace Textbased_game
 
             else
             { Console.WriteLine(DialogData.askArray[DialogData.askCreature[command[1]], DialogData.askTopic[command[3]]]); }
+        }
+
+
+        public static void ListItems(World world)
+        {
+            List<Item> itemList = world.GetLocation(world.GetPlayer().GetLocationName()).GetItemsAtLocation();      //Create a list of npcs at the location. Make sure to exclude Trixie.
+
+            int numItems = itemList.Count;
+
+            if (itemList.Count() > 0) { Console.WriteLine($"There {HelpfulMethods.IsOrAre(numItems)} {HelpfulMethods.TurnItemListIntoString(itemList)} here."); }
+
+        }
+
+        public static void ListCreatures(World world)
+        {
+
+            List<Creature> creatureList = world.GetLocation(world.GetPlayer().GetLocationName()).GetCreaturesAtLocation();      //Create a list of npcs at the location. Make sure to exclude Trixie.
+
+            int numCreatures = creatureList.Count;
+
+            if (creatureList.Count() == 1) { Console.WriteLine("There's nopony else here."); }
+
+            else
+            { Console.WriteLine($"{HelpfulMethods.TurnCreatureListIntoString(creatureList)} {HelpfulMethods.IsOrAre(numCreatures - 1)} here."); }
+
         }
 
 
