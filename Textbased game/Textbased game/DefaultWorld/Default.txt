@@ -1,0 +1,69 @@
+﻿Location: Sugarcube Corner
+Location: Castle of Friendship
+Location: Carousel Boutique
+Location: Sweet Apple Acres
+
+Location: Sugarcube Corner interior
+Location: Sugarcube Corner kitchen
+Location: Pinkie Pie's room
+Location: Party Cave
+
+Location: Carousel Boutique interior
+
+Location: Farmhouse interior
+
+Location: Castle main hall
+Location: Cutie Map room
+Location: Castle library
+Location: Castle kitchen
+Location: Starlight's room
+
+
+
+
+
+
+
+Creature: Pinkie Pie,earth pony
+Creature: Applejack,earth pony
+Creature: Rainbow Dash,pegasus
+Creature: Fluttershy,pegasus
+Creature: Rarity,unicorn
+Creature: Twilight Sparkle,alicorn
+Creature: Spike,dragon
+
+Creature: Maud Pie,earth pony
+Creature: Starlight Glimmer,unicorn
+
+
+
+Creature: Trixie,unicorn
+
+
+//Items
+
+Item: a bundle of fireworks
+Item: a juicy red apple
+Item: a heavy plow
+Item: a spool of thread
+Item: an unfinished dress
+Item: a bucket of ice cream
+
+
+
+//Static objects
+
+StationaryObject: Cutie Map
+StationaryObject: Friendship thrones
+StationaryObject: Twilight's throne
+StationaryObject: Rarity's throne
+StationaryObject: Applejack's throne
+StationaryObject: Pinkie Pie's throne
+StationaryObject: Fluttershy's throne
+StationaryObject: Rainbow Dash's throne
+StationaryObject: Spike's throne
+
+StationaryObject: Rarity's sewing machine
+
+StationaryObject: apple tree
+StationaryObject: baking oven

@@ -84,14 +84,6 @@ namespace Textbased_game
 
             switch (command[0])     //This can be used to parse similar expressions, i.e. "examine" points to "look at".
             {
-                case "pick up":
-                    Commands.PickUp(command[1], world);
-                    break;
-
-                case "drop":
-                    Commands.Drop(command[1], world);
-                    break;
-
                 case "brandish":
                     //stuff
                     break;
@@ -100,6 +92,22 @@ namespace Textbased_game
                     //stuff
                     break;
 
+                case "save":
+                    //stuff
+                    break;
+
+                case "load":
+                    //stuff
+                    break;
+
+                case "pick up":
+                    Commands.PickUp(command[1], world);
+                    break;
+
+                case "drop":
+                    Commands.Drop(command[1], world);
+                    break;
+                    
                 case "inventory":
                     Commands.ShowInventory(world);
                     break;

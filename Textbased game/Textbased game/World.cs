@@ -23,7 +23,7 @@ namespace Textbased_game
 
         public List<String> legitimateNouns = new List<String>();
 
-        public List<string> legitimateCommands = new List<String> { "nouns", "look at", "look around", "look", "go to", "go", "pick up", "talk to", "quit", "drop", "brandish", "ask", "cast", "exits", "teleport to", "teleport", "help", "commands", "inventory" };
+        public List<string> legitimateCommands = new List<String> { "save", "load", "nouns", "look at", "look around", "look", "go to", "go", "pick up", "talk to", "quit", "drop", "brandish", "ask", "cast", "exits", "teleport to", "teleport", "help", "commands", "inventory" };
         public List<string> legitimateConjunctions = new List<String> { "to", "about", "behind", "at", "under", "in front of", "on", "in" };
 
 
